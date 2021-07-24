@@ -1,0 +1,64 @@
+{
+    "name": "@protoarch.angular/api",
+    "version": "6.0.0",
+    "ngPackage": {
+        "lib": {
+            "entryFile": "src/index.ts"
+        }
+    },
+    "author": {
+        "name": "Sergey Romanchuk"
+    },
+    "maintainers": [
+        {
+            "email": "rezety@gmail.com",
+            "name": "Sergey Romanchuk"
+        }
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "homepage": "https://github.com/LCGroupIT/lcgroup.core-api#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LCGroupIT/lcgroup.core-api.git"
+    },
+    "keywords": [
+        "api",
+        "angular",
+        "http",
+        "HttpClient",
+        "Rest api"
+    ],
+    "bugs": {
+        "url": "https://github.com/LCGroupIT/lcgroup.core/issues"
+    },
+    "license": "MIT",
+    "description": "Angular HttpClient simplifier",
+    "engines": {
+        "node": ">= 10.13.0"
+    },
+    "scripts": {
+        "build": "npx ng-packagr -p package.json",
+        "clean": "npm run clean:build && npm run clean:tests",
+        "clean:build": "npm run rimraf -- dist build",
+        "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
+        "copy:assets": "npm run cpy -- CHANGELOG.md dist",
+        "conventional-changelog": "conventional-changelog",
+        "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
+        "changelog:add": "git add --force CHANGELOG.md package.json",
+        "changelog:commit": "git commit -m \"Updated CHANGELOG.md\"",
+        "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
+        "release": "npx np --contents=dist"
+    },
+    "dependencies": {
+        "tslib": "^2.1.0"
+    },
+    "peerDependencies": {
+        "@angular/common": ">=10.0.0 <13.0.0",
+        "@angular/core": ">=10.0.0 <13.0.0",
+        "rxjs": ">=6.5.3 <8.0.0"
+    },
+    "devDependencies": {
+    }
+}

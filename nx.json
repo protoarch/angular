@@ -1,0 +1,47 @@
+{
+  "npmScope": "protoarch",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "ZmEzYzc3ZDMtOTgyNC00MzBiLTk3MjYtZGY3YjhiMGUxOWJhfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "api": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "protoarch-app-demo": {
+      "tags": []
+    },
+    "protoarch-app-demo-e2e": {
+      "tags": [],
+      "implicitDependencies": ["protoarch-app-demo"]
+    }
+  }
+}
