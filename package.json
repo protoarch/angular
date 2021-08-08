@@ -25,8 +25,7 @@
         "update": "nx migrate latest",
         "workspace-generator": "nx workspace-generator",
         "dep-graph": "nx dep-graph",
-        "help": "nx help",
-        "release": "npm exec semantic-release -e semantic-release-monorepo"
+        "help": "nx help"
     },
     "workspaces": [
         "apps/protoarch-app-demo",

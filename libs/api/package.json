@@ -9,14 +9,13 @@
     "author": {
         "name": "Sergey Romanchuk"
     },
-    "maintainers": [
-        {
-            "email": "rezety@gmail.com",
-            "name": "Sergey Romanchuk"
-        }
-    ],
+    "maintainers": [{
+        "email": "rezety@gmail.com",
+        "name": "Sergey Romanchuk"
+    }],
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "http://localhost:4873/"
     },
     "homepage": "https://github.com/LCGroupIT/lcgroup.core-api#readme",
     "repository": {
@@ -58,7 +57,5 @@
         "@angular/common": ">=10.0.0 <13.0.0",
         "@angular/core": ">=10.0.0 <13.0.0",
         "rxjs": ">=6.5.3 <8.0.0"
-    },
-    "devDependencies": {
     }
 }
