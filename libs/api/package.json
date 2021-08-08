@@ -48,7 +48,7 @@
         "changelog:add": "git add --force CHANGELOG.md package.json",
         "changelog:commit": "git commit -m \"Updated CHANGELOG.md\"",
         "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
-        "release": "npx np --contents=dist"
+        "release": "npx np --contents=dist --yolo"
     },
     "dependencies": {
         "tslib": "^2.1.0"
