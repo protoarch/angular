@@ -13,9 +13,6 @@
         "email": "rezety@gmail.com",
         "name": "Sergey Romanchuk"
     }],
-    "publishConfig": {
-        "access": "public"
-    },
     "homepage": "https://github.com/protoarch/angular.git#readme",
     "repository": {
         "type": "git",
