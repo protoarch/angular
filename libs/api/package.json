@@ -14,13 +14,12 @@
         "name": "Sergey Romanchuk"
     }],
     "publishConfig": {
-        "access": "public",
-        "registry": "http://localhost:4873/"
+        "access": "public"
     },
-    "homepage": "https://github.com/LCGroupIT/lcgroup.core-api#readme",
+    "homepage": "https://github.com/protoarch/angular.git#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LCGroupIT/lcgroup.core-api.git"
+        "url": "git+https://github.com/protoarch/angular.git"
     },
     "keywords": [
         "api",
@@ -30,7 +29,7 @@
         "Rest api"
     ],
     "bugs": {
-        "url": "https://github.com/LCGroupIT/lcgroup.core/issues"
+        "url": "https://github.com/protoarch/angular/issues"
     },
     "license": "MIT",
     "description": "Angular HttpClient simplifier",
