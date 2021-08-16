@@ -53,10 +53,7 @@
     "dependencies": {
         "tslib": "^2.1.0"
     },
-    "devDependencies": {
-        "conventional-changelog": "^3.1.24",
-        "conventional-changelog-cli": "^2.1.1"
-    },
+    "devDependencies": {},
     "peerDependencies": {
         "@angular/common": ">=10.0.0 <13.0.0",
         "@angular/core": ">=10.0.0 <13.0.0",
