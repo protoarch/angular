@@ -8,7 +8,7 @@
     },
     "np": {
         "yarn": false,
-        "contents": "dist"
+        "contents": "./dist"
     },
     "author": {
         "name": "Sergey Romanchuk"
