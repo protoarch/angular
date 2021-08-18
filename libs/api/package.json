@@ -1,14 +1,14 @@
 {
     "name": "@protoarch.angular/api",
-    "version": "6.0.3",
+    "version": "6.0.4",
     "ngPackage": {
         "lib": {
             "entryFile": "src/index.ts"
         }
     },
     "np": {
-      "yarn": false,
-      "contents": "dist"
+        "yarn": false,
+        "contents": "dist"
     },
     "author": {
         "name": "Sergey Romanchuk"
