@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/auth",
-    "version": "4.0.0",
+    "version": "6.0.0",
     "ngPackage": {
         "lib": {
             "entryFile": "src/index.ts"
@@ -10,10 +10,10 @@
         ]
     },
     "np": {
-      "yolo": true,
-      "yarn": false,
-      "contents": "./dist",
-      "2fa": false
+        "yolo": true,
+        "yarn": false,
+        "contents": "./dist",
+        "2fa": false
     },
     "publishConfig": {
         "access": "public"
@@ -33,10 +33,12 @@
     "author": {
         "name": "Sergey Romanchuk"
     },
-    "maintainers": [{
-        "email": "rezety@gmail.com",
-        "name": "Sergey Romanchuk"
-    }],
+    "maintainers": [
+        {
+            "email": "rezety@gmail.com",
+            "name": "Sergey Romanchuk"
+        }
+    ],
     "license": "MIT",
     "description": "Authentication module",
     "engines": {
@@ -63,7 +65,7 @@
         "test:watch": "npm run clean:tests && karma start karma.conf.debug.js",
         "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
         "release": "npx np",
-        "postrelease": "git add package.json package-lock.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
+        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
     },
     "dependencies": {
         "tslib": "^2.1.0"
