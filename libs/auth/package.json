@@ -10,8 +10,10 @@
         ]
     },
     "np": {
-        "contents": "dist",
-        "anyBranch": true
+      "yolo": true,
+      "yarn": false,
+      "contents": "./dist",
+      "2fa": false
     },
     "publishConfig": {
         "access": "public"
