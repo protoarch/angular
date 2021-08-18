@@ -18,10 +18,10 @@
     "publishConfig": {
         "access": "public"
     },
-    "homepage": "https://github.com/LCGroupIT/lcgroup.core-auth#readme",
+    "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LCGroupIT/lcgroup.core-auth.git"
+        "url": "git+https://github.com/protoarch/angular.git"
     },
     "keywords": [
         "auth",
