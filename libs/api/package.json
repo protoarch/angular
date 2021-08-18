@@ -6,6 +6,10 @@
             "entryFile": "src/index.ts"
         }
     },
+    "np": {
+      "yarn": false,
+      "contents": "dist"
+    },
     "author": {
         "name": "Sergey Romanchuk"
     },
