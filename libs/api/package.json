@@ -42,7 +42,7 @@
     "license": "MIT",
     "description": "Angular HttpClient simplifier",
     "engines": {
-        "node": ">= 10.13.0"
+        "node": ">= 14.0.0"
     },
     "scripts": {
         "build": "npx ng-packagr -p package.json",

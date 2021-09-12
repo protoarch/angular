@@ -1,6 +1,28 @@
 {
   "version": 1,
   "projects": {
+    "ab": {
+      "projectType": "library",
+      "root": "libs/ab",
+      "sourceRoot": "libs/ab/src",
+      "prefix": "protoarch",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ab"],
+          "options": {
+            "jestConfig": "libs/ab/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ab/src/**/*.ts", "libs/ab/src/**/*.html"]
+          }
+        }
+      }
+    },
     "api": {
       "projectType": "library",
       "root": "libs/api",

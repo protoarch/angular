@@ -30,6 +30,9 @@
     ]
   },
   "projects": {
+    "ab": {
+      "tags": []
+    },
     "api": {
       "tags": []
     },
