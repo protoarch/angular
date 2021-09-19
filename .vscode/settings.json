@@ -1,0 +1,49 @@
+{
+	"js/ts.implicitProjectConfig.experimentalDecorators": true,
+
+	"eslint.validate": [ "javascript", "typescript", "html"],
+
+	"eslint.options": {
+		"extensions": [".js", ".ts", ".html"]
+	},
+
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true,
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true
+	},
+
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// Set the default
+	"editor.formatOnSave": false,
+	// Enable per-language
+
+
+	"stylelint.enable": true,
+
+	"[typescript]": {
+		"editor.formatOnSave": true,
+	},
+	"[less]": {
+		"editor.formatOnSave": true
+	},
+	"[scss]": {
+		"editor.formatOnSave": true
+	},
+	"[css]": {
+		"editor.formatOnSave": true
+	},
+	"[javascript]": {
+		"editor.formatOnSave": true
+	},
+	"[html]": {
+		"editor.formatOnSave": true
+	},
+	"[md]": {
+		"editor.formatOnSave": true
+	},
+	"[json]": {
+		"editor.formatOnSave": true
+	},
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+}

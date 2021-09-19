@@ -4,6 +4,24 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "steoates.autoimport",
+    "aaron-bond.better-comments",
+    "devboosts.angular-productivity-pack",
+    "cyrilletuzi.angular-schematics",
+    "johnpapa.Angular2",
+    "infinity1207.angular2-switcher",
+    "naumovs.color-highlight",
+    "vunguyentuan.vscode-css-variables",
+    "p-de-jong.vscode-html-scss",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "mrmlnc.vscode-scss",
+    "rbbit.typescript-hero",
+    "pmneo.tsimporter",
+    "stevencl.adddoccomments",
+    "coenraads.bracket-pair-colorizer",
+    "pranaygp.vscode-css-peek"
   ]
 }
