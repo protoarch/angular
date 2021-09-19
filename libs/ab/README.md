@@ -1,11 +1,12 @@
-# lcgroup.core-ab-tests
-Fork from original project: https://github.com/adrdilauro/angular-ab-tests
+# @protoarch.angular/ab
+
+Fork from original project: <https://github.com/adrdilauro/angular-ab-tests>
 
 @protoarch.angular/ab is an [angular](https://angular.io/) module that helps you setting up **easily** and **clearly** any AB or multivariate test.
 
 It will **make your tests easy to debug and understand**, regardless of how complex they are, of how many versions you are setting up, or even of how many concurrent tests you are running.
 
-### Contents
+## Contents
 
 - [List of features](#features)
 - [Quick introduction to usage](#usage-in-short)
@@ -17,8 +18,7 @@ It will **make your tests easy to debug and understand**, regardless of how comp
 - [Server side rendering](#server-side-rendering)
 - [Usage with routes](#usage-with-routes)
 
-
-# Features
+## Features
 
 - Set up an A/B test with a **simple and descriptive code** (the module makes available just one simple structural directive)
 - A/B tests are valid across different pages, using cookies with the expiration you want
@@ -26,8 +26,7 @@ It will **make your tests easy to debug and understand**, regardless of how comp
 - Effortlessly set up **any number of independent A/B tests**, being sure that they won't clash in the code
 - Select a special version for crawlers, so you won't affect your SEO while you are running the test
 
-
-# Usage in short
+## Usage in short
 
 Set up an A/B test including the module with `forRoot` method:
 
@@ -60,8 +59,7 @@ Wrap fragments of HTML inside the structural directive named `ABVersion`, markin
 </ng-container>
 ```
 
-
-# Why to use this plugin
+## Why to use this plugin
 
 - You can create several different versions, as complex and as big as you need, without filling your HTML with unnecessary code. This will make your A/B test less error prone, and also it will make it easier to remove the loser versions after the test, because the code is clear and descriptive.
 - Versions that are not selected are automatically removed from change detection at initialization, so no performance issues.
@@ -80,7 +78,7 @@ This means that, even if your server has responded in 150 milliseconds, your use
 
 Are you sure you want to risk this? With @protoarch.angular/ab you can set up a simple A/B test easily and cleanly directly in the code, this means that you can get rid of the hide-page tag, and let Google Optimize focus only on data collection.
 
-# Documentation 1: Initializing
+## Documentation 1: Initializing
 
 @protoarch.angular/ab declares just one directive called `*ABVersion`. The directive is structural and it's used to wrap parts of the HTML that you want to A/B test.
 
@@ -185,7 +183,7 @@ The best place to set up the directive `*ABVersion` is the `SharedModule`, in or
 
 Simply configure your `SharedModule` to import and re-export the bare `AbModule`, like this:
 
-```
+```typescript
 @NgModule({
   imports: [ AbModule ],
   exports: [ AbModule ],
@@ -197,9 +195,7 @@ To see quickly this whole configuration in action, [please set up the demo](#set
 
 To read more about `SharedModule` and `CoreModule`, you might find useful [this list of module patterns from the official docs](https://angular.io/guide/ngmodule-faq#feature-modules).
 
-
-
-# Documentation 2: Usage
+## Documentation 2: Usage
 
 ### The config interface
 
@@ -361,13 +357,11 @@ This behaviour is logical: for whatever reason you are changing manually the ver
 
 So, if you want to force a version, please ensure that you do it BEFORE rendering any HTML block affected by that test: otherwise, the user might end up seeing, in the same page, HTML blocks corresponding to different versions.
 
-
 ### Debugging cookies
 
 I strongly suggest you to use the Chrome extension called [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg?hl=en).
 
-
-# Documentation 3: Tips
+## Documentation 3: Tips
 
 ### 1 - Apply the directive on a ngContainer
 
@@ -435,23 +429,19 @@ In theory, if you nest directives associated to different tests, you are not doi
 
 How to be sure that you are not nesting two directives? Unfortunately with the decomposition of an HTML page into Angular components there is no definitive way of ensuring this, you'll have to organize your code smartly.
 
-
 ### 4 - Ensure your tests are statistically consistent
 
 Be careful not to produce a false positive by running two AB tests in the same time: there are many blogs covering this topic, for instance one I found is [this](https://conversionxl.com/blog/can-you-run-multiple-ab-tests-at-the-same-time).
 
-
-# Server Side Rendering
+## Server Side Rendering
 
 There are a couple of ways to make this module work in SSR (thanks [@alirezamirian](https://github.com/alirezamirian) for this addition):
 
-
-## 1 - Using `AbServerModule`
+### 1 - Using `AbServerModule`
 
 The module `AbServerModule` is an extension that overrides the services used to handle userAgent and cookies: it replaces browser entities such as `document` and `window` with SSR-friendly services that do the same thing.
 
 You need to import it in your `app.server.module.ts`, in addition to the other imports discussed in the previous points.
-
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -470,8 +460,7 @@ export class AppServerModule {}
 
 Note that, even if they are not provided, both modules should be installed.
 
-
-## 2 - Providing necessary services
+### 2 - Providing necessary services
 
 Alternatively, you can also provide `CookieHandler` and `CrawlerDetector` services yourself in your server module:
 
@@ -507,7 +496,7 @@ set(name: string, value: string, domain?: string, expires?: number): void
 
 Obviously, in your own implementation of `MyOwnCookieHandler`, you don't have to worry about where the parameters `name`, `domain`, etc come from: you just need to add them to the cookie, if they are present, with whatever cookie-writing interface you are using.
 
-# Usage with routes:
+## Usage with routes
 
 ```typescript
 interface GuardData {
@@ -518,9 +507,11 @@ interface GuardDataTest extends ABOptions {
     redirectUrls?: {[key: string]: string};
 }
 ```
-### Examples:
+
+### Examples
 
 - Usage with redirect pages:
+
 ```typescript
 const ab = {
     scope: 'page',
@@ -551,6 +542,7 @@ const routes = [
 ```
 
 - Usage with tests for page (single test)
+
 ```typescript
 const youRoutes = [
     {
@@ -567,6 +559,7 @@ const youRoutes = [
 ```
 
 - Usage with tests for page (multiple tests)
+
 ```typescript
 const youRoutes = [
     {
@@ -591,23 +584,27 @@ const youRoutes = [
 ### service methods
 
 - setTest dynamically:
+
 ```typescript
   // example:
   this.AbService.setTest('myScope', ['v1', 'v2']);
 ```
 
 - subscribe on test started:
+
 ```typescript
   this.AbService.testStarted$()
      .subscribe(({scope, version}: TestStartedEvent) => {/*...*/});
 ```
 
 - emit test started
+
 ```typescript
   this.AbService.emitTestStarted(scope, version);
 ```
 
 - set test and emit
+
 ```typescript
   this.AbService.setTestAndEmitStarted('myScope', ['v1', 'v2']); // the second parameter takes ABOptions or array of versions
 ```

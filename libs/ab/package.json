@@ -1,92 +1,92 @@
 {
-    "$schema": "../../node_modules/ng-packagr/package.schema.json",
-    "name": "@protoarch.angular/ab",
-    "version": "6.0.0",
-    "ngPackage": {
-        "lib": {
-            "entryFile": "src/index.ts"
-        },
-        "allowedNonPeerDependencies": [
-          "angular",
-          "core-js",
-          "rxjs",
-          "zone.js",
-          "nguniversal",
-          "ngx-cookie"
-      ]
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@protoarch.angular/ab",
+  "version": "0.0.1",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
     },
-    "np": {
-        "yolo": true,
-        "yarn": false,
-        "contents": "./dist",
-        "2fa": false
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/protoarch/angular.git"
-    },
-    "keywords": [
+    "allowedNonPeerDependencies": [
       "angular",
-      "ab tests",
-      "ab test",
-      "multivariate tests",
-      "multivariate test",
-      "multivariate",
-      "ab"
-    ],
-    "author": {
-        "name": "Sergey Romanchuk"
-    },
-    "maintainers": [
-        {
-            "email": "rezety@gmail.com",
-            "name": "Sergey Romanchuk"
-        }
-    ],
-    "license": "MIT",
-    "description": "Module for AB tests",
-    "engines": {
-        "node": ">= 14.0.0"
-    },
-    "scripts": {
-        "karma": "npx karma",
-        "rimraf": "npx rimraf",
-        "ngc": "npx ngc",
-        "cpy": "npx cpy",
-        "prebuild": "npm run clean:build",
-        "build": "npx ng-packagr -p package.json",
-        "copy:assets": "npm run cpy -- CHANGELOG.md dist",
-        "conventional-changelog": "conventional-changelog",
-        "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-        "clean": "npm run clean:build && npm run clean:tests",
-        "clean:build": "npm run rimraf -- dist build",
-        "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
-        "lint": "npm run lint-ts && npm run lint-js && npm run lint-css",
-        "lint-css": "stylelint './src/**/*.css'",
-        "lint-ts": "tslint './src/**/*.ts'",
-        "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
-        "test": "npm run clean:tests && karma start karma.conf.js",
-        "test:watch": "npm run clean:tests && karma start karma.conf.debug.js",
-        "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
-        "release": "npx np",
-        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
-    },
-    "dependencies": {
-        "tslib": "^2.1.0"
-    },
-    "peerDependencies": {
-        "@angular/common": ">=10.0.0 <13.0.0",
-        "@angular/core": ">=10.0.0 <13.0.0",
-        "@angular/platform-browser": ">=10.0.0 <13.0.0",
-        "@angular/router": ">=10.0.0 <13.0.0",
-        "@nguniversal/express-engine": ">=10.0.0 <13.0.0",
-        "rxjs": ">=6.5.3 <8.0.0"
-    },
-    "optionalDependencies": {
-        "ngx-cookie": "^5.0.0"
+      "core-js",
+      "rxjs",
+      "zone.js",
+      "nguniversal",
+      "ngx-cookie"
+    ]
+  },
+  "np": {
+    "yolo": true,
+    "yarn": false,
+    "contents": "./dist",
+    "2fa": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/protoarch/angular/tree/main/libs/ab#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protoarch/angular.git"
+  },
+  "keywords": [
+    "angular",
+    "ab tests",
+    "ab test",
+    "multivariate tests",
+    "multivariate test",
+    "multivariate",
+    "ab"
+  ],
+  "author": {
+    "name": "Sergey Romanchuk"
+  },
+  "maintainers": [
+    {
+      "email": "rezety@gmail.com",
+      "name": "Sergey Romanchuk"
     }
+  ],
+  "license": "MIT",
+  "description": "Module for AB tests",
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "scripts": {
+    "karma": "npx karma",
+    "rimraf": "npx rimraf",
+    "ngc": "npx ngc",
+    "cpy": "npx cpy",
+    "prebuild": "npm run clean:build",
+    "build": "npx ng-packagr -p package.json",
+    "copy:assets": "npm run cpy -- CHANGELOG.md dist",
+    "conventional-changelog": "conventional-changelog",
+    "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
+    "clean": "npm run clean:build && npm run clean:tests",
+    "clean:build": "npm run rimraf -- dist build",
+    "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
+    "lint": "npm run lint-ts && npm run lint-js && npm run lint-css",
+    "lint-css": "stylelint './src/**/*.css'",
+    "lint-ts": "tslint './src/**/*.ts'",
+    "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
+    "test": "npm run clean:tests && karma start karma.conf.js",
+    "test:watch": "npm run clean:tests && karma start karma.conf.debug.js",
+    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
+    "release": "npx np",
+    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=10.0.0 <13.0.0",
+    "@angular/core": ">=10.0.0 <13.0.0",
+    "@angular/platform-browser": ">=10.0.0 <13.0.0",
+    "@angular/router": ">=10.0.0 <13.0.0",
+    "@nguniversal/express-engine": ">=10.0.0 <13.0.0",
+    "rxjs": ">=6.5.3 <8.0.0"
+  },
+  "optionalDependencies": {
+    "ngx-cookie": "^5.0.0"
+  }
 }
