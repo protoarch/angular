@@ -69,8 +69,6 @@
     "lint-css": "stylelint './src/**/*.css'",
     "lint-ts": "tslint './src/**/*.ts'",
     "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
-    "test": "npm run clean:tests && karma start karma.conf.js",
-    "test:watch": "npm run clean:tests && karma start karma.conf.debug.js",
     "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
     "release": "npx np",
     "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"

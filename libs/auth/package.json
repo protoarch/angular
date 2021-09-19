@@ -1,88 +1,90 @@
 {
-    "name": "@protoarch.angular/auth",
-    "version": "6.0.2",
-    "ngPackage": {
-        "lib": {
-            "entryFile": "src/index.ts"
-        },
-        "allowedNonPeerDependencies": [
-            "ngx-cookie"
-        ]
+  "name": "@protoarch.angular/auth",
+  "version": "6.0.2",
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/index.ts"
     },
-    "np": {
-        "yolo": true,
-        "yarn": false,
-        "contents": "./dist",
-        "2fa": false
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/protoarch/angular.git"
-    },
-    "keywords": [
-        "auth",
-        "angular",
-        "jwt",
-        "user",
-        "authorization"
-    ],
-    "author": {
-        "name": "Sergey Romanchuk"
-    },
-    "maintainers": [
-        {
-            "email": "rezety@gmail.com",
-            "name": "Sergey Romanchuk"
-        }
-    ],
-    "license": "MIT",
-    "description": "Authentication module",
-    "engines": {
-        "node": ">= 14.0.0"
-    },
-    "scripts": {
-        "karma": "npx karma",
-        "rimraf": "npx rimraf",
-        "ngc": "npx ngc",
-        "cpy": "npx cpy",
-        "prebuild": "npm run clean:build",
-        "build": "npx ng-packagr -p package.json",
-        "copy:assets": "npm run cpy -- CHANGELOG.md dist",
-        "conventional-changelog": "conventional-changelog",
-        "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-        "clean": "npm run clean:build && npm run clean:tests",
-        "clean:build": "npm run rimraf -- dist build",
-        "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
-        "lint": "npm run lint-ts && npm run lint-js && npm run lint-css",
-        "lint-css": "stylelint './src/**/*.css'",
-        "lint-ts": "tslint './src/**/*.ts'",
-        "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
-        "test": "npm run clean:tests && karma start karma.conf.js",
-        "test:watch": "npm run clean:tests && karma start karma.conf.debug.js",
-        "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
-        "release": "npx np",
-        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
-    },
-    "dependencies": {
-        "tslib": "^2.1.0"
-    },
-    "peerDependencies": {
-        "@angular/common": ">=10.0.0 <13.0.0",
-        "@angular/core": ">=10.0.0 <13.0.0",
-        "@angular/platform-browser": ">=10.0.0 <13.0.0",
-        "@angular/router": ">=10.0.0 <13.0.0",
-        "@nguniversal/express-engine": ">=10.0.0 <13.0.0",
-        "@auth0/angular-jwt": ">=5.0.1 <6.0.0",
-        "rxjs": ">=6.5.3 <8.0.0"
-    },
-    "optionalDependencies": {
-        "ngx-cookie": "^5.0.0"
-    },
-    "devDependencies": {
-        "@auth0/angular-jwt": "^5.0.1"
+    "allowedNonPeerDependencies": [
+      "ngx-cookie"
+    ]
+  },
+  "np": {
+    "yolo": true,
+    "yarn": false,
+    "contents": "./dist",
+    "2fa": false
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/protoarch/angular.git"
+  },
+  "keywords": [
+    "auth",
+    "angular",
+    "jwt",
+    "user",
+    "authorization"
+  ],
+  "author": {
+    "name": "Sergey Romanchuk"
+  },
+  "maintainers": [
+    {
+      "email": "rezety@gmail.com",
+      "name": "Sergey Romanchuk"
     }
+  ],
+  "license": "MIT",
+  "description": "Authentication module",
+  "engines": {
+    "node": ">= 14.0.0"
+  },
+  "scripts": {
+    "karma": "npx karma",
+    "rimraf": "npx rimraf",
+    "ngc": "npx ngc",
+    "cpy": "npx cpy",
+    "prebuild": "npm run clean:build",
+    "build": "npx ng-packagr -p package.json",
+    "copy:assets": "npm run cpy -- CHANGELOG.md dist",
+    "conventional-changelog": "conventional-changelog",
+    "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
+    "clean": "npm run clean:build && npm run clean:tests",
+    "clean:build": "npm run rimraf -- dist build",
+    "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
+    "lint": "npm run lint-ts && npm run lint-js && npm run lint-css",
+    "lint-css": "stylelint './src/**/*.css'",
+    "lint-ts": "tslint './src/**/*.ts'",
+    "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
+    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
+    "release": "npx np",
+    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=10.0.0 <13.0.0",
+    "@angular/core": ">=10.0.0 <13.0.0",
+    "@angular/platform-browser": ">=10.0.0 <13.0.0",
+    "@angular/router": ">=10.0.0 <13.0.0",
+    "@nguniversal/express-engine": ">=10.0.0 <13.0.0",
+    "@auth0/angular-jwt": ">=5.0.1 <6.0.0",
+    "rxjs": ">=6.5.3 <8.0.0"
+  },
+  "optionalDependencies": {
+    "ngx-cookie": "^5.0.0"
+  },
+  "devDependencies": {
+    "@auth0/angular-jwt": "^5.0.1",
+    "@nguniversal/express-engine": "~12.1.0",
+    "jsonwebtoken": "~8.5.1",
+    "@types/express": "~4.17.13",
+    "@types/jsonwebtoken": "~8.5.5"
+  }
 }

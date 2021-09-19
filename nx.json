@@ -1,7 +1,7 @@
 {
   "npmScope": "protoarch",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "implicitDependencies": {
     "package.json": {

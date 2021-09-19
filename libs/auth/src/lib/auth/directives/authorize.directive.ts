@@ -1,11 +1,17 @@
-import { Directive, Inject, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-
+import {
+  Directive,
+  Inject,
+  Input,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 import { AUTH_SERVICE } from '../auth.tokens';
 import { User } from '../models';
 import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[authorize]'
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[authorize]',
 })
 export class AuthorizeDirective {
   private hasView = false;
