@@ -49,7 +49,7 @@ describe('AuthorizeControlDirective', () => {
       providers: [
         TemplateRef,
         ViewContainerRef,
-        { provide: ElementRef, useClass: new MockElementRef() },
+        { provide: ElementRef, useValue: new MockElementRef() },
         {
           provide: AUTH_SERVICE,
           useValue: authServiceStub,

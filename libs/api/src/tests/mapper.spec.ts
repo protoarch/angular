@@ -96,7 +96,7 @@ describe('SimplyApiService: serializer (mapper)', () => {
         (apiService: Api, backend: HttpTestingController) => {
           const path = '/api/test';
           const originalText = 'should_be_uppercased';
-          const expectedText = originalText.toUpperCase() + '=';
+          const expectedText = originalText.toUpperCase();
 
           class Test {
             toString() {
@@ -106,7 +106,7 @@ describe('SimplyApiService: serializer (mapper)', () => {
 
           apiService.get(path, { params: new Test() }).subscribe();
           backend.expectOne({
-            url: path + '?' + expectedText,
+            url: path + '?' + expectedText + '=',
             method: 'GET',
           });
 
