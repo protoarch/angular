@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@protoarch.angular/ab",
-  "version": "0.0.2-1",
+  "version": "6.0.0",
   "ngPackage": {
     "lib": {
       "entryFile": "src/index.ts"
