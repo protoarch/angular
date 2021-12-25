@@ -47,14 +47,14 @@ Set up an A/B test including the module with `forRoot` method:
 })
 ```
 
-Wrap fragments of HTML inside the structural directive named `ABVersion`, marking them to belong to one or more of the versions of your A/B test.
+Wrap fragments of HTML inside the structural directive named `prtAbVersion`, marking them to belong to one or more of the versions of your A/B test.
 
 ```html
-<ng-container *ABVersion="'old'">
+<ng-container *prtAbVersion="'old'">
   Old version goes here
 </ng-container>
 
-<ng-container *ABVersion="'new'">
+<ng-container *prtAbVersion="'new'">
   New version goes here
 </ng-container>
 ```
@@ -80,7 +80,7 @@ Are you sure you want to risk this? With @protoarch.angular/ab you can set up a 
 
 ## Documentation 1: Initializing
 
-@protoarch.angular/ab declares just one directive called `*ABVersion`. The directive is structural and it's used to wrap parts of the HTML that you want to A/B test.
+@protoarch.angular/ab declares just one directive called `*prtAbVersion`. The directive is structural and it's used to wrap parts of the HTML that you want to A/B test.
 
 In order to use this directive, you need to import the module `AbModule` wherever you need it.
 
@@ -179,7 +179,7 @@ export class CoreModule {
 
 ### 2 - Set up the directive
 
-The best place to set up the directive `*ABVersion` is the `SharedModule`, in order not to accidentallly forget to import it in every single module. Shared modules are [a recommended way to organize your shared dependencies](https://angular.io/guide/ngmodule#shared-modules).
+The best place to set up the directive `*prtAbVersion` is the `SharedModule`, in order not to accidentallly forget to import it in every single module. Shared modules are [a recommended way to organize your shared dependencies](https://angular.io/guide/ngmodule#shared-modules).
 
 Simply configure your `SharedModule` to import and re-export the bare `AbModule`, like this:
 
@@ -259,7 +259,7 @@ AbModule.forRoot(
 
 ### The directive
 
-The directive `ABVersion` wraps a portion of HTML and decides whether showing it or not depending on the following factors:
+The directive `prtAbVersion` wraps a portion of HTML and decides whether showing it or not depending on the following factors:
 
 1. Does the version stored in the cookie match the one declared in the directive?
 2. If the call comes from an SEO crawler, has this version been chosen to be shown to crawlers?
@@ -267,7 +267,7 @@ The directive `ABVersion` wraps a portion of HTML and decides whether showing it
 This is the most basic implementation of the directive:
 
 ```html
-<ng-container *ABVersion="'v1';scope:'default'">
+<ng-container *prtAbVersion="'v1';scope:'default'">
   <!-- Content -->
 </ng-container>
 ```
@@ -275,7 +275,7 @@ This is the most basic implementation of the directive:
 The "scope" is necessary to map to the correct test if you set up more than one: if you are pointing to the default test, you can omit the scope, like this:
 
 ```html
-<ng-container *ABVersion="'v1'">
+<ng-container *prtAbVersion="'v1'">
   <!-- Content -->
 </ng-container>
 ```
@@ -283,19 +283,19 @@ The "scope" is necessary to map to the correct test if you set up more than one:
 You can associate one block of HTML to two versions: instead of writing the directive twice,
 
 ```html
-<ng-container *ABVersion="'v1'">
+<ng-container *prtAbVersion="'v1'">
   <!-- Content -->
 </ng-container>
 
-<ng-container *ABVersion="'v2'">
+<ng-container *prtAbVersion="'v2'">
   <!-- Very same content -->
 </ng-container>
 ```
 
-you can simply declare the `ABVersion` directive once, separating versions with a comma:
+you can simply declare the `prtAbVersion` directive once, separating versions with a comma:
 
 ```html
-<ng-container *ABVersion="'v1,v2'">
+<ng-container *prtAbVersion="'v1,v2'">
   <!-- Content -->
 </ng-container>
 ```
@@ -305,7 +305,7 @@ Versions should be separated by comma without spaces; however don't worry too mu
 As I have already said, in the configuration you can specify that a version is always going to be shown to SEO crawlers; you can do this at directive level as well, forcing a specific block to be shown to crawlers, regardless of how you had set that test up:
 
 ```html
-<ng-container *ABVersion="'v1';forCrawlers:true">
+<ng-container *prtAbVersion="'v1';forCrawlers:true">
   <!-- Content -->
 </ng-container>
 ```
@@ -369,19 +369,19 @@ The HTML tag `<ng-container>` is an empty tag that is not rendered, it's used on
 
 ```html
 <!-- Recommended implementation -->
-<ng-container *ABVersion="'old'">
+<ng-container *prtAbVersion="'old'">
   <component-for-version-old>
   </component-for-version-old>
 </ng-container>
 
 <!-- Not recommended because you render an unnecessary div -->
-<div *ABVersion="'old'">
+<div *prtAbVersion="'old'">
   <component-for-version-old>
   </component-for-version-old>
 </div>
 
 <!-- Not recommended because you are mixing the logics of your AB test with the logic of your app -->
-<component-for-version-old *ABVersion="'old'">
+<component-for-version-old *prtAbVersion="'old'">
 </component-for-version-old>
 ```
 
@@ -391,12 +391,12 @@ As already mentioned, change detection is disabled for anything contained in a v
 
 ```html
 <!-- Recommended implementation -->
-<div *ABVersion="'old'">
+<div *prtAbVersion="'old'">
   <!-- Content -->
 </div>
 
 <!-- Not recommended because "getOldVersion()" will be fired at every change detection tick -->
-<div *ABVersion="getOldVersion()">
+<div *prtAbVersion="getOldVersion()">
   <!-- Content -->
 </div>
 ```
@@ -407,8 +407,8 @@ You should keep your code logic clean and easy to debug: be careful not to nest 
 
 ```html
 <!-- Not recommended -->
-<ng-container *ABVersion="'old'">
-  <ng-container *ABVersion="'new'">
+<ng-container *prtAbVersion="'old'">
+  <ng-container *prtAbVersion="'new'">
 
   </ng-container>
 </ng-container>
@@ -418,14 +418,14 @@ In theory, if you nest directives associated to different tests, you are not doi
 
 ```html
 <!-- In principle this is not wrong, but the results of your tests might not come out consistent -->
-<ng-container *ABVersion="'old';scope:'firsttest'">
-  <ng-container *ABVersion="'new';scope:'secondtest'">
+<ng-container *prtAbVersion="'old';scope:'firsttest'">
+  <ng-container *prtAbVersion="'new';scope:'secondtest'">
 
   </ng-container>
 </ng-container>
 ```
 
-**So, better not to nest two directives of type `ABVersion`.**
+**So, better not to nest two directives of type `prtAbVersion`.**
 
 How to be sure that you are not nesting two directives? Unfortunately with the decomposition of an HTML page into Angular components there is no definitive way of ensuring this, you'll have to organize your code smartly.
 
