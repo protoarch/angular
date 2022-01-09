@@ -17,8 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@protoarch.angular/ab": ["libs/ab/src/index.ts"],
-      "@protoarch/api": ["libs/api/src/index.ts"],
-      "@protoarch/auth": ["libs/auth/src/index.ts"]
+      "@protoarch.angular/api": ["libs/api/src/index.ts"],
+      "@protoarch.angular/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
