@@ -140,7 +140,7 @@ If you are setting up a lot of tests, you might want to clean up your `CoreModul
 
 ```javascript
 import { NgModule } from '@angular/core';
-import { AbModule, ABOptions } from '@lcgroup.core/ab-tests';
+import { AbModule, ABOptions } from '@protoarch.angular/ab';
 
 export const AbOptions: ABOptions[] = [
   {
@@ -320,7 +320,7 @@ First, you need to inject the token `AbService`:
 
 ```typescript
 import { Component } from '@angular/core';
-import { AbService } from '@lcgroup.core/ab-tests';
+import { AbService } from '@protoarch.angular/ab';
 
 @Component({
   selector: '...',
@@ -445,7 +445,7 @@ You need to import it in your `app.server.module.ts`, in addition to the other i
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { AbServerModule } from '@lcgroup.core/ab-tests';
+import { AbServerModule } from '@protoarch.angular/ab';
 
 @NgModule({
   imports:[
@@ -466,7 +466,7 @@ Alternatively, you can also provide `CookieHandler` and `CrawlerDetector` servic
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { CrawlerDetector, CookieHandler } from '@lcgroup.core/ab-tests';
+import { CrawlerDetector, CookieHandler } from '@protoarch.angular/ab';
 import { MyOwnCrawlerDetector, MyOwnCookieHandler } from '...';
 
 @NgModule({
