@@ -19,9 +19,11 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ab/src/**/*.ts", "libs/ab/src/**/*.html"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "api": {
       "projectType": "library",
@@ -44,9 +46,11 @@
               "libs/api/src/**/*.ts",
               "libs/api/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "auth": {
       "projectType": "library",
@@ -69,9 +73,11 @@
               "libs/auth/src/**/*.ts",
               "libs/auth/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "protoarch-app-demo": {
       "projectType": "application",
@@ -154,7 +160,8 @@
               "apps/protoarch-app-demo/src/**/*.ts",
               "apps/protoarch-app-demo/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -164,7 +171,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "protoarch-app-demo-e2e": {
       "root": "apps/protoarch-app-demo-e2e",
@@ -188,39 +196,12 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/protoarch-app-demo-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
       },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "less",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "less"
+      "tags": [],
+      "implicitDependencies": ["protoarch-app-demo"]
     }
   }
 }
