@@ -1,4 +1,16 @@
 # Add files here to ignore them from prettier formatting
 
-/dist
-/coverage
+dist/
+dist
+coverage/
+tmp/
+out-tsc/
+bazel-out/
+node_modules/
+.vscode/
+.idea/
+.vscode/
+.prettierignore
+package-lock.json
+package.json
+yarn.lock

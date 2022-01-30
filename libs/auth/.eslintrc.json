@@ -1,4 +1,4 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../linters/linters/eslint/index.js"],
   "ignorePatterns": ["!**/*"]
 }

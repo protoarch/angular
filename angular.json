@@ -79,6 +79,32 @@
       },
       "tags": []
     },
+    "linters": {
+      "projectType": "library",
+      "root": "libs/linters",
+      "sourceRoot": "libs/linters/src",
+      "prefix": "protoarch",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/linters"],
+          "options": {
+            "jestConfig": "libs/linters/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/linters/src/**/*.ts",
+              "libs/linters/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "protoarch-app-demo": {
       "projectType": "application",
       "root": "apps/protoarch-app-demo",
