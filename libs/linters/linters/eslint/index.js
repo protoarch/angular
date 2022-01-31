@@ -8,12 +8,12 @@ module.exports = {
         {
             files: ['*.ts'],
             parserOptions: {
-                "createDefaultProgram": true
+                createDefaultProgram: true,
             },
             extends: [
                 'plugin:@typescript-eslint/eslint-recommended',
                 'plugin:@angular-eslint/all',
-                'plugin:prettier/recommended'
+                'plugin:prettier/recommended',
             ],
             rules: {
                 '@angular-eslint/no-host-metadata-property': 'off',
@@ -124,19 +124,14 @@ module.exports = {
                 'rxjs/no-unbound-methods': 'error',
                 'rxjs/throw-error': 'error',
                 'rxjs/no-subject-value': 'error',
-                'rxjs/suffix-subjects': ['error', {suffix: '\\$'}],
+                'rxjs/suffix-subjects': ['error', {suffix: '$'}],
                 'rxjs/prefer-observer': 'error',
             },
         },
         {
-            files: [
-                '*.html'
-            ],
-            extends: [
-                'plugin:@angular-eslint/template/recommended'
-            ],
-            rules: {}
-        }
-    ]
-}
-
+            files: ['*.html'],
+            extends: ['plugin:@angular-eslint/template/recommended'],
+            rules: {},
+        },
+    ],
+};

@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
     ActivatedRouteSnapshot,
     CanActivate,
     CanActivateChild,
-    RouterStateSnapshot
+    RouterStateSnapshot,
 } from '@angular/router';
-import { AuthorizeRouterService } from '../services/authorize-router.service';
+import {AuthorizeRouterService} from '../services/authorize-router.service';
 
 @Injectable()
 export class AuthorizeRouterGuard implements CanActivate, CanActivateChild {

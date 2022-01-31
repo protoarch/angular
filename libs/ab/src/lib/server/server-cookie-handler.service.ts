@@ -1,5 +1,5 @@
 import {Injectable, Optional} from '@angular/core';
-import { CookieService } from 'ngx-cookie';
+import {CookieService} from 'ngx-cookie';
 import {CookieHandler} from '../classes';
 
 @Injectable({

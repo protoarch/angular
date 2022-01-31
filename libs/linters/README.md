@@ -1,13 +1,13 @@
-# @lcgroup.tools/linters
+# @protoarch.angular/linters
 
-ESlint rules for Angular applications.
+ESlint, Stylelint & Prettier rules for Angular applications.
 
 ## Setup
 
 Install from npm
 
 ```bash
-npm i @lcgroup.tools/linters --save-dev
+npm i @protoarch.angular/linters --save-dev
 ````
 
 ### ESLint + Prettier
@@ -18,7 +18,7 @@ Include configurations:
 
 ```javascript
 module.exports = {
-    extends: ['./node_modules/@lcgroup.tools/linters/eslint'],
+    extends: ['./node_modules/@protoarch.angular/linters/linters/eslint'],
 };
 ```
 
@@ -26,7 +26,7 @@ module.exports = {
 
 ```javascript
 module.exports = {
-    ...require('./node_modules/@lcgroup.tools/linters/prettier/prettier.config.js'),
+    ...require('./node_modules/@protoarch.angular/linters/linters/prettier/prettier.config.js'),
 };
 ````
 
@@ -52,7 +52,7 @@ coverage
 ``stylelint.config.js``
 
 ```javascript
-const styleLint = require('@lcgroup.tools/linters/stylelint/stylelint.config.js');
+const styleLint = require('@protoarch.angular/linters/linters/stylelint/stylelint.config.js');
 
 module.exports = {
     ...styleLint,
