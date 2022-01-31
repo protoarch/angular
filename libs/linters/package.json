@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/linters",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "ESLint, Stylelint & Prettier configs for Angular apps",
     "license": "MIT",
     "keywords": [
@@ -15,7 +15,7 @@
         "build": "npm run clean && npm run copy:assets",
         "version": "npm exec -- conventional-changelog-cli -p angular -i CHANGELOG.md -s -r && npm run build",
         "release": "npm exec -- np --contents ./dist",
-        "postrelease": "git add package.json package-lock.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
+        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
         "lint:styles": "npm exec -- stylelint \"**/*.scss\" \"**/*.less\" \"**/*.css\""
     },
     "np": {
