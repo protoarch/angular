@@ -1,6 +1,6 @@
 {
   "name": "@protoarch.angular/api",
-  "version": "6.0.8",
+  "version": "13.0.0-0",
   "ngPackage": {
     "lib": {
       "entryFile": "src/index.ts"
