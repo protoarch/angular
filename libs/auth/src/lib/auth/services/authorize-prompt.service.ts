@@ -1,47 +1,47 @@
-import { Inject, Injectable } from '@angular/core';
-import { fromEvent, ReplaySubject } from 'rxjs';
-import { AUTHORIZE_PROMPT_SETTINGS } from '../auth.tokens';
-import { AuthorizePromptOptions } from '../models';
+import {Inject, Injectable} from '@angular/core';
+import {fromEvent, ReplaySubject} from 'rxjs';
+import {AUTHORIZE_PROMPT_SETTINGS} from '../auth.tokens';
+import {AuthorizePromptOptions} from '../models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthorizePromptService {
-  private _enableDev = false;
+    private _enableDev = false;
 
-  readonly toggle$: ReplaySubject<boolean> = new ReplaySubject(1);
+    readonly toggle$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(
-    @Inject(AUTHORIZE_PROMPT_SETTINGS)
-    private settings: AuthorizePromptOptions
-  ) {
-    fromEvent(window, 'keydown').subscribe((e: any) => {
-      if (this.settings.enableDevHotkey && e.ctrlKey && e.key === 'F7') {
-        this._enableDev = !this._enableDev;
+    constructor(
+        @Inject(AUTHORIZE_PROMPT_SETTINGS)
+        private settings: AuthorizePromptOptions,
+    ) {
+        fromEvent(window, 'keydown').subscribe((e: any) => {
+            if (this.settings.enableDevHotkey && e.ctrlKey && e.key === 'F7') {
+                this._enableDev = !this._enableDev;
 
-        this.toggle$.next(this._enableDev);
-      }
-    });
-  }
-
-  respondToVisibility(
-    element: HTMLElement,
-    callback: (a: boolean) => void
-  ): IntersectionObserver | undefined {
-    if (!element) {
-      return;
+                this.toggle$.next(this._enableDev);
+            }
+        });
     }
 
-    const options = {
-      root: document.documentElement,
-    };
+    respondToVisibility(
+        element: HTMLElement,
+        callback: (a: boolean) => void,
+    ): IntersectionObserver | undefined {
+        if (!element) {
+            return;
+        }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        callback(!!entry.boundingClientRect.height);
-      });
-    }, options);
+        const options = {
+            root: document.documentElement,
+        };
 
-    observer.observe(element);
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                callback(!!entry.boundingClientRect.height);
+            });
+        }, options);
 
-    return observer;
-  }
+        observer.observe(element);
+
+        return observer;
+    }
 }

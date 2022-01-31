@@ -1,0 +1,73 @@
+{
+    "name": "@protoarch.angular/linters",
+    "version": "0.0.2",
+    "description": "ESLint, Stylelint & Prettier configs for Angular apps",
+    "license": "MIT",
+    "keywords": [
+        "eslint",
+        "eslintconfig",
+        "eslint-config"
+    ],
+    "scripts": {
+        "cpx": "npm exec cpx",
+        "clean": "npm exec rimraf dist/",
+        "copy:assets": "npm run cpx -- \"linters/**/*\" dist && npm run cpx -- README.md dist && npm run cpx -- CHANGELOG.md dist && npm run cpx -- package.json dist",
+        "build": "npm run clean && npm run copy:assets",
+        "version": "npm exec -- conventional-changelog-cli -p angular -i CHANGELOG.md -s -r && npm run build",
+        "release": "npm exec -- np --contents ./dist",
+        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
+    },
+    "np": {
+        "yolo": true,
+        "yarn": false,
+        "contents": "./dist",
+        "2fa": false
+    },
+    "author": {
+        "name": "Sergey Romanchuk"
+    },
+    "maintainers": [
+        {
+            "email": "rezety@gmail.com",
+            "name": "Sergey Romanchuk"
+        },
+        {
+            "email": "fayriot@gmail.com",
+            "name": "Kirill Khrushchöv"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/protoarch/angular.git"
+    },
+    "homepage": "https://github.com/protoarch/angular/tree/main/libs/linters#readme",
+    "peerDependencies": {
+        "@angular-eslint/builder": ">=13.0.0 <14.0.0",
+        "@angular-eslint/eslint-plugin": ">=13.0.0 <14.0.0",
+        "@angular-eslint/eslint-plugin-template": ">=13.0.0 <14.0.0",
+        "@angular-eslint/schematics": ">=13.0.0 <14.0.0",
+        "@angular-eslint/template-parser": ">=13.0.0 <14.0.0",
+        "@typescript-eslint/eslint-plugin": "5.3.1",
+        "@typescript-eslint/parser": "5.3.1",
+        "eslint": "~8.2.0",
+        "eslint-plugin-import": "~2.25.3",
+        "eslint-plugin-jsdoc": "~37.0.3",
+        "eslint-plugin-prefer-arrow": "~1.2.3",
+        "eslint-config-prettier": "8.1.0",
+        "eslint-plugin-node": "~11.1.0",
+        "eslint-plugin-prettier": "~4.0.0",
+        "eslint-plugin-rxjs": "~5.0.2",
+        "postcss-less": "~6.0.0",
+        "postcss-scss": "~4.0.3",
+        "prettier": "~2.5.1",
+        "stylelint": "~14.1.0",
+        "stylelint-config-prettier": "~9.0.3",
+        "stylelint-config-standard": "~24.0.0",
+        "stylelint-order": "~5.0.0",
+        "stylelint-prettier": "~2.0.0",
+        "stylelint-scss": "~4.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

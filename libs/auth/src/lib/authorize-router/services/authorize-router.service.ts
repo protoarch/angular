@@ -1,125 +1,115 @@
-import { Inject, Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Inject, Injectable} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {
-  CLAIM_FULL_ACCESS,
-  EXCEPTION_ROUTER_LINK,
-  REGEXP_ACCESS_TYPE,
-  REGEXP_ALL_OCCURRENCES,
-  RULES,
+    CLAIM_FULL_ACCESS,
+    EXCEPTION_ROUTER_LINK,
+    REGEXP_ACCESS_TYPE,
+    REGEXP_ALL_OCCURRENCES,
+    RULES,
 } from '../../auth.constants';
-import { AUTH_SERVICE } from '../../auth/auth.tokens';
-import { User } from '../../auth/models';
-import { AuthService } from '../../auth/services/auth.service';
-import { AccessTypeEnum } from '../models';
+import {AUTH_SERVICE} from '../../auth/auth.tokens';
+import {User} from '../../auth/models';
+import {AuthService} from '../../auth/services/auth.service';
+import {AccessTypeEnum} from '../models';
 
 @Injectable()
 export class AuthorizeRouterService {
-  constructor(
-    @Inject(AUTH_SERVICE)
-    private authService: AuthService<User>,
-    private router: Router
-  ) {}
+    constructor(
+        @Inject(AUTH_SERVICE)
+        private authService: AuthService<User>,
+        private router: Router,
+    ) {}
 
-  authorize(routerLink: string): boolean {
-    if (!this.authService.isAuthenticated()) {
-      return false;
+    authorize(routerLink: string): boolean {
+        if (!this.authService.isAuthenticated()) {
+            return false;
+        }
+
+        const claims = this.getClaims();
+
+        return (
+            claims?.includes(CLAIM_FULL_ACCESS) ||
+            claims?.some(claim => this.claimMatch(claim, routerLink)) ||
+            false
+        );
     }
 
-    const claims = this.getClaims();
+    serializeUrl(routerLink: string | any[] | null | undefined, route: ActivatedRoute): string {
+        routerLink = routerLink instanceof Array ? routerLink : routerLink?.match(/.*?\/|.+$/g);
+        if (!routerLink) {
+            return '';
+        }
 
-    return (
-      claims?.includes(CLAIM_FULL_ACCESS) ||
-      claims?.some((claim) => this.claimMatch(claim, routerLink)) ||
-      false
-    );
-  }
+        const urlTree = this.router.createUrlTree(routerLink, {
+            relativeTo: route,
+        });
+        urlTree.root.children = {primary: urlTree.root.children.primary};
 
-  serializeUrl(
-    routerLink: string | any[] | null | undefined,
-    route: ActivatedRoute
-  ): string {
-    routerLink =
-      routerLink instanceof Array
-        ? routerLink
-        : routerLink?.match(/.*?\/|.+$/g);
-    if (!routerLink) {
-      return '';
+        return this.router.serializeUrl(urlTree);
     }
 
-    const urlTree = this.router.createUrlTree(routerLink, {
-      relativeTo: route,
-    });
-    urlTree.root.children = { primary: urlTree.root.children.primary };
-
-    return this.router.serializeUrl(urlTree);
-  }
-
-  getAppliedClaim(routerLink: string): string | undefined {
-    const claims = this.getClaims();
-    if (!claims) {
-      return;
-    }
-    return claims.find((claim) => this.claimMatch(claim, routerLink));
-  }
-
-  private getClaims(): string[] | undefined {
-    const currentUser = this.authService.getUser();
-
-    if (!currentUser.claims) {
-      return;
+    getAppliedClaim(routerLink: string): string | undefined {
+        const claims = this.getClaims();
+        if (!claims) {
+            return;
+        }
+        return claims.find(claim => this.claimMatch(claim, routerLink));
     }
 
-    const claims: string[] =
-      currentUser.claims instanceof Array
-        ? currentUser.claims
-        : [currentUser.claims];
+    private getClaims(): string[] | undefined {
+        const currentUser = this.authService.getUser();
 
-    return claims;
-  }
+        if (!currentUser.claims) {
+            return;
+        }
 
-  private claimMatch(claim: string, routerLink: string): boolean {
-    const template = this.getClaimTemplate(claim);
+        const claims: string[] =
+            currentUser.claims instanceof Array ? currentUser.claims : [currentUser.claims];
 
-    routerLink = routerLink.replace(/^\//, '') + '/';
-
-    return (
-      !this.hasException(claim) &&
-      this.hasAccessType(claim) &&
-      !!routerLink.match(new RegExp(`^${template}$`))
-    );
-  }
-
-  private hasAccessType(claim: string): boolean {
-    let type;
-    const match = claim.match(REGEXP_ACCESS_TYPE);
-    if (match) {
-      type = match[1];
-    } else {
-      type = null;
+        return claims;
     }
 
-    return type === AccessTypeEnum.read || type === AccessTypeEnum.write;
-  }
+    private claimMatch(claim: string, routerLink: string): boolean {
+        const template = this.getClaimTemplate(claim);
 
-  private hasException(claim: string): boolean {
-    return EXCEPTION_ROUTER_LINK.some((item) =>
-      claim.match(new RegExp(`\\${item.exception}`))
-    );
-  }
+        routerLink = routerLink.replace(/^\//, '') + '/';
 
-  private getClaimUrl(claim: string) {
-    return claim.replace(REGEXP_ACCESS_TYPE, '');
-  }
+        return (
+            !this.hasException(claim) &&
+            this.hasAccessType(claim) &&
+            !!routerLink.match(new RegExp(`^${template}$`))
+        );
+    }
 
-  private getClaimTemplate(claim: string) {
-    let template = this.getClaimUrl(claim);
+    private hasAccessType(claim: string): boolean {
+        let type;
+        const match = claim.match(REGEXP_ACCESS_TYPE);
+        if (match) {
+            type = match[1];
+        } else {
+            type = null;
+        }
 
-    RULES.forEach((item) => {
-      template = template.replace(item.rule, item.template);
+        return type === AccessTypeEnum.read || type === AccessTypeEnum.write;
+    }
 
-      template += item.rule !== REGEXP_ALL_OCCURRENCES ? '/' : '';
-    });
+    private hasException(claim: string): boolean {
+        return EXCEPTION_ROUTER_LINK.some(item => claim.match(new RegExp(`\\${item.exception}`)));
+    }
 
-    return template;
-  }
+    private getClaimUrl(claim: string) {
+        return claim.replace(REGEXP_ACCESS_TYPE, '');
+    }
+
+    private getClaimTemplate(claim: string) {
+        let template = this.getClaimUrl(claim);
+
+        RULES.forEach(item => {
+            template = template.replace(item.rule, item.template);
+
+            template += item.rule !== REGEXP_ALL_OCCURRENCES ? '/' : '';
+        });
+
+        return template;
+    }
 }

@@ -22,12 +22,12 @@ export class AbGuard implements CanActivate, CanActivateChild {
     }
 
     private flat<T>(arr: any[]): T[] {
-      return arr.reduce((flat, next) => flat.concat(next), [])
+        return arr.reduce((flat, next) => flat.concat(next), []);
     }
 
     private canGoToPage(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const {ab} = next.data as GuardData;
-        const tests = ab ? this.flat<GuardDataTest>(ab instanceof Array? ab : [ab]) : [];
+        const tests = ab ? this.flat<GuardDataTest>(ab instanceof Array ? ab : [ab]) : [];
 
         if (!tests.length) {
             return true;
@@ -36,13 +36,13 @@ export class AbGuard implements CanActivate, CanActivateChild {
         const testPage = tests.find(n => n.redirectUrls);
 
         tests?.forEach(({scope, redirectUrls, ...rest}) => {
-          if (scope) {
-              this.service.setTest(scope, rest);
+            if (scope) {
+                this.service.setTest(scope, rest);
 
-              if (!testPage) {
-                  this.service.emitTestStarted(scope, this.service.getVersion(scope));
-              }
-          }
+                if (!testPage) {
+                    this.service.emitTestStarted(scope, this.service.getVersion(scope));
+                }
+            }
         });
 
         if (!testPage) {

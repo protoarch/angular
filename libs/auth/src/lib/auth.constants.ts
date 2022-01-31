@@ -25,10 +25,10 @@ export const RULES = [
 export const EXCEPTION_ROUTER_LINK = [
     {
         name: 'block',
-        exception: '|'
+        exception: '|',
     },
     {
         name: 'event',
-        exception: '@'
-    }
+        exception: '@',
+    },
 ];
