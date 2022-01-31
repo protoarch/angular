@@ -8,13 +8,13 @@ Install from npm
 
 ```bash
 npm i @protoarch.angular/linters --save-dev
-````
+```
 
 ### ESLint + Prettier
 
 Include configurations:
 
-``.eslintrc.js``
+`.eslintrc.js`
 
 ```javascript
 module.exports = {
@@ -22,13 +22,13 @@ module.exports = {
 };
 ```
 
-``.prettierrc.js``
+`.prettierrc.js`
 
 ```javascript
 module.exports = {
     ...require('./node_modules/@protoarch.angular/linters/prettier/prettier.config.js'),
 };
-````
+```
 
 Add npm-script:
 
@@ -37,7 +37,7 @@ Add npm-script:
 "lint:fix": "npx eslint --config ./.eslintrc.js --fix --debug "src/**/*.{js,ts,html}""
 ```
 
-Add ``.eslintignore`` file
+Add `.eslintignore` file
 
 ```text
 dist
@@ -49,7 +49,7 @@ coverage
 
 ### Stylelint
 
-``stylelint.config.js``
+`stylelint.config.js`
 
 ```javascript
 const styleLint = require('@protoarch.angular/linters/stylelint/stylelint.config.js');
@@ -61,7 +61,6 @@ module.exports = {
         'no-empty-source': null,
     },
 };
-
 ```
 
 Add npm-script:
@@ -89,5 +88,5 @@ Add npm-script:
 Configure pattern in Preferences > Stylelint
 
 ```
-{**/*,*}.{css,less,postcss,scss}
+{**/*,*}.{css,less,pcss,scss}
 ```
