@@ -18,7 +18,7 @@ Include configurations:
 
 ```javascript
 module.exports = {
-    extends: ['./node_modules/@protoarch.angular/linters/linters/eslint'],
+    extends: ['./node_modules/@protoarch.angular/linters/eslint'],
 };
 ```
 
@@ -26,7 +26,7 @@ module.exports = {
 
 ```javascript
 module.exports = {
-    ...require('./node_modules/@protoarch.angular/linters/linters/prettier/prettier.config.js'),
+    ...require('./node_modules/@protoarch.angular/linters/prettier/prettier.config.js'),
 };
 ````
 
@@ -52,7 +52,7 @@ coverage
 ``stylelint.config.js``
 
 ```javascript
-const styleLint = require('@protoarch.angular/linters/linters/stylelint/stylelint.config.js');
+const styleLint = require('@protoarch.angular/linters/stylelint/stylelint.config.js');
 
 module.exports = {
     ...styleLint,
@@ -82,4 +82,12 @@ Add npm-script:
     "postcss",
     "scss"
 ],
+```
+
+#### WebStorm
+
+Configure pattern in Preferences > Stylelint
+
+```
+{**/*,*}.{css,less,postcss,scss}
 ```

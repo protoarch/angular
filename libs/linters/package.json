@@ -15,8 +15,7 @@
         "build": "npm run clean && npm run copy:assets",
         "version": "npm exec -- conventional-changelog-cli -p angular -i CHANGELOG.md -s -r && npm run build",
         "release": "npm exec -- np --contents ./dist",
-        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
-        "lint:styles": "npm exec -- stylelint \"**/*.scss\" \"**/*.less\" \"**/*.css\""
+        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
     },
     "np": {
         "yolo": true,
