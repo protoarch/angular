@@ -21,8 +21,7 @@
         "yolo": true,
         "yarn": false,
         "contents": "./dist",
-        "2fa": false,
-        "anyBranch": true
+        "2fa": false
     },
     "author": {
         "name": "Sergey Romanchuk"
