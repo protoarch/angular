@@ -116,7 +116,7 @@ module.exports = {
             },
         },
         {
-            files: ['*.ts'],
+            files: ['*.ts', '!jest.config.ts'],
             rules: {
                 'rxjs/no-async-subscribe': 'error',
                 'rxjs/no-ignored-observable': 'error',

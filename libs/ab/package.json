@@ -53,12 +53,12 @@
     "node": ">= 14.0.0"
   },
   "scripts": {
-    "karma": "npx karma",
-    "rimraf": "npx rimraf",
-    "ngc": "npx ngc",
-    "cpy": "npx cpy",
+    "karma": "npm exec -- karma",
+    "rimraf": "npm exec -- rimraf",
+    "ngc": "npm exec -- ngc",
+    "cpy": "npm exec -- cpy",
     "prebuild": "npm run clean:build",
-    "build": "npx ng-packagr -p package.json",
+    "build": "npm exec -- ng-packagr -p package.json",
     "copy:assets": "npm run cpy -- CHANGELOG.md dist",
     "conventional-changelog": "conventional-changelog",
     "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
@@ -69,19 +69,19 @@
     "lint-css": "stylelint './src/**/*.css'",
     "lint-ts": "tslint './src/**/*.ts'",
     "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
-    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
-    "release": "npx np",
+    "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
+    "release": "npm exec -- np",
     "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
   },
   "dependencies": {
     "tslib": "^2.1.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=10.0.0 <14.0.0",
-    "@angular/core": ">=10.0.0 <14.0.0",
-    "@angular/platform-browser": ">=10.0.0 <14.0.0",
-    "@angular/router": ">=10.0.0 <14.0.0",
-    "@nguniversal/express-engine": ">=10.0.0 <14.0.0",
+    "@angular/common": ">=14.0.0 <15.0.0",
+    "@angular/core": ">=14.0.0 <15.0.0",
+    "@angular/platform-browser": ">=14.0.0 <15.0.0",
+    "@angular/router": ">=14.0.0 <15.0.0",
+    "@nguniversal/express-engine": ">=14.0.0 <15.0.0",
     "rxjs": ">=6.5.3 <8.0.0"
   },
   "optionalDependencies": {

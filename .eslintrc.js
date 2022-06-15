@@ -3,7 +3,7 @@ module.exports = {
     extends: ['./libs/linters/linters/eslint/index.js'],
     overrides: [
         {
-            files: ['*.ts'],
+            files: ['*.ts', '!jest.config.ts'],
             parserOptions: {
                 project: './tsconfig.base.json',
                 tsconfigRootDir: __dirname,

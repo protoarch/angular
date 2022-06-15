@@ -45,26 +45,26 @@
     "node": ">= 14.0.0"
   },
   "scripts": {
-    "build": "npx ng-packagr -p package.json",
+    "build": "npm exec -- ng-packagr -p package.json",
     "clean": "npm run clean:build && npm run clean:tests",
     "clean:build": "npm run rimraf -- dist build",
     "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
-    "copy:assets": "npx cpy -- CHANGELOG.md dist",
+    "copy:assets": "npm exec -- cpy -- CHANGELOG.md dist",
     "conventional-changelog": "conventional-changelog",
     "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
     "changelog:add": "git add --force CHANGELOG.md package.json",
     "changelog:commit": "git commit -m \"Updated CHANGELOG.md\"",
-    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
-    "release": "npx np",
-    "test": "npx ng test"
+    "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
+    "release": "npm exec -- np",
+    "test": "npm exec -- ng test"
   },
   "dependencies": {
     "tslib": "^2.1.0"
   },
   "devDependencies": {},
   "peerDependencies": {
-    "@angular/common": ">=10.0.0 <14.0.0",
-    "@angular/core": ">=10.0.0 <14.0.0",
+    "@angular/common": ">=14.0.0 <15.0.0",
+    "@angular/core": ">=14.0.0 <15.0.0",
     "rxjs": ">=6.5.3 <8.0.0"
   }
 }

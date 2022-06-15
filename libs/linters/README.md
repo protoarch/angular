@@ -33,8 +33,8 @@ module.exports = {
 Add npm-script:
 
 ```json
-"lint": "npx eslint --config ./.eslintrc.js --debug "src/**/*.{js,ts,html}"",
-"lint:fix": "npx eslint --config ./.eslintrc.js --fix --debug "src/**/*.{js,ts,html}""
+"lint": "npm exec -- eslint --config ./.eslintrc.js --debug "src/**/*.{js,ts,html}"",
+"lint:fix": "npm exec -- eslint --config ./.eslintrc.js --fix --debug "src/**/*.{js,ts,html}""
 ```
 
 Add `.eslintignore` file
@@ -66,8 +66,8 @@ module.exports = {
 Add npm-script:
 
 ```json
-"lint": "npx stylelint --config ./.stylelintrc \"src/**/*.less\"",
-"lint:fix": "npx stylelint --config ./.stylelintrc --fix \"src/**/*.less\""
+"lint": "npm exec -- stylelint --config ./.stylelintrc \"src/**/*.less\"",
+"lint:fix": "npm exec -- stylelint --config ./.stylelintrc --fix \"src/**/*.less\""
 ```
 
 #### VSCODE

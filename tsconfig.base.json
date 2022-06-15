@@ -1,26 +1,26 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "strictPropertyInitialization": false,
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["es2018", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@protoarch.angular/ab": ["libs/ab/src/index.ts"],
-      "@protoarch.angular/api": ["libs/api/src/index.ts"],
-      "@protoarch.angular/auth": ["libs/auth/src/index.ts"],
-      "@protoarch/linters": ["libs/linters/src/index.ts"]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "strictPropertyInitialization": false,
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["es2018", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@protoarch.angular/ab": ["libs/ab/src/index.ts"],
+            "@protoarch.angular/api": ["libs/api/src/index.ts"],
+            "@protoarch.angular/auth": ["libs/auth/src/index.ts"],
+            "@protoarch/linters": ["libs/linters/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
 }
