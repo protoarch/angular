@@ -103,6 +103,6 @@
     "lint-staged": {
         "*.{less,css,scss}": ["npm exec -- stylelint --fix"],
         "*.{md,json}": ["npm exec -- prettier --write"],
-        "*.{js,ts},!jest.config.ts": ["npm exec -- eslint --fix"]
+        "**/!(jest.config)*.{js,ts}": ["npm exec -- eslint --fix"]
     }
 }

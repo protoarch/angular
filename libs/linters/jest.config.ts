@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'linters',
+    displayName: 'linters',1
     preset: '../../jest.preset.js',
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
