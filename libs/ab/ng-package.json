@@ -1,0 +1,14 @@
+{
+    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+    "lib": {
+        "entryFile": "src/index.ts"
+    },
+    "allowedNonPeerDependencies": [
+        "angular",
+        "core-js",
+        "rxjs",
+        "zone.js",
+        "nguniversal",
+        "ngx-cookie"
+    ]
+}

@@ -1,20 +1,6 @@
 {
-  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "@protoarch.angular/ab",
   "version": "13.0.0-0",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "src/index.ts"
-    },
-    "allowedNonPeerDependencies": [
-      "angular",
-      "core-js",
-      "rxjs",
-      "zone.js",
-      "nguniversal",
-      "ngx-cookie"
-    ]
-  },
   "np": {
     "yolo": true,
     "yarn": false,
@@ -58,7 +44,7 @@
     "ngc": "npm exec -- ngc",
     "cpy": "npm exec -- cpy",
     "prebuild": "npm run clean:build",
-    "build": "npm exec -- ng-packagr -p package.json",
+    "build": "npm exec -- ng-packagr -p ng-package.json",
     "copy:assets": "npm run cpy -- CHANGELOG.md dist",
     "conventional-changelog": "conventional-changelog",
     "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",

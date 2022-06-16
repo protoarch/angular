@@ -1,11 +1,6 @@
 {
   "name": "@protoarch.angular/api",
   "version": "13.0.0-0",
-  "ngPackage": {
-    "lib": {
-      "entryFile": "src/index.ts"
-    }
-  },
   "np": {
     "yolo": true,
     "yarn": false,
@@ -45,7 +40,7 @@
     "node": ">= 14.0.0"
   },
   "scripts": {
-    "build": "npm exec -- ng-packagr -p package.json",
+    "build": "npm exec -- ng-packagr -p ng-package.json",
     "clean": "npm run clean:build && npm run clean:tests",
     "clean:build": "npm run rimraf -- dist build",
     "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
