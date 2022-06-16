@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ISerializer} from './api.options';
 import {API_ENDPOINT, API_SERIALIZER} from './api.tokens';
-import {getWebApiHttpParams} from './web-api-http-params';
+import {flattenParamsObject} from './web-api-http-params';
 
 export enum ResponseTypeEnum {
     json = 'json',
@@ -106,11 +106,9 @@ export class Api {
             return undefined;
         }
         const serializedParams = this.trySerialize(params);
-        return getWebApiHttpParams(
-            typeof serializedParams === 'object'
-                ? {fromObject: this.trySerialize(params)}
-                : {fromString: serializedParams.toString()},
-        );
+        return typeof serializedParams === 'object'
+            ? flattenParamsObject(serializedParams)
+            : new HttpParams({fromString: serializedParams.toString()});
     }
 
     private trySerialize(data: any): any {

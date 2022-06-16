@@ -1,8 +1,8 @@
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {async, inject, TestBed} from '@angular/core/testing';
+import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 
-import {ApiModule, Api, nullSerializerFactory} from '../index';
+import {Api, ApiModule, nullSerializerFactory} from '../index';
 
 describe('Service: Api', () => {
     beforeEach(() => {
@@ -19,25 +19,26 @@ describe('Service: Api', () => {
     });
 
     it('should be provided', () => {
-        const service: Api = TestBed.get(Api);
+        const service: Api = TestBed.inject(Api);
         expect(service).toBeTruthy();
     });
 
     it('should provide correct endpoint', () => {
-        const service: Api = TestBed.get(Api);
+        const service: Api = TestBed.inject(Api);
         expect(service.buildUrl('http://ya.ru')).toEqual('http://ya.ru');
         expect(service.buildUrl('https://ya.ru')).toEqual('https://ya.ru');
         expect(service.buildUrl('test')).toEqual('/api/test');
     });
 
-    it('should build correct query string', async(
+    it('should build correct query string', waitForAsync(
         inject([Api, HttpTestingController], (apiService: Api, backend: HttpTestingController) => {
             const path = 'test';
             const expectedPath = '/api/test';
 
             apiService.get(path, {params: {array: [1, 2], object: {a: 1, b: 2}}}).subscribe();
             backend.expectOne({
-                url: expectedPath + '?array=1&array=2&object[a]=1&object[b]=2',
+                url:
+                    expectedPath + '?array%5B0%5D=1&array%5B1%5D=2&object%5Ba%5D=1&object%5Bb%5D=2',
                 method: 'GET',
             });
 
@@ -45,25 +46,28 @@ describe('Service: Api', () => {
                 .post(path, null, {params: {array: [1, 2], object: {a: 1, b: 2}}})
                 .subscribe();
             backend.expectOne({
-                url: expectedPath + '?array=1&array=2&object[a]=1&object[b]=2',
+                url:
+                    expectedPath + '?array%5B0%5D=1&array%5B1%5D=2&object%5Ba%5D=1&object%5Bb%5D=2',
                 method: 'POST',
             });
 
             apiService.put(path, null, {params: {array: [1, 2], object: {a: 1, b: 2}}}).subscribe();
             backend.expectOne({
-                url: expectedPath + '?array=1&array=2&object[a]=1&object[b]=2',
+                url:
+                    expectedPath + '?array%5B0%5D=1&array%5B1%5D=2&object%5Ba%5D=1&object%5Bb%5D=2',
                 method: 'PUT',
             });
 
             apiService.delete(path, {params: {array: [1, 2], object: {a: 1, b: 2}}}).subscribe();
             backend.expectOne({
-                url: expectedPath + '?array=1&array=2&object[a]=1&object[b]=2',
+                url:
+                    expectedPath + '?array%5B0%5D=1&array%5B1%5D=2&object%5Ba%5D=1&object%5Bb%5D=2',
                 method: 'DELETE',
             });
         }),
     ));
 
-    it('should POST/PUT body', async(
+    it('should POST/PUT body', waitForAsync(
         inject([Api, HttpTestingController], (apiService: Api, backend: HttpTestingController) => {
             const path = 'test';
             const expectedPath = '/api/test';
@@ -88,7 +92,7 @@ describe('Service: Api', () => {
         }),
     ));
 
-    it('should observe response', async(
+    it('should observe response', waitForAsync(
         inject([Api, HttpTestingController], (apiService: Api, backend: HttpTestingController) => {
             const path = 'test';
             const expectedPath = '/api/test';
