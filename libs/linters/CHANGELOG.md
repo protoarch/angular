@@ -1,3 +1,9 @@
+# [14.0.0-1](https://github.com/protoarch/angular/compare/v13.1.0...v14.0.0-1) (2022-06-20)
+
+### Bug Fixes
+
+-   linters test setup ([3c9b203](https://github.com/protoarch/angular/commit/3c9b203cb21b9be569eb3f546190dfcfa6102214))
+
 # [14.0.0-0](https://github.com/protoarch/angular/compare/v13.1.0...v14.0.0-0) (2022-06-16)
 
 ### Bug Fixes
