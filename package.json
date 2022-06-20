@@ -30,7 +30,10 @@
         "dep-graph": "nx dep-graph",
         "help": "nx help"
     },
-    "workspaces": ["apps/*", "libs/*"],
+    "workspaces": [
+        "apps/*",
+        "libs/*"
+    ],
     "private": true,
     "dependencies": {
         "@angular/animations": "~14.0.1",
@@ -48,10 +51,11 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~14.0.1",
-        "@angular-eslint/eslint-plugin": "13.2.1",
-        "@angular-eslint/eslint-plugin-template": "13.5.0",
-        "@angular-eslint/template-parser": "13.5.0",
-        "@angular/cli": "~14.0.0",
+        "@angular-eslint/eslint-plugin": "^14.0.0-alpha.3",
+        "@angular-eslint/eslint-plugin-template": "^14.0.0-alpha.3",
+        "@angular-eslint/schematics": "^14.0.0-alpha.3",
+        "@angular-eslint/template-parser": "^14.0.0-alpha.3",
+        "@angular/cli": "~14.0.2",
         "@angular/compiler-cli": "~14.0.1",
         "@angular/language-service": "~14.0.1",
         "@nrwl/cli": "14.3.2",
@@ -71,15 +75,16 @@
         "cypress": "^7.3.0",
         "dotenv": "10.0.0",
         "eslint": "8.15.0",
-        "eslint-plugin-prettier": "~4.0.0",
         "eslint-config-prettier": "8.1.0",
         "eslint-plugin-cypress": "^2.10.3",
+        "eslint-plugin-prettier": "~4.0.0",
         "husky": "^4.2.5",
         "jest": "27.5.1",
         "jest-preset-angular": "11.1.2",
         "lint-staged": "^12.1.2",
         "ng-packagr": "14.0.2",
         "np": "^7.5.0",
+        "nx": "14.3.2",
         "postcss": "^8.3.9",
         "postcss-import": "14.1.0",
         "postcss-preset-env": "7.5.0",
@@ -88,8 +93,7 @@
         "rimraf": "^2.6.3",
         "ts-jest": "27.1.4",
         "ts-node": "10.8.1",
-        "typescript": "4.7.3",
-        "nx": "14.3.2"
+        "typescript": "4.7.3"
     },
     "repository": {
         "type": "git",
@@ -101,8 +105,14 @@
         }
     },
     "lint-staged": {
-        "*.{less,css,scss}": ["npm exec -- stylelint --fix"],
-        "*.{md,json}": ["npm exec -- prettier --write"],
-        "**/!(jest.config)*.{js,ts}": ["npm exec -- eslint --fix"]
+        "*.{less,css,scss}": [
+            "npm exec -- stylelint --fix"
+        ],
+        "*.{md,json}": [
+            "npm exec -- prettier --write"
+        ],
+        "**/!(jest.config)*.{js,ts}": [
+            "npm exec -- eslint --fix"
+        ]
     }
 }
