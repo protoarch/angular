@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/linters",
-    "version": "14.0.0-1",
+    "version": "14.0.0-2",
     "description": "ESLint, Stylelint & Prettier configs for Angular apps",
     "license": "MIT",
     "keywords": [

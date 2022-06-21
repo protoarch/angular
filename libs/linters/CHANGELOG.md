@@ -1,3 +1,5 @@
+# [14.0.0-2](https://github.com/protoarch/angular/compare/v14.0.0-1...v14.0.0-2) (2022-06-21)
+
 # [14.0.0-1](https://github.com/protoarch/angular/compare/v13.1.0...v14.0.0-1) (2022-06-20)
 
 ### Bug Fixes
