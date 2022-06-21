@@ -1,8 +1,12 @@
+'use strict';
+
 module.exports = {
+    ignorePatterns: ['node_modules', 'dist'],
     plugins: ['rxjs'],
     env: {
         browser: true,
         es2020: true,
+        jest: true,
     },
     overrides: [
         {
@@ -16,12 +20,14 @@ module.exports = {
                 'plugin:prettier/recommended',
             ],
             rules: {
-                '@angular-eslint/no-host-metadata-property': 'off',
-                '@angular-eslint/use-injectable-provided-in': 'off',
-                '@angular-eslint/use-component-view-encapsulation': 'off',
-                '@angular-eslint/no-forward-ref': 'off',
-                '@angular-eslint/no-output-native': 'off',
-                '@angular-eslint/template/cyclomatic-complexity': 'off',
+                'rxjs/no-async-subscribe': 'error',
+                'rxjs/no-ignored-observable': 'error',
+                'rxjs/no-nested-subscribe': 'error',
+                'rxjs/no-unbound-methods': 'error',
+                'rxjs/throw-error': 'error',
+                'rxjs/no-subject-value': 'error',
+                'rxjs/suffix-subjects': ['error', {suffix: '$'}],
+                'rxjs/prefer-observer': 'error',
 
                 'no-var': 'error',
                 '@typescript-eslint/no-unused-vars': ['warn', {vars: 'all', args: 'none'}],
@@ -113,11 +119,7 @@ module.exports = {
                         ],
                     },
                 ],
-            },
-        },
-        {
-            files: ['*.ts', '!jest.config.ts'],
-            rules: {
+
                 'rxjs/no-async-subscribe': 'error',
                 'rxjs/no-ignored-observable': 'error',
                 'rxjs/no-nested-subscribe': 'error',
