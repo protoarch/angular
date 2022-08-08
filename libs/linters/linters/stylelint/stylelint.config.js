@@ -82,6 +82,7 @@ module.exports = {
                 unspecified: 'bottom',
             },
         ],
+        'at-rule-no-unknown': null,
         'scss/at-rule-no-unknown': true,
     },
     overrides: [
