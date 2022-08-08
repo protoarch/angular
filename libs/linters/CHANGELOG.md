@@ -1,3 +1,5 @@
+## [14.0.1](https://github.com/protoarch/angular/compare/v14.0.0...v14.0.1) (2022-08-08)
+
 # [14.0.0](https://github.com/protoarch/angular/compare/v14.0.0-2...v14.0.0) (2022-06-21)
 
 # [14.0.0-2](https://github.com/protoarch/angular/compare/v14.0.0-1...v14.0.0-2) (2022-06-21)
