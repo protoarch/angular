@@ -1,6 +1,6 @@
 {
-  "name": "@protoarch.angular/auth",
-  "version": "14.0.1",
+  "name": "@protoarch.angular/validation-message",
+  "version": "14.0.0",
   "np": {
     "yolo": true,
     "yarn": false,
@@ -10,17 +10,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
+  "homepage": "https://github.com/protoarch/angular/tree/main/libs/validation-message#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/protoarch/angular.git"
   },
   "keywords": [
-    "auth",
     "angular",
-    "jwt",
-    "user",
-    "authorization"
+    "dynamic field validation",
+    "reactive forms"
   ],
   "author": {
     "name": "Sergey Romanchuk"
@@ -32,7 +30,7 @@
     }
   ],
   "license": "MIT",
-  "description": "Authentication module",
+  "description": "Module for AB tests",
   "engines": {
     "node": ">= 14.0.0"
   },
@@ -54,28 +52,17 @@
     "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
     "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
     "release": "npm exec -- np",
-    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
-    "test": "npm exec -- ng test"
+    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
   },
   "dependencies": {
     "tslib": "^2.1.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=14.0.0 <15.0.0",
     "@angular/core": ">=14.0.0 <15.0.0",
-    "@angular/platform-browser": ">=14.0.0 <15.0.0",
-    "@angular/router": ">=14.0.0 <15.0.0",
-    "@nguniversal/express-engine": ">=14.0.0 <15.0.0",
-    "@auth0/angular-jwt": ">=5.0.1 <6.0.0",
+    "@angular/forms": ">=14.0.0 <15.0.0",
     "rxjs": ">=6.5.3 <8.0.0"
   },
   "optionalDependencies": {
-    "ngx-cookie": "~6.0.1"
-  },
-  "devDependencies": {
-    "@auth0/angular-jwt": "^5.0.1",
-    "jsonwebtoken": "~8.5.1",
-    "@types/express": "~4.17.13",
-    "@types/jsonwebtoken": "~8.5.5"
+    "angular-i18next": "~14.0.5"
   }
 }

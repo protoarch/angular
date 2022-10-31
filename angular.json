@@ -228,6 +228,32 @@
             },
             "tags": [],
             "implicitDependencies": ["protoarch-app-demo"]
+        },
+        "validation-message": {
+            "projectType": "library",
+            "root": "libs/validation-message",
+            "sourceRoot": "libs/validation-message/src",
+            "prefix": "protoarch",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/validation-message"],
+                    "options": {
+                        "jestConfig": "libs/validation-message/jest.config.ts",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/validation-message/**/*.ts",
+                            "libs/validation-message/**/*.html"
+                        ]
+                    }
+                }
+            },
+            "tags": []
         }
     }
 }

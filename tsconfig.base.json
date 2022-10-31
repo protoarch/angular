@@ -19,7 +19,8 @@
             "@protoarch.angular/ab": ["libs/ab/src/index.ts"],
             "@protoarch.angular/api": ["libs/api/src/index.ts"],
             "@protoarch.angular/auth": ["libs/auth/src/index.ts"],
-            "@protoarch/linters": ["libs/linters/src/index.ts"]
+            "@protoarch/linters": ["libs/linters/src/index.ts"],
+            "@protoarch/validation-message": ["libs/validation-message/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

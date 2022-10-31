@@ -39,7 +39,6 @@
     "node": ">= 14.0.0"
   },
   "scripts": {
-    "karma": "npm exec -- karma",
     "rimraf": "npm exec -- rimraf",
     "ngc": "npm exec -- ngc",
     "cpy": "npm exec -- cpy",
@@ -71,6 +70,6 @@
     "rxjs": ">=6.5.3 <8.0.0"
   },
   "optionalDependencies": {
-    "ngx-cookie": "^5.0.0"
+    "ngx-cookie": "~6.0.1"
   }
 }

@@ -30,34 +30,31 @@
         "dep-graph": "nx dep-graph",
         "help": "nx help"
     },
-    "workspaces": [
-        "apps/*",
-        "libs/*"
-    ],
+    "workspaces": ["apps/*", "libs/*"],
     "private": true,
     "dependencies": {
-        "@angular/animations": "~14.0.1",
-        "@angular/common": "~14.0.1",
-        "@angular/compiler": "~14.0.1",
-        "@angular/core": "~14.0.1",
-        "@angular/forms": "~14.0.1",
-        "@angular/platform-browser": "~14.0.1",
-        "@angular/platform-browser-dynamic": "~14.0.1",
-        "@angular/router": "~14.0.1",
+        "@angular/animations": "~14.2.8",
+        "@angular/common": "~14.2.8",
+        "@angular/compiler": "~14.2.8",
+        "@angular/core": "~14.2.8",
+        "@angular/forms": "~14.2.8",
+        "@angular/platform-browser": "~14.2.8",
+        "@angular/platform-browser-dynamic": "~14.2.8",
+        "@angular/router": "~14.2.8",
         "@nrwl/angular": "14.3.2",
         "rxjs": "~6.6.0",
         "tslib": "^2.1.0",
         "zone.js": "0.11.4"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~14.0.1",
-        "@angular-eslint/eslint-plugin": "^14.0.0-alpha.3",
-        "@angular-eslint/eslint-plugin-template": "^14.0.0-alpha.3",
-        "@angular-eslint/schematics": "^14.0.0-alpha.3",
-        "@angular-eslint/template-parser": "^14.0.0-alpha.3",
+        "@angular-devkit/build-angular": "~14.2.7",
+        "@angular-eslint/eslint-plugin": "~14.1.2",
+        "@angular-eslint/eslint-plugin-template": "~14.1.2",
+        "@angular-eslint/schematics": "~14.1.2",
+        "@angular-eslint/template-parser": "~14.1.2",
         "@angular/cli": "~14.0.2",
-        "@angular/compiler-cli": "~14.0.1",
-        "@angular/language-service": "~14.0.1",
+        "@angular/compiler-cli": "~14.2.8",
+        "@angular/language-service": "~14.2.8",
         "@nrwl/cli": "14.3.2",
         "@nrwl/cypress": "14.3.2",
         "@nrwl/eslint-plugin-nx": "14.3.2",
@@ -79,8 +76,8 @@
         "eslint-plugin-cypress": "^2.10.3",
         "eslint-plugin-prettier": "~4.0.0",
         "husky": "^4.2.5",
-        "jest": "27.5.1",
-        "jest-preset-angular": "11.1.2",
+        "jest": "~28.0.0",
+        "jest-preset-angular": "~12.2.2",
         "lint-staged": "^12.1.2",
         "ng-packagr": "14.0.2",
         "np": "^7.5.0",
@@ -91,7 +88,7 @@
         "postcss-url": "10.1.3",
         "prettier": "2.6.2",
         "rimraf": "^2.6.3",
-        "ts-jest": "27.1.4",
+        "ts-jest": "~28.0.0",
         "ts-node": "10.8.1",
         "typescript": "4.7.3"
     },
@@ -105,14 +102,8 @@
         }
     },
     "lint-staged": {
-        "*.{less,css,scss}": [
-            "npm exec -- stylelint --fix"
-        ],
-        "*.{md,json}": [
-            "npm exec -- prettier --write"
-        ],
-        "**/!(jest.config)*.{js,ts}": [
-            "npm exec -- eslint --fix"
-        ]
+        "*.{less,css,scss}": ["npm exec -- stylelint --fix"],
+        "*.{md,json}": ["npm exec -- prettier --write"],
+        "**/!(jest.config)*.{js,ts}": ["npm exec -- eslint --fix"]
     }
 }
