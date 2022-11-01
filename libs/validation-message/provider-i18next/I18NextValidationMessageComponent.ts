@@ -4,7 +4,7 @@ import {Component, Inject, Optional, ViewEncapsulation} from '@angular/core';
 import {FormControlName, FormGroupName} from '@angular/forms';
 import {I18NEXT_NAMESPACE} from 'angular-i18next';
 
-import {ValidationMessageComponent} from '../../components/ValidationMessageComponent';
+import {ValidationMessageComponent} from '@protoarch.angular/validation-message';
 
 @Component({
     selector: 'i18next-validation-message',

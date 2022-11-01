@@ -50,12 +50,9 @@ Bridge for "@protoarch.angular/validation-message" for translate error messages 
 Requirements:
 
 1. > npm install i18next angular-i18next
-2. import **I18NextValidationMessageModule** insteand of ValidationMessageModule
+2. > import **I18NextValidationMessageModule** from `@protoarch.angular/validation-message/provider-i18next`
+   > (replaces ValidationMessageModule)
 
 ### Custom providers
 
 You can implement your own provider. Check source code of **I18NextValidationMessageModule** as example
-
-### Migration
-
-Since v2 @protoarch.angular/validation-message includes providers

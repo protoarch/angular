@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
+import {
+    ValidationMessageComponent,
+    ValidationMessageModule,
+} from '@protoarch.angular/validation-message';
 import {I18NextModule} from 'angular-i18next';
-import {ValidationMessageComponent} from '../../components/ValidationMessageComponent';
-import {ValidationMessageModule} from '../../ValidationMessageModule';
 import {I18NextValidationMessageComponent} from './I18NextValidationMessageComponent';
 
 const declarations = [I18NextValidationMessageComponent];
