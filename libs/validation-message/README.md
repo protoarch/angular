@@ -13,7 +13,6 @@ Before (dirty \*ngIf markup):
     required
     minlength="4"
     appForbiddenName="bob"
-    [(ngModel)]="hero.name"
     #name="ngModel"
 />
 <div *ngIf="name.errors.minlength">Name must be at least 4 characters long.</div>
@@ -28,7 +27,6 @@ After (clean markup with auto inserting error messages):
     type="email"
     class="form-control"
     formControlName="email"
-    [(ngModel)]="model.email"
 />
 ```
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 
 import {ValidationError} from './ValidationError';
@@ -9,7 +10,7 @@ export class ValidationErrorBuilder {
         for (const key in formControls) {
             if (formControls.hasOwnProperty(key)) {
                 const fullKey = prevKey ? [prevKey, key].join('.') : key;
-                const ctrl: AbstractControl = formControls[key];
+                const ctrl: AbstractControl = (<any>formControls)[key];
                 if (ctrl instanceof FormControl) {
                     if (!ctrl.valid) {
                         for (const erKey in ctrl.errors) {

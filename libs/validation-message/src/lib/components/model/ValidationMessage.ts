@@ -1,5 +1,5 @@
 export class ValidationMessage {
-    public key: string = '';
+    public key = '';
     public params: any;
 
     constructor(key: string = '', params: any = null) {

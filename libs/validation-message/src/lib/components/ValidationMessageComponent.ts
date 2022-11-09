@@ -1,13 +1,8 @@
+/* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @angular-eslint/component-max-inline-declarations */
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
-import {Component, HostBinding, Input, Optional, ViewEncapsulation} from '@angular/core';
-import {
-    AbstractControl,
-    AbstractControlDirective,
-    FormControlName,
-    FormGroupName,
-} from '@angular/forms';
-
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {NgControl} from '@angular/forms';
 import {ValidationMessage} from './model/ValidationMessage';
 
 @Component({
@@ -33,11 +28,7 @@ import {ValidationMessage} from './model/ValidationMessage';
     encapsulation: ViewEncapsulation.None,
 })
 export class ValidationMessageComponent {
-    @HostBinding('class.standalone') get standalone(): boolean {
-        return this.acd == null;
-    }
-
-    @Input() for: AbstractControl = null;
+    @Input() for: NgControl | null = null;
 
     get messages(): ValidationMessage[] {
         return this.getValidationMessages();
@@ -48,18 +39,8 @@ export class ValidationMessageComponent {
     }
 
     get controlPath(): string {
-        if (this.acd == null) return '';
-        return this.acd.path.join('.');
-    }
-
-    acd: AbstractControlDirective;
-
-    constructor(
-        @Optional() public formControlName: FormControlName,
-        @Optional() formGroupName: FormGroupName,
-    ) {
-        this.acd = formControlName || formGroupName;
-        if (this.acd != null) this.for = this.acd.control;
+        if (this.for == null) return '';
+        return this.for.path?.join('.') || '';
     }
 
     private getValidationMessages(): ValidationMessage[] {
@@ -67,12 +48,12 @@ export class ValidationMessageComponent {
         const messages: ValidationMessage[] = [];
         const keys = Object.keys(this.for.errors);
         keys.forEach(k => {
-            const errValue = this.for.errors[k];
+            const errValue = (<any>this.for?.errors)[k];
             let params = null;
             if (errValue instanceof Object) params = errValue;
             else if (errValue !== true) {
                 params = {};
-                params[k] = errValue;
+                (<any>params)[k] = errValue;
             }
             messages.push(new ValidationMessage(k, params));
         });

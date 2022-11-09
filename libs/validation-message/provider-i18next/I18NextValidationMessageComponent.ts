@@ -1,10 +1,8 @@
 /* eslint-disable @angular-eslint/component-max-inline-declarations */
 /* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
-import {Component, Inject, Optional, ViewEncapsulation} from '@angular/core';
-import {FormControlName, FormGroupName} from '@angular/forms';
-import {I18NEXT_NAMESPACE} from 'angular-i18next';
-
+import {Component, Inject, ViewEncapsulation} from '@angular/core';
 import {ValidationMessageComponent} from '@protoarch.angular/validation-message';
+import {I18NEXT_NAMESPACE} from 'angular-i18next';
 
 @Component({
     selector: 'i18next-validation-message',
@@ -28,14 +26,10 @@ import {ValidationMessageComponent} from '@protoarch.angular/validation-message'
     encapsulation: ViewEncapsulation.None,
 })
 export class I18NextValidationMessageComponent extends ValidationMessageComponent {
-    private _validationString: string = 'validation';
+    private _validationString = 'validation';
 
-    constructor(
-        @Inject(I18NEXT_NAMESPACE) private i18nextNamespace: string | string[],
-        @Optional() public override formControlName: FormControlName,
-        @Optional() public formGroupName: FormGroupName,
-    ) {
-        super(formControlName, formGroupName);
+    constructor(@Inject(I18NEXT_NAMESPACE) private i18nextNamespace: string | string[]) {
+        super();
     }
 
     get i18nextKey(): string | string[] {
