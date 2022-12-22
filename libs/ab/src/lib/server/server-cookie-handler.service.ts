@@ -9,7 +9,7 @@ export class ServerCookieHandlerService implements CookieHandler {
     constructor(@Optional() private cookieService: CookieService) {}
 
     get(name: string): string {
-        return this.cookieService?.get(name);
+        return this.cookieService?.get(name) ?? '';
     }
 
     set(name: string, value: string, domain?: string, expires?: number): void {
