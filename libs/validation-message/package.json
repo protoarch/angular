@@ -1,6 +1,6 @@
 {
   "name": "@protoarch.angular/validation-message",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "np": {
     "yolo": true,
     "yarn": false,
