@@ -1,6 +1,6 @@
 {
   "name": "@protoarch.angular/auth",
-  "version": "14.0.1",
+  "version": "15.0.0",
   "np": {
     "yolo": true,
     "yarn": false,
