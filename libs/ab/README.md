@@ -8,23 +8,23 @@ It will **make your tests easy to debug and understand**, regardless of how comp
 
 ## Contents
 
-- [List of features](#features)
-- [Quick introduction to usage](#usage-in-short)
-- [Why this plugin is good for you](#why-to-use-this-plugin)
-- [How to set up a quick demo to play around](#set-up-a-demo)
-- [Full documentation part 1: Initializing](#documentation-1-initializing)
-- [Full documentation part 2: Usage](#documentation-2-usage)
-- [Full documentation part 3: Tips](#documentation-3-tips)
-- [Server side rendering](#server-side-rendering)
-- [Usage with routes](#usage-with-routes)
+-   [List of features](#features)
+-   [Quick introduction to usage](#usage-in-short)
+-   [Why this plugin is good for you](#why-to-use-this-plugin)
+-   [How to set up a quick demo to play around](#set-up-a-demo)
+-   [Full documentation part 1: Initializing](#documentation-1-initializing)
+-   [Full documentation part 2: Usage](#documentation-2-usage)
+-   [Full documentation part 3: Tips](#documentation-3-tips)
+-   [Server side rendering](#server-side-rendering)
+-   [Usage with routes](#usage-with-routes)
 
 ## Features
 
-- Set up an A/B test with a **simple and descriptive code** (the module makes available just one simple structural directive)
-- A/B tests are valid across different pages, using cookies with the expiration you want
-- Test **multiple versions** with changes as complicated as you need, while still keeping the code clean and understandable
-- Effortlessly set up **any number of independent A/B tests**, being sure that they won't clash in the code
-- Select a special version for crawlers, so you won't affect your SEO while you are running the test
+-   Set up an A/B test with a **simple and descriptive code** (the module makes available just one simple structural directive)
+-   A/B tests are valid across different pages, using cookies with the expiration you want
+-   Test **multiple versions** with changes as complicated as you need, while still keeping the code clean and understandable
+-   Effortlessly set up **any number of independent A/B tests**, being sure that they won't clash in the code
+-   Select a special version for crawlers, so you won't affect your SEO while you are running the test
 
 ## Usage in short
 
@@ -50,21 +50,17 @@ Set up an A/B test including the module with `forRoot` method:
 Wrap fragments of HTML inside the structural directive named `prtAbVersion`, marking them to belong to one or more of the versions of your A/B test.
 
 ```html
-<ng-container *prtAbVersion="'old'">
-  Old version goes here
-</ng-container>
+<ng-container *prtAbVersion="'old'"> Old version goes here </ng-container>
 
-<ng-container *prtAbVersion="'new'">
-  New version goes here
-</ng-container>
+<ng-container *prtAbVersion="'new'"> New version goes here </ng-container>
 ```
 
 ## Why to use this plugin
 
-- You can create several different versions, as complex and as big as you need, without filling your HTML with unnecessary code. This will make your A/B test less error prone, and also it will make it easier to remove the loser versions after the test, because the code is clear and descriptive.
-- Versions that are not selected are automatically removed from change detection at initialization, so no performance issues.
-- You can easily span your tests across different pages reading the same cookie, with no additional code.
-- You can maintain as many different A/B tests you want without risking them to clash in the code.
+-   You can create several different versions, as complex and as big as you need, without filling your HTML with unnecessary code. This will make your A/B test less error prone, and also it will make it easier to remove the loser versions after the test, because the code is clear and descriptive.
+-   Versions that are not selected are automatically removed from change detection at initialization, so no performance issues.
+-   You can easily span your tests across different pages reading the same cookie, with no additional code.
+-   You can maintain as many different A/B tests you want without risking them to clash in the code.
 
 ### What about simple A/B tests? Why should I use @protoarch.angular/ab for a simple test as well?
 
@@ -90,17 +86,17 @@ The service needs to be **global**, so it needs to be initialized at root level:
 
 ```javascript
 @NgModule({
-  imports: [
-    AbModule.forRoot([
-      {
-        // Configuration for the first test
-      },
-      {
-        // Configuration for the second test
-      },
-      // etc
-    ]),
-  ],
+    imports: [
+        AbModule.forRoot([
+            {
+                // Configuration for the first test
+            },
+            {
+                // Configuration for the second test
+            },
+            // etc
+        ]),
+    ],
 })
 export class AppModule {}
 ```
@@ -117,45 +113,43 @@ So, if you follow the Angular best practice and have your own `CoreModule`, that
 
 ```javascript
 @NgModule({
-  imports: [
-    SomeModuleWithProviders,
-    AnotherModuleWithProviders,
-    AbModule.forRoot([
-      {
-        // Configuration for the first test
-      },
-      {
-        // Configuration for the second test
-      },
-      // etc
-    ]),
-  ],
+    imports: [
+        SomeModuleWithProviders,
+        AnotherModuleWithProviders,
+        AbModule.forRoot([
+            {
+                // Configuration for the first test
+            },
+            {
+                // Configuration for the second test
+            },
+            // etc
+        ]),
+    ],
 })
 export class CoreModule {
-  // Content of the CoreModule, usually a guard against double loading
+    // Content of the CoreModule, usually a guard against double loading
 }
 ```
 
 If you are setting up a lot of tests, you might want to clean up your `CoreModule` and extract the @protoarch.angular/ab logic into a separate one. Create a separate file called `tests.module.ts`:
 
 ```javascript
-import { NgModule } from '@angular/core';
-import { AbModule, ABOptions } from '@protoarch.angular/ab';
+import {NgModule} from '@angular/core';
+import {AbModule, ABOptions} from '@protoarch.angular/ab';
 
 export const AbOptions: ABOptions[] = [
-  {
-    // Configuration for the first test
-  },
-  {
-    // Configuration for the second test
-  },
-  // etc
+    {
+        // Configuration for the first test
+    },
+    {
+        // Configuration for the second test
+    },
+    // etc
 ];
 
 @NgModule({
-  imports: [
-    AbModule.forRoot(AbOptions),
-  ],
+    imports: [AbModule.forRoot(AbOptions)],
 })
 export class TestsModule {}
 ```
@@ -166,14 +160,10 @@ To complete your refactoring, you then import your `TestsModule` into `CoreModul
 
 ```javascript
 @NgModule({
-  imports: [
-    SomeModuleWithProviders,
-    AnotherModuleWithProviders,
-    TestsModule,
-  ],
+    imports: [SomeModuleWithProviders, AnotherModuleWithProviders, TestsModule],
 })
 export class CoreModule {
-  // Content of the CoreModule, usually a guard against double loading
+    // Content of the CoreModule, usually a guard against double loading
 }
 ```
 
@@ -185,8 +175,8 @@ Simply configure your `SharedModule` to import and re-export the bare `AbModule`
 
 ```typescript
 @NgModule({
-  imports: [ AbModule ],
-  exports: [ AbModule ],
+    imports: [AbModule],
+    exports: [AbModule],
 })
 export class SharedModule {}
 ```
@@ -203,58 +193,56 @@ This is how the configuration `ABOptions` is defined:
 
 ```javascript
 export interface ABOptions {
-  versions: string[];
-  scope?: string;
-  versionForCrawlers?: string;
-  expiration?: number;
-  domain?: string;
-  weights?: {
-    [x: string]: number,
-  };
+    versions: string[];
+    scope?: string;
+    versionForCrawlers?: string;
+    expiration?: number;
+    domain?: string;
+    weights?: {
+        [x: string]: number,
+    };
 }
 ```
 
 When you setup the module using `forRoot`, you have to pass as argument **an array of objects that respect this interface**. Let's go over all the options:
 
-- `versions`: all the versions that your test is going to use (an array of strings): in order not to get confused, better using alphanumeric trimmed strings (anyway, if you accidentally mistype a version later @protoarch.angular/ab will raise an exception).
-- `scope`: if you are setting up more than one test at the same time, you have to specify a scope to distinguish them; if left undefined it will be automatically the string `'default'`. @protoarch.angular/ab will raise an exception if the same scope is used twice.
-- `versionForCrawlers`: use this field if you want one of the versions to systematically be shown to crawlers (you don't need to care about this if SEO is not important for you); of course the version needs to be one of the declared ones.
-- `expiration`: the number of days you want the cookie to persist; if left undefined the cookie will expire when the browser session ends.
-- `domain`: domain for the cookie (if left undefined it will use the standard domain).
-- `weights`: a hash of integers `< 100`, associated to the versions you have defined: use this option if you want some of your versions to appear mor frequently than the others. Weights for versions you didn't specify will be equally distributed.
+-   `versions`: all the versions that your test is going to use (an array of strings): in order not to get confused, better using alphanumeric trimmed strings (anyway, if you accidentally mistype a version later @protoarch.angular/ab will raise an exception).
+-   `scope`: if you are setting up more than one test at the same time, you have to specify a scope to distinguish them; if left undefined it will be automatically the string `'default'`. @protoarch.angular/ab will raise an exception if the same scope is used twice.
+-   `versionForCrawlers`: use this field if you want one of the versions to systematically be shown to crawlers (you don't need to care about this if SEO is not important for you); of course the version needs to be one of the declared ones.
+-   `expiration`: the number of days you want the cookie to persist; if left undefined the cookie will expire when the browser session ends.
+-   `domain`: domain for the cookie (if left undefined it will use the standard domain).
+-   `weights`: a hash of integers `< 100`, associated to the versions you have defined: use this option if you want some of your versions to appear mor frequently than the others. Weights for versions you didn't specify will be equally distributed.
 
 Examples of weight configurations for a list of versions `['v1', 'v2', 'v3']`:
 
-- `{ v1: 40 }` will produce a `40%` chance to extract `v1`, and `30%` for both the other two versions
-- `{ v1: 90, v2: 9 }` will produce a `90%` chance to extract `v1`, a `9%` to extract `v2`, and a remaining `1%` to extract `v3`
-- `{ v1: 50, v2: 55 }` will raise an exception because `50 + 55 = 105 > 100`
-- `{ v1: 40, v2: 30, v3: 35 }` will raise an exception because `40 + 30 + 35 = 105 > 100`
-- `{ v1: 40, v6: 45 }` will raise an exception because version `v6` hasn't been declared
+-   `{ v1: 40 }` will produce a `40%` chance to extract `v1`, and `30%` for both the other two versions
+-   `{ v1: 90, v2: 9 }` will produce a `90%` chance to extract `v1`, a `9%` to extract `v2`, and a remaining `1%` to extract `v3`
+-   `{ v1: 50, v2: 55 }` will raise an exception because `50 + 55 = 105 > 100`
+-   `{ v1: 40, v2: 30, v3: 35 }` will raise an exception because `40 + 30 + 35 = 105 > 100`
+-   `{ v1: 40, v6: 45 }` will raise an exception because version `v6` hasn't been declared
 
 Example of a correct complete configuration
 
 ```javascript
-AbModule.forRoot(
-  [
+AbModule.forRoot([
     {
-      versions: [ 'v1', 'v2', 'v3' ],
-      scope: 'versions',
-      expiration: 45,
-      weights: { v1: 45, v3: 100/3 }
+        versions: ['v1', 'v2', 'v3'],
+        scope: 'versions',
+        expiration: 45,
+        weights: {v1: 45, v3: 100 / 3},
     },
     {
-      versions: [ 'red', 'green', 'blue' ],
-      scope: 'colors',
-      versionForCrawlers: 'green',
+        versions: ['red', 'green', 'blue'],
+        scope: 'colors',
+        versionForCrawlers: 'green',
     },
     {
-      versions: [ 'old', 'new' ],
-      domain: 'xxx.xxx',
-      versionForCrawlers: 'old',
-      weights: { old: 60 }
+        versions: ['old', 'new'],
+        domain: 'xxx.xxx',
+        versionForCrawlers: 'old',
+        weights: {old: 60},
     },
-  ]
-)
+]);
 ```
 
 ### The directive
@@ -268,7 +256,7 @@ This is the most basic implementation of the directive:
 
 ```html
 <ng-container *prtAbVersion="'v1';scope:'default'">
-  <!-- Content -->
+    <!-- Content -->
 </ng-container>
 ```
 
@@ -276,7 +264,7 @@ The "scope" is necessary to map to the correct test if you set up more than one:
 
 ```html
 <ng-container *prtAbVersion="'v1'">
-  <!-- Content -->
+    <!-- Content -->
 </ng-container>
 ```
 
@@ -284,11 +272,11 @@ You can associate one block of HTML to two versions: instead of writing the dire
 
 ```html
 <ng-container *prtAbVersion="'v1'">
-  <!-- Content -->
+    <!-- Content -->
 </ng-container>
 
 <ng-container *prtAbVersion="'v2'">
-  <!-- Very same content -->
+    <!-- Very same content -->
 </ng-container>
 ```
 
@@ -296,7 +284,7 @@ you can simply declare the `prtAbVersion` directive once, separating versions wi
 
 ```html
 <ng-container *prtAbVersion="'v1,v2'">
-  <!-- Content -->
+    <!-- Content -->
 </ng-container>
 ```
 
@@ -306,7 +294,7 @@ As I have already said, in the configuration you can specify that a version is a
 
 ```html
 <ng-container *prtAbVersion="'v1';forCrawlers:true">
-  <!-- Content -->
+    <!-- Content -->
 </ng-container>
 ```
 
@@ -319,17 +307,17 @@ Remember one thing: if you don't specify any `versionForCrawlers` in your config
 First, you need to inject the token `AbService`:
 
 ```typescript
-import { Component } from '@angular/core';
-import { AbService } from '@protoarch.angular/ab';
+import {Component} from '@angular/core';
+import {AbService} from '@protoarch.angular/ab';
 
 @Component({
-  selector: '...',
-  templateUrl: '...',
+    selector: '...',
+    templateUrl: '...',
 })
 export class MyComponent {
-  constructor(private AbService: AbService) {
-    //...
-  }
+    constructor(private AbService: AbService) {
+        //...
+    }
 }
 ```
 
@@ -370,19 +358,16 @@ The HTML tag `<ng-container>` is an empty tag that is not rendered, it's used on
 ```html
 <!-- Recommended implementation -->
 <ng-container *prtAbVersion="'old'">
-  <component-for-version-old>
-  </component-for-version-old>
+    <component-for-version-old> </component-for-version-old>
 </ng-container>
 
 <!-- Not recommended because you render an unnecessary div -->
 <div *prtAbVersion="'old'">
-  <component-for-version-old>
-  </component-for-version-old>
+    <component-for-version-old> </component-for-version-old>
 </div>
 
 <!-- Not recommended because you are mixing the logics of your AB test with the logic of your app -->
-<component-for-version-old *prtAbVersion="'old'">
-</component-for-version-old>
+<component-for-version-old *prtAbVersion="'old'"> </component-for-version-old>
 ```
 
 ### 2 - Pass only static values to the directive
@@ -392,12 +377,12 @@ As already mentioned, change detection is disabled for anything contained in a v
 ```html
 <!-- Recommended implementation -->
 <div *prtAbVersion="'old'">
-  <!-- Content -->
+    <!-- Content -->
 </div>
 
 <!-- Not recommended because "getOldVersion()" will be fired at every change detection tick -->
 <div *prtAbVersion="getOldVersion()">
-  <!-- Content -->
+    <!-- Content -->
 </div>
 ```
 
@@ -408,9 +393,7 @@ You should keep your code logic clean and easy to debug: be careful not to nest 
 ```html
 <!-- Not recommended -->
 <ng-container *prtAbVersion="'old'">
-  <ng-container *prtAbVersion="'new'">
-
-  </ng-container>
+    <ng-container *prtAbVersion="'new'"> </ng-container>
 </ng-container>
 ```
 
@@ -419,9 +402,7 @@ In theory, if you nest directives associated to different tests, you are not doi
 ```html
 <!-- In principle this is not wrong, but the results of your tests might not come out consistent -->
 <ng-container *prtAbVersion="'old';scope:'firsttest'">
-  <ng-container *prtAbVersion="'new';scope:'secondtest'">
-
-  </ng-container>
+    <ng-container *prtAbVersion="'new';scope:'secondtest'"> </ng-container>
 </ng-container>
 ```
 
@@ -444,19 +425,19 @@ The module `AbServerModule` is an extension that overrides the services used to 
 You need to import it in your `app.server.module.ts`, in addition to the other imports discussed in the previous points.
 
 ```typescript
-import { NgModule } from '@angular/core';
-import { AbServerModule } from '@protoarch.angular/ab';
+import {NgModule} from '@angular/core';
+import {AbServerModule} from '@protoarch.angular/ab';
 
 @NgModule({
-  imports:[
-    // ...
-    AbServerModule
-  ]
+    imports: [
+        // ...
+        AbServerModule,
+    ],
 })
 export class AppServerModule {}
 ```
 
-`AbServerModule` optionally depends on `REQUEST` from [@nguniversal/express-engine](https://www.npmjs.com/package/@nguniversal/express-engine) and `CookiesService` from [@ngx-utils/cookies](https://www.npmjs.com/package/@ngx-utils/cookies) for detecting crawlers and manipulating cookies.
+`AbServerModule` optionally depends on `REQUEST` from [@angular/ssr](https://www.npmjs.com/package/@angular/ssr) and `CookiesService` from [@ngx-utils/cookies](https://www.npmjs.com/package/@ngx-utils/cookies) for detecting crawlers and manipulating cookies.
 
 Note that, even if they are not provided, both modules should be installed.
 
@@ -465,22 +446,22 @@ Note that, even if they are not provided, both modules should be installed.
 Alternatively, you can also provide `CookieHandler` and `CrawlerDetector` services yourself in your server module:
 
 ```typescript
-import { NgModule } from '@angular/core';
-import { CrawlerDetector, CookieHandler } from '@protoarch.angular/ab';
-import { MyOwnCrawlerDetector, MyOwnCookieHandler } from '...';
+import {NgModule} from '@angular/core';
+import {CrawlerDetector, CookieHandler} from '@protoarch.angular/ab';
+import {MyOwnCrawlerDetector, MyOwnCookieHandler} from '...';
 
 @NgModule({
-  providers: [
-    // ...
-    {
-      provide: CrawlerDetector,
-      useClass: MyOwnCrawlerDetector,
-    },
-    {
-      provide: CookieHandler,
-      useClass: MyOwnCookieHandler,
-    },
-  ],
+    providers: [
+        // ...
+        {
+            provide: CrawlerDetector,
+            useClass: MyOwnCrawlerDetector,
+        },
+        {
+            provide: CookieHandler,
+            useClass: MyOwnCookieHandler,
+        },
+    ],
 })
 export class AppServerModule {}
 ```
@@ -510,7 +491,7 @@ interface GuardDataTest extends ABOptions {
 
 ### Examples
 
-- Usage with redirect pages:
+-   Usage with redirect pages:
 
 ```typescript
 const ab = {
@@ -518,8 +499,8 @@ const ab = {
     versions: ['a', 'b'],
     redirectUrls: {
         a: '/PageA',
-        b: '/PageB'
-    }
+        b: '/PageB',
+    },
 };
 
 const routes = [
@@ -527,21 +508,20 @@ const routes = [
         path: 'PageA',
         canActivate: [AbGuard],
         data: {
-            ab
-        }    
+            ab,
+        },
     },
     {
         path: 'PageB',
         canActivate: [AbGuard],
         data: {
-            ab
-        } 
+            ab,
+        },
     },
-   
-]
+];
 ```
 
-- Usage with tests for page (single test)
+-   Usage with tests for page (single test)
 
 ```typescript
 const youRoutes = [
@@ -551,14 +531,14 @@ const youRoutes = [
         data: {
             ab: {
                 scope: 'my-test',
-                versions: ['v1', 'v2']
-            }
-        }    
-    },   
-]
+                versions: ['v1', 'v2'],
+            },
+        },
+    },
+];
 ```
 
-- Usage with tests for page (multiple tests)
+-   Usage with tests for page (multiple tests)
 
 ```typescript
 const youRoutes = [
@@ -567,44 +547,45 @@ const youRoutes = [
         canActivate: [AbGuard],
         data: {
             ab: [
-                  {
-                      scope: 'my-test-a',
-                      versions: ['a1', 'a2', 'a3']
-                  },
-                  {
-                      scope: 'my-test-b',
-                      versions: ['b1', 'b2']
-                  }
-            ]
-        }    
-    },   
-]
+                {
+                    scope: 'my-test-a',
+                    versions: ['a1', 'a2', 'a3'],
+                },
+                {
+                    scope: 'my-test-b',
+                    versions: ['b1', 'b2'],
+                },
+            ],
+        },
+    },
+];
 ```
 
 ### service methods
 
-- setTest dynamically:
+-   setTest dynamically:
 
 ```typescript
-  // example:
-  this.AbService.setTest('myScope', ['v1', 'v2']);
+// example:
+this.AbService.setTest('myScope', ['v1', 'v2']);
 ```
 
-- subscribe on test started:
+-   subscribe on test started:
 
 ```typescript
-  this.AbService.testStarted$()
-     .subscribe(({scope, version}: TestStartedEvent) => {/*...*/});
+this.AbService.testStarted$().subscribe(({scope, version}: TestStartedEvent) => {
+    /*...*/
+});
 ```
 
-- emit test started
+-   emit test started
 
 ```typescript
-  this.AbService.emitTestStarted(scope, version);
+this.AbService.emitTestStarted(scope, version);
 ```
 
-- set test and emit
+-   set test and emit
 
 ```typescript
-  this.AbService.setTestAndEmitStarted('myScope', ['v1', 'v2']); // the second parameter takes ABOptions or array of versions
+this.AbService.setTestAndEmitStarted('myScope', ['v1', 'v2']); // the second parameter takes ABOptions or array of versions
 ```
