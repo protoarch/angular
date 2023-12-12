@@ -1,6 +1,3 @@
-/* eslint-disable @angular-eslint/component-selector */
-/* eslint-disable @angular-eslint/component-max-inline-declarations */
-/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {NgControl} from '@angular/forms';
 import {ValidationMessage} from './model/ValidationMessage';

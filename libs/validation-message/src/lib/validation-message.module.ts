@@ -8,7 +8,6 @@ export const declarations = [ValidationMessageDirective, ValidationMessageCompon
 @NgModule({
     declarations: declarations,
     exports: declarations,
-    entryComponents: [ValidationMessageComponent],
     providers: [
         ValidationErrorBuilder,
         {

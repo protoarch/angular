@@ -13,7 +13,6 @@ import {FormControlName, NgControl} from '@angular/forms';
 import {ValidationMessageComponent} from './../components/ValidationMessageComponent';
 
 @Directive({
-    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[formControlName][prtValidationMessage],[formGroupName][prtValidationMessage]',
 })
 export class ValidationMessageDirective implements AfterViewInit, OnDestroy {

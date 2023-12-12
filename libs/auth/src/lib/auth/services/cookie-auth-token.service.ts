@@ -1,6 +1,6 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Inject, Injectable, Optional, PLATFORM_ID} from '@angular/core';
-import {REQUEST} from '@nguniversal/express-engine/tokens';
+
 import {Request} from 'express';
 import {CookieService} from 'ngx-cookie';
 import {AUTH_OPTIONS_DEFAULTS} from '../../auth/options-defaults.constants';
@@ -19,7 +19,7 @@ export class CookieAuthTokenService implements IAuthTokenServiceInterface {
     constructor(
         @Inject(AuthTokens.AUTH_OPTIONS) options: AuthOptions<User>,
         @Inject(PLATFORM_ID) platformId: Object,
-        @Optional() @Inject(REQUEST) private req: Request,
+        @Optional() @Inject('fixme') private req: Request,
         private cookie: CookieService,
     ) {
         const opts = options || {userType: User};
@@ -34,7 +34,7 @@ export class CookieAuthTokenService implements IAuthTokenServiceInterface {
 
     getToken(): string | null {
         if (this.isBrowser) {
-            return this.cookie.get(this._storageTokenName);
+            return this.cookie.get(this._storageTokenName) ?? null;
         }
 
         const cookie = this.req.headers['cookie'];

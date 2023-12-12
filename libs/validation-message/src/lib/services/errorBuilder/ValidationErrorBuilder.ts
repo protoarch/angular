@@ -1,4 +1,3 @@
-/* eslint-disable no-prototype-builtins */
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 
 import {ValidationError} from './ValidationError';

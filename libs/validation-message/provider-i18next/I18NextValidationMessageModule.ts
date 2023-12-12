@@ -18,7 +18,6 @@ export const providers = [
 
 @NgModule({
     declarations: declarations,
-    entryComponents: declarations,
     exports: [declarations, ValidationMessageModule],
     imports: [I18NextModule, ValidationMessageModule],
     providers: providers,

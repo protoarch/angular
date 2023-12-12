@@ -1,12 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
-import {REQUEST} from '@nguniversal/express-engine/tokens';
 import {AbstractUserAgentCrawlerDetector} from '../classes';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ServerCrawlerDetectorService extends AbstractUserAgentCrawlerDetector {
-    constructor(@Inject(REQUEST) private httpRequest: any) {
+    constructor(@Inject('fixme') private httpRequest: any) {
+        // FIXME: Fix SSR Inject Request or create handler
         super();
     }
 

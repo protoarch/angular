@@ -1,5 +1,3 @@
-/* eslint-disable @angular-eslint/component-max-inline-declarations */
-/* eslint-disable @angular-eslint/prefer-on-push-component-change-detection */
 import {Component, Inject, ViewEncapsulation} from '@angular/core';
 import {ValidationMessageComponent} from '@protoarch.angular/validation-message';
 import {I18NEXT_NAMESPACE} from 'angular-i18next';

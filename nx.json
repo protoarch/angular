@@ -1,34 +1,11 @@
 {
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "npmScope": "protoarch",
     "affected": {
         "defaultBase": "main"
     },
-    "implicitDependencies": {
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        ".eslintrc.json": "*"
-    },
     "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/nx-cloud",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"],
-                "accessToken": "ZmEzYzc3ZDMtOTgyNC00MzBiLTk3MjYtZGY3YjhiMGUxOWJhfHJlYWQtd3JpdGU=",
-                "canTrackAnalytics": false,
-                "showUsageWarnings": true,
-                "parallel": 1
-            }
-        }
-    },
-    "targetDependencies": {
-        "build": [
-            {
-                "target": "build",
-                "projects": "dependencies"
-            }
-        ]
+        "default": {}
     },
     "generators": {
         "@nrwl/angular": {
@@ -56,5 +33,15 @@
             "style": "less"
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json"
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["production", "^production"]
+        }
+    },
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": [],
+        "production": ["default"]
+    }
 }

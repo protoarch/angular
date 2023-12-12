@@ -10,7 +10,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/ab"],
+                    "outputs": ["{workspaceRoot}/coverage/libs/ab"],
                     "options": {
                         "jestConfig": "libs/ab/jest.config.ts",
                         "passWithNoTests": true
@@ -35,7 +35,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/api"],
+                    "outputs": ["{workspaceRoot}/coverage/libs/api"],
                     "options": {
                         "jestConfig": "libs/api/jest.config.ts",
                         "passWithNoTests": true
@@ -60,7 +60,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/auth"],
+                    "outputs": ["{workspaceRoot}/coverage/libs/auth"],
                     "options": {
                         "jestConfig": "libs/auth/jest.config.ts",
                         "passWithNoTests": true
@@ -85,7 +85,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/linters"],
+                    "outputs": ["{workspaceRoot}/coverage/libs/linters"],
                     "options": {
                         "jestConfig": "libs/linters/jest.config.ts",
                         "passWithNoTests": true
@@ -190,7 +190,7 @@
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/apps/protoarch-app-demo"],
+                    "outputs": ["{workspaceRoot}/coverage/apps/protoarch-app-demo"],
                     "options": {
                         "jestConfig": "apps/protoarch-app-demo/jest.config.ts",
                         "passWithNoTests": true
@@ -237,7 +237,7 @@
             "architect": {
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/validation-message"],
+                    "outputs": ["{workspaceRoot}/coverage/libs/validation-message"],
                     "options": {
                         "jestConfig": "libs/validation-message/jest.config.ts",
                         "passWithNoTests": true
