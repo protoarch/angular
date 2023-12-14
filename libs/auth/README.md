@@ -31,7 +31,7 @@ Setup example:
         }
     }),
     AuthModule.forRoot({
-        stsParams: {
+        oauthRequestParams: {
             client_id: 'your_client_id',
             client_secret: 'some_secret',
             scope: 'your scopes divided with space'
@@ -47,7 +47,7 @@ export interface AuthOptions<T> {
     userType?: new() => T; // User class. default: User
     tokenName?: string; // token storage name. default: 'access_token'
     tokenEndpoint?: string; // token endpoint url. default: '/identity/connect/token'
-    stsParams?: OAuthParams;
+    oauthRequestParams?: OAuthParams;
 }
 export interface OAuthParams {
    scope: string;

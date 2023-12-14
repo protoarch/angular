@@ -7,7 +7,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {AuthorizeControlDirective, AuthService, AUTH_SERVICE, User} from '../../src';
+import {AUTH_SERVICE, AuthService, AuthorizeControlDirective, User} from '../../src';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-max-inline-declarations

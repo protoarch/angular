@@ -54,8 +54,7 @@
     "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
     "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
     "release": "npm exec -- np",
-    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
-    "test": "npm exec -- ng test"
+    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
   },
   "dependencies": {
     "tslib": "^2.1.0"

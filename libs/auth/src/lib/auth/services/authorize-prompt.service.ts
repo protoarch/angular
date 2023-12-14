@@ -1,9 +1,9 @@
-import {Inject, Injectable} from '@angular/core';
-import {fromEvent, ReplaySubject} from 'rxjs';
-import {AUTHORIZE_PROMPT_SETTINGS} from '../auth.tokens';
-import {AuthorizePromptOptions} from '../models';
+import { Inject, Injectable } from '@angular/core';
+import { fromEvent, ReplaySubject } from 'rxjs';
+import { AUTHORIZE_PROMPT_SETTINGS } from '../auth.tokens';
+import { AuthorizePromptOptions } from '../models';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthorizePromptService {
     private _enableDev = false;
 
@@ -27,15 +27,15 @@ export class AuthorizePromptService {
         callback: (a: boolean) => void,
     ): IntersectionObserver | undefined {
         if (!element) {
-            return;
+            return undefined;
         }
 
         const options = {
             root: document.documentElement,
         };
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
                 callback(!!entry.boundingClientRect.height);
             });
         }, options);

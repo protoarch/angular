@@ -9,17 +9,21 @@ import {AuthorizeRouterService} from '../services/authorize-router.service';
 
 @Injectable()
 export class AuthorizeRouterGuard implements CanActivate, CanActivateChild {
-    constructor(private authorizeService: AuthorizeRouterService) {}
+    // FIXME: deprecated
+    constructor(private readonly authorizeService: AuthorizeRouterService) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        return this.authorizeService.authorize(state.url);
+    async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const url = state.url.replace(/\([^()]*\)/g, '');
+        return await this.authorizeService.authorize(url);
     }
 
-    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (childRoute.data?.authorize?.skip) {
+    async canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const data: any = childRoute.data;
+        if (data?.authorize?.skip) {
             return true;
         }
 
-        return this.authorizeService.authorize(state.url);
+        const url = state.url.replace(/\([^()]*\)/g, '');
+        return await this.authorizeService.authorize(url);
     }
 }

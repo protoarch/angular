@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {JwtModule} from '@auth0/angular-jwt';
-import {AuthModule, AuthService, AuthTokenService, AUTH_SERVICE} from '../../src';
+import {AUTH_SERVICE, AuthModule, AuthService, AuthTokenService} from '../../src';
 import {CustomUser} from '../models/CustomUser';
 
 describe('Service: AuthService : anonymous', () => {
@@ -24,7 +24,9 @@ describe('Service: AuthService : anonymous', () => {
 
     it('should init anonymous', () => {
         const service: AuthService<CustomUser> = TestBed.inject(AUTH_SERVICE);
-        expect(service.isAuthenticated()).toBeFalsy();
+        service.isAuthenticated$.subscribe(isAuth => {
+            expect(isAuth).toBeFalsy();
+        });
     });
 
     it('should not throw exception when token in storage is invalid', () => {
@@ -32,7 +34,9 @@ describe('Service: AuthService : anonymous', () => {
         authTokenService.saveToken('invalid_token');
         const service: AuthService<CustomUser> = TestBed.inject(AUTH_SERVICE);
         expect(service).toBeTruthy();
-        expect(service.isAuthenticated()).toBeFalsy();
+        service.isAuthenticated$.subscribe(isAuth => {
+            expect(isAuth).toBeFalsy();
+        });
         authTokenService.remove();
     });
 });

@@ -57,16 +57,19 @@ describe('Service: custom AuthService', () => {
             AuthTokens.AUTH_SERVICE,
         );
         expect(service).toBeTruthy();
-        expect(service.isAuthenticated()).toBeTruthy();
+        service.isAuthenticated$.subscribe(isAuth => {
+            expect(isAuth).toBeTruthy();
+        });
     });
 
     it('should init nulloUser right', () => {
         const service: CustomAuthService<User> = TestBed.inject<CustomAuthService<User>>(
             AuthTokens.AUTH_SERVICE,
         );
-        expect(service.nulloUser.preferred_username).toEqual(undefined);
-        expect(service.nulloUser.user_client_id).toEqual(undefined);
-        expect(service.nulloUser.scope).toEqual(undefined);
+        service.user$.subscribe(cu => {
+            expect(cu.sub).toEqual(undefined);
+            expect(cu.preferred_username).toEqual(undefined);
+        });
     });
 
     it('should fill user props', () => {
@@ -75,8 +78,6 @@ describe('Service: custom AuthService', () => {
         );
         service.user$.subscribe(cu => {
             expect(cu.preferred_username).toEqual('79119111113');
-            expect(cu.user_client_id).toEqual('43');
-            expect(cu.scope).toEqual('ClientApiScope');
         });
     });
 

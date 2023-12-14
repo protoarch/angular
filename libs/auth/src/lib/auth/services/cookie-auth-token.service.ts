@@ -1,16 +1,15 @@
 import {isPlatformBrowser} from '@angular/common';
 import {Inject, Injectable, Optional, PLATFORM_ID} from '@angular/core';
-
 import {Request} from 'express';
 import {CookieService} from 'ngx-cookie';
+
 import {AUTH_OPTIONS_DEFAULTS} from '../../auth/options-defaults.constants';
 import * as AuthTokens from '../auth.tokens';
 import {AuthOptions, IAuthTokenServiceInterface, User} from '../models';
 
-const expires = new Date('31 Dec 9999 23:59:59 GMT');
-
-// @dynamic
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class CookieAuthTokenService implements IAuthTokenServiceInterface {
     private readonly _storageTokenName: string;
 
@@ -18,18 +17,24 @@ export class CookieAuthTokenService implements IAuthTokenServiceInterface {
 
     constructor(
         @Inject(AuthTokens.AUTH_OPTIONS) options: AuthOptions<User>,
-        @Inject(PLATFORM_ID) platformId: Object,
-        @Optional() @Inject('fixme') private req: Request,
-        private cookie: CookieService,
+        @Inject(PLATFORM_ID) platformId: any,
+        @Optional() @Inject('fixme') private readonly req: Request, // FIXME: ssr
+        private readonly cookie: CookieService,
     ) {
-        const opts = options || {userType: User};
-        this._storageTokenName = (opts.storageTokenName ||
+        const opts = options ?? {userType: User};
+        this._storageTokenName = (opts.storageTokenName ??
             AUTH_OPTIONS_DEFAULTS.storageTokenName) as string;
         this.isBrowser = isPlatformBrowser(platformId);
     }
 
-    saveToken(token: string): void {
-        this.cookie.put(this._storageTokenName, token, {expires});
+    saveToken(token: string, expires: number): void {
+        if (expires) {
+            this.cookie.put(this._storageTokenName, token, {
+                expires: new Date(new Date().getTime() + expires),
+            });
+        } else {
+            this.cookie.put(this._storageTokenName, token);
+        }
     }
 
     getToken(): string | null {
@@ -37,7 +42,7 @@ export class CookieAuthTokenService implements IAuthTokenServiceInterface {
             return this.cookie.get(this._storageTokenName) ?? null;
         }
 
-        const cookie = this.req.headers['cookie'];
+        const cookie = this.req.headers.cookie;
         if (!cookie) {
             return null;
         }

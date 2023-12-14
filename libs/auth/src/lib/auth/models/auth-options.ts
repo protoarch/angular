@@ -4,6 +4,8 @@ export interface AuthOptions<T> {
     userType?: new () => T;
     tokenName?: string;
     tokenEndpoint?: string;
-    stsParams?: OAuthParams;
+    oauthRequestParams?: OAuthParams;
     storageTokenName?: string;
+
+    superPermission?: string;
 }

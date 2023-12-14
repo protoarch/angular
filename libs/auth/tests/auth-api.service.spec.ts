@@ -1,5 +1,5 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {getTestBed, TestBed} from '@angular/core/testing';
+import {TestBed, getTestBed} from '@angular/core/testing';
 import * as AuthTokens from '../src';
 import {AuthApiService, AuthOptions, User} from '../src';
 
@@ -9,7 +9,7 @@ describe('AuthApiService', () => {
     let httpMock: HttpTestingController;
     const OPTIONS: AuthOptions<User> = {
         tokenEndpoint: '/identity/connect/token',
-        stsParams: {
+        oauthRequestParams: {
             scope: 'scope',
             client_id: 'id',
             client_secret: 'secret',

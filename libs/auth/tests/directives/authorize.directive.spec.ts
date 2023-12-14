@@ -1,6 +1,6 @@
 import {Component, Input, NO_ERRORS_SCHEMA} from '@angular/core';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {AuthorizeDirective, AuthService, AUTH_SERVICE, User} from '../../src';
+import {AUTH_SERVICE, AuthService, AuthorizeDirective, User} from '../../src';
 
 @Component({
     template: ' <div *authorize="prop">content</div>',

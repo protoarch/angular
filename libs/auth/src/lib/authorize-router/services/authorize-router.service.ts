@@ -1,12 +1,13 @@
 import {Inject, Injectable} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {
-    CLAIM_FULL_ACCESS,
     EXCEPTION_ROUTER_LINK,
+    PERMISSION_FULL_ACCESS,
     REGEXP_ACCESS_TYPE,
     REGEXP_ALL_OCCURRENCES,
     RULES,
 } from '../../auth.constants';
+
 import {AUTH_SERVICE} from '../../auth/auth.tokens';
 import {User} from '../../auth/models';
 import {AuthService} from '../../auth/services/auth.service';
@@ -16,20 +17,16 @@ import {AccessTypeEnum} from '../models';
 export class AuthorizeRouterService {
     constructor(
         @Inject(AUTH_SERVICE)
-        private authService: AuthService<User>,
-        private router: Router,
+        private readonly authService: AuthService<User>,
+        private readonly router: Router,
     ) {}
 
-    authorize(routerLink: string): boolean {
-        if (!this.authService.isAuthenticated()) {
-            return false;
-        }
-
-        const claims = this.getClaims();
+    async authorize(routerLink: string): Promise<boolean> {
+        const perms = await this.getPermissions();
 
         return (
-            claims?.includes(CLAIM_FULL_ACCESS) ||
-            claims?.some(claim => this.claimMatch(claim, routerLink)) ||
+            perms.includes(PERMISSION_FULL_ACCESS) ||
+            perms.some(p => this.permsMatch(p, routerLink)) ||
             false
         );
     }
@@ -43,33 +40,22 @@ export class AuthorizeRouterService {
         const urlTree = this.router.createUrlTree(routerLink, {
             relativeTo: route,
         });
-        urlTree.root.children = {primary: urlTree.root.children.primary};
+        urlTree.root.children = {primary: urlTree.root.children['primary']};
 
         return this.router.serializeUrl(urlTree);
     }
 
-    getAppliedClaim(routerLink: string): string | undefined {
-        const claims = this.getClaims();
-        if (!claims) {
-            return;
-        }
-        return claims.find(claim => this.claimMatch(claim, routerLink));
+    async getAppliedPermission(routerLink: string) {
+        const perms = await this.getPermissions();
+        return perms.find(p => this.permsMatch(p, routerLink));
     }
 
-    private getClaims(): string[] | undefined {
-        const currentUser = this.authService.getUser();
-
-        if (!currentUser.claims) {
-            return;
-        }
-
-        const claims: string[] =
-            currentUser.claims instanceof Array ? currentUser.claims : [currentUser.claims];
-
-        return claims;
+    private async getPermissions() {
+        const currentUser = await this.authService.getUser();
+        return [...(currentUser.permissions ?? [])];
     }
 
-    private claimMatch(claim: string, routerLink: string): boolean {
+    private permsMatch(claim: string, routerLink: string): boolean {
         const template = this.getClaimTemplate(claim);
 
         routerLink = routerLink.replace(/^\//, '') + '/';

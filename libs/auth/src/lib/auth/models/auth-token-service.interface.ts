@@ -1,5 +1,5 @@
 export interface IAuthTokenServiceInterface {
-    saveToken(token: string): void;
+    saveToken(token: string, expires: number | null): void;
     getToken(): string | null;
     remove(): void;
 }

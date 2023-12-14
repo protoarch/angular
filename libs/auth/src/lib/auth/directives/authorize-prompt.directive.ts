@@ -8,8 +8,8 @@ import {
     Renderer2,
     ViewContainerRef,
 } from '@angular/core';
-import {fromEvent, Subject, Subscription} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {Subject, Subscription, fromEvent} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
 import {ATTR_AUTHORIZE_CLAIM} from '../../auth.constants';
 import {PROMPT_OPTIONS_DEFAULTS} from '../../auth/options-defaults.constants';
 import {AUTHORIZE_PROMPT_SETTINGS} from '../auth.tokens';
@@ -24,25 +24,23 @@ import {AuthorizePromptService} from '../services/authorize-prompt.service';
  * authorize-claim: The attribute, the value of which must equal the claim;
  */
 @Directive({
-    selector:
-        // eslint-disable-next-line @angular-eslint/directive-selector
-        '[authorize],[authorize-routerLink],[authorize-claim],[authorizeControl]',
+    selector: '[authorize],[authorize-routerLink],[authorize-claim],[authorizeControl]',
 })
 export class AuthorizePromptDirective implements OnDestroy, OnInit {
-    private _ngUnsubscribe$: Subject<void> = new Subject<void>();
+    private readonly _ngUnsubscribe$: Subject<void> = new Subject<void>();
     private _intersectionObserver$: IntersectionObserver | undefined;
-    private _subscriptionCopy$: Subscription;
+    private _subscriptionCopy$: Subscription | undefined;
 
     @Input()
-    authorize: string | string[];
+    authorize: string | string[] | undefined;
 
     @Input()
-    authorizeControl: string | string[];
+    authorizeControl: string | string[] | undefined;
 
     get claims(): string {
         const value =
-            this.authorize ||
-            this.authorizeControl ||
+            this.authorize ??
+            this.authorizeControl ??
             this.nativeElement.getAttribute(ATTR_AUTHORIZE_CLAIM);
 
         return (value instanceof Array ? value : [value]).join(' | ');
@@ -55,12 +53,12 @@ export class AuthorizePromptDirective implements OnDestroy, OnInit {
     }
 
     constructor(
-        private elementRef: ElementRef,
-        private renderer: Renderer2,
-        private promptService: AuthorizePromptService,
-        private viewContainerRef: ViewContainerRef,
+        private readonly elementRef: ElementRef,
+        private readonly renderer: Renderer2,
+        private readonly promptService: AuthorizePromptService,
+        private readonly viewContainerRef: ViewContainerRef,
         @Inject(AUTHORIZE_PROMPT_SETTINGS)
-        private settings: AuthorizePromptOptions,
+        private readonly settings: AuthorizePromptOptions,
     ) {}
 
     ngOnInit() {
@@ -87,9 +85,13 @@ export class AuthorizePromptDirective implements OnDestroy, OnInit {
             return;
         }
 
-        this._subscriptionCopy$ = fromEvent(this.nativeElement, 'click').subscribe(() =>
-            navigator.clipboard.writeText(this.claims),
-        );
+        this._subscriptionCopy$ = fromEvent(this.nativeElement, 'click')
+            .pipe(
+                map(async () => {
+                    await navigator.clipboard.writeText(this.claims);
+                }),
+            )
+            .subscribe();
 
         this._intersectionObserver$ = this.promptService.respondToVisibility(
             this.nativeElement,
@@ -112,10 +114,11 @@ export class AuthorizePromptDirective implements OnDestroy, OnInit {
         ) {
             const display = window.getComputedStyle(el).getPropertyValue('display');
 
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             display === 'inline' ? this.renderer.setStyle(el, 'display', 'block') : {};
         }
 
-        this.renderer.setStyle(el, 'outline', this.settings.style || PROMPT_OPTIONS_DEFAULTS.style);
+        this.renderer.setStyle(el, 'outline', this.settings.style ?? PROMPT_OPTIONS_DEFAULTS.style);
         this.renderer.setAttribute(el, 'title', this.claims);
     }
 
@@ -134,7 +137,7 @@ export class AuthorizePromptDirective implements OnDestroy, OnInit {
         }
 
         // This is the component tag
-        const tag = (<any>this.viewContainerRef)['_hostTNode'].tagName;
+        const tag = (this.viewContainerRef as any)._hostTNode.tagName;
 
         return tag ? nativeElement?.parentElement?.querySelector(tag) : null;
     }

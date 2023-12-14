@@ -4,17 +4,14 @@
  * https://openid.net/specs/openid-connect-core-1_0.html#IDToken
  * interface TokenClaims
  */
-export interface TokenClaims {
-    iss: string;
-    aud: string;
-    exp: number;
-    nbf: number;
-    client_id: string;
-    scope: string | string[];
-    sub: string;
-    auth_time: number;
-    idp: string;
-    amr: string[];
+export interface JwtToken {
+    iss?: string;
+    aud?: string;
+    exp?: number;
+    nbf?: number;
+    sub?: string;
+    auth_time?: number;
+    idp?: string;
 }
 
 /**
@@ -22,10 +19,10 @@ export interface TokenClaims {
  *
  * https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
  *
- * interface UserInfoClaims
+ * interface StandardClaims
  */
-export interface UserInfoClaims {
-    sub: string;
+export interface StandardClaims {
+    sub?: string;
     preferred_username?: string;
     email?: string;
     email_verified?: string;
@@ -36,50 +33,37 @@ export interface UserInfoClaims {
 }
 
 /**
- * Прочие клаймы системы
+ * Non Standard Claims
  *
  * interface NonStandardClaims
  */
 export interface NonStandardClaims {
-    /**
-     * **Client id**
-     * type {string}
-     * memberof UserInfoClaims
-     */
-    user_client_id?: string;
-    claims?: string | string[];
+    claims?: string[];
     role?: string;
 }
 
-export class User implements TokenClaims, UserInfoClaims, NonStandardClaims {
-    iss: string;
-    aud: string;
-    exp: number;
-    nbf: number;
-    // tslint:disable-next-line:variable-name
-    client_id: string;
-    scope: string | string[];
-    sub: string;
-    // tslint:disable-next-line:variable-name
-    auth_time: number;
-    idp: string;
-    amr: string[];
+export class User implements StandardClaims, NonStandardClaims, JwtToken {
+    iss?: string;
+    aud?: string;
+    exp?: number;
+    nbf?: number;
+    auth_time?: number;
+    idp?: string;
+    sub?: string;
 
-    // tslint:disable-next-line:variable-name
     preferred_username?: string;
     email?: string;
-    // tslint:disable-next-line:variable-name
     email_verified?: string;
     name?: string;
-    // tslint:disable-next-line:variable-name
     given_name?: string;
-    // tslint:disable-next-line:variable-name
     family_name?: string;
-    // tslint:disable-next-line:variable-name
     father_name?: string;
 
-    // tslint:disable-next-line:variable-name
-    user_client_id?: string;
-    claims?: string | string[];
+    permissions?: string[];
     role?: string;
+
+    /**
+     * @deprecated
+     */
+    claims?: string[];
 }

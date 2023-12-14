@@ -1,12 +1,12 @@
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {getTestBed, TestBed} from '@angular/core/testing';
-import {JwtModule, JWT_OPTIONS} from '@auth0/angular-jwt';
+import {TestBed, getTestBed} from '@angular/core/testing';
+import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {
+    AUTH_OPTIONS_DEFAULTS,
+    AUTH_SERVICE,
     AuthModule,
     AuthService,
     AuthTokenService,
-    AUTH_OPTIONS_DEFAULTS,
-    AUTH_SERVICE,
     User,
 } from '../../src';
 import {generateToken} from '../utils/jwt';
@@ -53,13 +53,14 @@ describe('Service: AuthService login scenarios:', () => {
         const tokenService: AuthTokenService = TestBed.inject(AuthTokenService);
         expect(service).toBeTruthy();
         const token = generateToken();
-        service.login('login', 'pass').subscribe(() => {
+        service.login('login', 'pass').then(() => {
             expect(tokenService.getToken()).toEqual(token.access_token);
-            expect(service.isAuthenticated()).toBeTruthy();
-        });
-
-        httpMock.expectOne(AUTH_OPTIONS_DEFAULTS.tokenEndpoint as string).flush({
-            custom_token_name: token.access_token,
+            service.isAuthenticated$.subscribe(isAuth => {
+                expect(isAuth).toBeFalsy();
+            });
+            httpMock.expectOne(AUTH_OPTIONS_DEFAULTS.tokenEndpoint as string).flush({
+                custom_token_name: token.access_token,
+            });
         });
     });
 
@@ -67,10 +68,12 @@ describe('Service: AuthService login scenarios:', () => {
         const service: AuthService<User> = TestBed.inject(AUTH_SERVICE);
         const tokenService: AuthTokenService = TestBed.inject(AuthTokenService);
         expect(service).toBeTruthy();
-        service.login('login', 'pass').subscribe(() => {
+        service.login('login', 'pass').then(() => {
             expect(JSON.parse(<string>tokenService.getToken())).toBeFalsy();
-            expect(service.isAuthenticated()).toBeFalsy();
+            service.isAuthenticated$.subscribe(isAuth => {
+                expect(isAuth).toBeFalsy();
+            });
+            httpMock.expectOne(AUTH_OPTIONS_DEFAULTS.tokenEndpoint as string).flush({});
         });
-        httpMock.expectOne(AUTH_OPTIONS_DEFAULTS.tokenEndpoint as string).flush({});
     });
 });
