@@ -119,12 +119,12 @@
                         "main": "apps/protoarch-app-demo/src/main.ts",
                         "polyfills": "apps/protoarch-app-demo/src/polyfills.ts",
                         "tsConfig": "apps/protoarch-app-demo/tsconfig.app.json",
-                        "inlineStyleLanguage": "less",
+                        "inlineStyleLanguage": "scss",
                         "assets": [
                             "apps/protoarch-app-demo/src/favicon.ico",
                             "apps/protoarch-app-demo/src/assets"
                         ],
-                        "styles": ["apps/protoarch-app-demo/src/styles.less"],
+                        "styles": ["apps/protoarch-app-demo/src/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
