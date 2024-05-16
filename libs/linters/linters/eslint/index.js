@@ -2,7 +2,7 @@
 
 module.exports = {
     ignorePatterns: ['node_modules', 'dist'],
-    plugins: ['rxjs'],
+    plugins: ['rxjs', '@typescript-eslint/eslint-plugin', 'simple-import-sort'],
     env: {
         browser: true,
         es2020: true,
@@ -22,6 +22,7 @@ module.exports = {
             rules: {
                 '@angular-eslint/no-host-metadata-property': 'off',
                 '@angular-eslint/use-component-view-encapsulation': 'off',
+                '@angular-eslint/prefer-standalone-component': 'off',
 
                 'rxjs/no-async-subscribe': 'error',
                 'rxjs/no-ignored-observable': 'error',
@@ -77,51 +78,9 @@ module.exports = {
                         leadingUnderscore: 'allow',
                     },
                 ],
-                '@typescript-eslint/member-ordering': [
-                    'error',
-                    {
-                        default: [
-                            // Index signature
-                            'signature',
+                '@typescript-eslint/member-ordering': 'error',
 
-                            // Fields
-                            'private-static-field',
-                            'protected-static-field',
-                            'public-static-field',
-
-                            'private-instance-field',
-                            'private-decorated-field',
-                            'protected-decorated-field',
-                            'protected-instance-field',
-                            'public-decorated-field',
-                            'public-instance-field',
-
-                            'private-abstract-field',
-                            'protected-abstract-field',
-                            'public-abstract-field',
-
-                            'private-constructor',
-                            'protected-constructor',
-                            'public-constructor',
-
-                            'public-static-method',
-                            'protected-static-method',
-                            'private-static-method',
-
-                            'public-decorated-method',
-                            'protected-decorated-method',
-                            'private-decorated-method',
-
-                            'public-instance-method',
-                            'protected-instance-method',
-                            'private-instance-method',
-
-                            'public-abstract-method',
-                            'protected-abstract-method',
-                            'private-abstract-method',
-                        ],
-                    },
-                ],
+                'simple-import-sort/imports': 'error',
             },
         },
         {

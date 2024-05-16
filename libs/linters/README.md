@@ -17,8 +17,16 @@ Include configurations:
 `.eslintrc.js`
 
 ```javascript
+const {join} = require('path');
+
 module.exports = {
-    extends: ['./node_modules/@protoarch.angular/linters/eslint'],
+    root: true,
+    extends: ['./node_modules/@protoarch.angular/linters/eslint/index.js'],
+    parserOptions: {
+        ecmaVersion: 2022,
+        project: join(__dirname, './tsconfig.json'),
+        sourceType: 'module',
+    },
 };
 ```
 
