@@ -1,3 +1,11 @@
+## [17.0.2](https://github.com/protoarch/angular/compare/v14.1.2...v17.0.2) (2024-05-16)
+
+### Bug Fixes
+
+-   angular-i18next ([c33ce99](https://github.com/protoarch/angular/commit/c33ce996ae42b4f495ad7b6eafeb45a78760393a))
+-   auth tests ([2779cfe](https://github.com/protoarch/angular/commit/2779cfeb8a7eb859fb5f8e9f2d165603fa225df2))
+-   linters ([1fd2f60](https://github.com/protoarch/angular/commit/1fd2f60253873c55e0f1e3af61c94c4d88339904))
+
 ## [17.0.1](https://github.com/protoarch/angular/compare/v14.1.2...v17.0.1) (2024-02-09)
 
 ### Bug Fixes
