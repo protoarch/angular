@@ -27,10 +27,6 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
-  "workspaces": [
-    "apps/*",
-    "libs/*"
-  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~17.0.6",
