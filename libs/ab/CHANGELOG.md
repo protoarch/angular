@@ -1,3 +1,9 @@
+# [18.0.0](https://github.com/protoarch/angular/compare/v18.0.0-1...v18.0.0) (2024-06-03)
+
+### Bug Fixes
+
+-   auth ([00b697a](https://github.com/protoarch/angular/commit/00b697a971fe58089e5e48abb61300debc6eec2c))
+
 # [17.0.0](https://github.com/protoarch/angular/compare/v14.1.2...v17.0.0) (2024-02-07)
 
 ### Bug Fixes
