@@ -1,0 +1,97 @@
+{
+    "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+    "name": "protoarch-app-demo",
+    "projectType": "application",
+    "root": "apps/protoarch-app-demo",
+    "sourceRoot": "apps/protoarch-app-demo/src",
+    "prefix": "protoarch",
+    "architect": {
+        "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/protoarch-app-demo",
+                "index": "apps/protoarch-app-demo/src/index.html",
+                "main": "apps/protoarch-app-demo/src/main.ts",
+                "polyfills": "apps/protoarch-app-demo/src/polyfills.ts",
+                "tsConfig": "apps/protoarch-app-demo/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": [
+                    "apps/protoarch-app-demo/src/favicon.ico",
+                    "apps/protoarch-app-demo/src/assets"
+                ],
+                "styles": ["apps/protoarch-app-demo/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/protoarch-app-demo/src/environments/environment.ts",
+                            "with": "apps/protoarch-app-demo/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "protoarch-app-demo:build:production"
+                },
+                "development": {
+                    "browserTarget": "protoarch-app-demo:build:development"
+                }
+            },
+            "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "protoarch-app-demo:build"
+            }
+        },
+        "lint": {
+            "builder": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": [
+                    "apps/protoarch-app-demo/src/**/*.ts",
+                    "apps/protoarch-app-demo/src/**/*.html"
+                ]
+            },
+            "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "builder": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/apps/protoarch-app-demo"],
+            "options": {
+                "jestConfig": "apps/protoarch-app-demo/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
