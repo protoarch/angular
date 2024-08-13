@@ -3,11 +3,7 @@
     "version": "18.0.0",
     "description": "ESLint, Stylelint & Prettier configs for Angular apps",
     "license": "MIT",
-    "keywords": [
-        "eslint",
-        "eslintconfig",
-        "eslint-config"
-    ],
+    "keywords": ["eslint", "eslintconfig", "eslint-config"],
     "scripts": {
         "clean": "npm exec -- rimraf dist/",
         "copy:assets": "npm exec -- cpy \"linters/**/*\" dist && npm exec -- cpy README.md dist && npm exec -- cpy CHANGELOG.md dist && npm exec -- cpy package.json dist",
@@ -56,12 +52,12 @@
         "postcss-less": "~6.0.0",
         "postcss-scss": "~4.0.9",
         "prettier": "~3.1.1",
-        "stylelint": "^14.16.1",
+        "stylelint": "^15.8.0",
         "stylelint-config-prettier": "~9.0.5",
         "stylelint-config-standard": "~29.0.0",
-        "stylelint-order": "^5.0.0",
-        "stylelint-prettier": "^3.0.0",
-        "stylelint-scss": "^5.0.0"
+        "stylelint-order": "^6.0.4",
+        "stylelint-prettier": "^4.0.0",
+        "stylelint-scss": "^6.5.0"
     },
     "publishConfig": {
         "access": "public"

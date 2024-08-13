@@ -12,5 +12,4 @@ node_modules/
 .vscode/
 .prettierignore
 package-lock.json
-package.json
 yarn.lock

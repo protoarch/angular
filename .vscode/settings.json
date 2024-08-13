@@ -13,13 +13,20 @@
 		"source.fixAll.stylelint": "explicit"
 	},
 
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+
+    "stylelint.enable": true,
+    "stylelint.validate": ["css", "scss"],
+
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	// Set the default
 	"editor.formatOnSave": false,
 	// Enable per-language
 
 
-	"stylelint.enable": true,
+
 
 	"[typescript]": {
 		"editor.formatOnSave": true,
