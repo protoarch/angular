@@ -1,7 +1,7 @@
 import {HttpClient, HttpContext, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Inject, Injectable, Optional} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map, share} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 import {ISerializer} from './api.options';
 import {API_ENDPOINT, API_SERIALIZER} from './api.tokens';
@@ -101,37 +101,33 @@ export class Api {
         });
 
         return new Promise<Blob>((resolve, reject) => {
-            this.http
-                .get<HttpResponse<Blob>>(this.buildUrl(url), opts)
-                .pipe(share())
-                .subscribe({
-                    next: blobResp => {
-                        if (!blobResp.body) {
-                            const errorTxt = `[Api] Failed to download file ${url}. Empty response`;
-                            console.error(errorTxt);
-                            reject(errorTxt);
-                            return;
-                        }
-                        if (triggerBrowserDownload) {
-                            const a = document.createElement('a');
-                            const objectUrl = URL.createObjectURL(blobResp.body);
-                            a.href = objectUrl;
-                            a.download = (
-                                blobResp.headers
-                                    .get('content-disposition')
-                                    ?.split('filename=')?.[1] ?? url.replaceAll('/', '')
-                            ).replaceAll('"', '');
-                            a.click();
-                            URL.revokeObjectURL(objectUrl);
-                        }
+            this.http.get<HttpResponse<Blob>>(this.buildUrl(url), opts).subscribe({
+                next: blobResp => {
+                    if (!blobResp.body) {
+                        const errorTxt = `[Api] Failed to download file ${url}. Empty response`;
+                        console.error(errorTxt);
+                        reject(errorTxt);
+                        return;
+                    }
+                    if (triggerBrowserDownload) {
+                        const a = document.createElement('a');
+                        const objectUrl = URL.createObjectURL(blobResp.body);
+                        a.href = objectUrl;
+                        a.download = (
+                            blobResp.headers.get('content-disposition')?.split('filename=')?.[1] ??
+                            url.replaceAll('/', '')
+                        ).replaceAll('"', '');
+                        a.click();
+                        URL.revokeObjectURL(objectUrl);
+                    }
 
-                        resolve(blobResp.body);
-                    },
-                    error: e => {
-                        console.error(`[Api] Failed to download file ${url}`, e);
-                        reject(e);
-                    },
-                });
+                    resolve(blobResp.body);
+                },
+                error: e => {
+                    console.error(`[Api] Failed to download file ${url}`, e);
+                    reject(e);
+                },
+            });
         });
     }
 
