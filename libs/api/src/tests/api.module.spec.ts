@@ -100,39 +100,60 @@ describe('Service: Api', () => {
     ));
 
     it('should download file', waitForAsync(
-        inject([Api, HttpTestingController], (apiService: Api, backend: HttpTestingController) => {
-            const filePath = 'test/test.json';
-            const expectedPath = `/api/${filePath}`;
+        inject(
+            [Api, HttpTestingController],
+            async (apiService: Api, backend: HttpTestingController) => {
+                const filePath = 'test/test.json';
+                const expectedPath = `/api/${filePath}`;
 
-            const link: any = {
-                click: jest.fn(),
-            };
+                const link: any = {
+                    click: jest.fn(),
+                };
 
-            jest.spyOn(document, 'createElement').mockImplementation(() => link);
+                jest.spyOn(document, 'createElement').mockImplementation(() => link);
 
-            const customFileName = 'custom_name.json';
-            const fileContent = JSON.stringify({hello: 'world'});
-            const fileBlob = new Blob([fileContent], {type: 'application/json'});
+                const customFileName = 'custom_name.json';
+                const fileContent = JSON.stringify({hello: 'world'});
+                const fileBlob = new Blob([fileContent], {type: 'application/json'});
 
-            apiService.download(filePath).subscribe();
+                await apiService.download(filePath);
 
-            backend
-                .expectOne({
-                    url: expectedPath,
-                    method: 'GET',
-                })
-                .flush(fileBlob, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Content-Disposition': `attachment; filename="${customFileName}"`,
-                        'Access-Control-Expose-Headers': 'Content-Disposition',
-                    },
-                });
+                backend
+                    .expectOne({
+                        url: expectedPath,
+                        method: 'GET',
+                    })
+                    .flush(fileBlob, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Content-Disposition': `attachment; filename="${customFileName}"`,
+                            'Access-Control-Expose-Headers': 'Content-Disposition',
+                        },
+                    });
 
-            expect(link).toHaveProperty('href');
-            expect(link.download).toEqual(customFileName);
-            expect(link.click).toHaveBeenCalledTimes(1);
-        }),
+                expect(link).toHaveProperty('href');
+                expect(link.download).toEqual(customFileName);
+                expect(link.click).toHaveBeenCalledTimes(1);
+
+                // do not open browser download window
+                await apiService.download(filePath, false);
+
+                backend
+                    .expectOne({
+                        url: expectedPath,
+                        method: 'GET',
+                    })
+                    .flush(fileBlob, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Content-Disposition': `attachment; filename="${customFileName}"`,
+                            'Access-Control-Expose-Headers': 'Content-Disposition',
+                        },
+                    });
+
+                expect(link.click).toHaveBeenCalledTimes(0);
+            },
+        ),
     ));
 
     it('should observe response', waitForAsync(

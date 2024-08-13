@@ -91,38 +91,48 @@ export class Api {
 
     public download(
         url: string,
+        triggerBrowserDownload = true,
         options?: IApiOptions & IDeserializeOptions,
-    ): Observable<HttpResponse<Blob>> {
+    ): Promise<Blob> {
         const opts = this.buildOptions({
             observe: 'response',
             responseType: 'blob',
             ...options,
         });
 
-        const obs = this.http.get<HttpResponse<Blob>>(this.buildUrl(url), opts).pipe(share());
+        return new Promise<Blob>((resolve, reject) => {
+            this.http
+                .get<HttpResponse<Blob>>(this.buildUrl(url), opts)
+                .pipe(share())
+                .subscribe({
+                    next: blobResp => {
+                        if (!blobResp.body) {
+                            const errorTxt = `[Api] Failed to download file ${url}. Empty response`;
+                            console.error(errorTxt);
+                            reject(errorTxt);
+                            return;
+                        }
+                        if (triggerBrowserDownload) {
+                            const a = document.createElement('a');
+                            const objectUrl = URL.createObjectURL(blobResp.body);
+                            a.href = objectUrl;
+                            a.download = (
+                                blobResp.headers
+                                    .get('content-disposition')
+                                    ?.split('filename=')?.[1] ?? url.replaceAll('/', '')
+                            ).replaceAll('"', '');
+                            a.click();
+                            URL.revokeObjectURL(objectUrl);
+                        }
 
-        obs.subscribe({
-            next: blobResp => {
-                if (!blobResp.body) {
-                    console.error(`[Api] Failed to download file ${url}. Empty response`);
-                    return;
-                }
-                const a = document.createElement('a');
-                const objectUrl = URL.createObjectURL(blobResp.body);
-                a.href = objectUrl;
-                a.download = (
-                    blobResp.headers.get('content-disposition')?.split('filename=')?.[1] ??
-                    url.replaceAll('/', '')
-                ).replaceAll('"', '');
-                a.click();
-                URL.revokeObjectURL(objectUrl);
-            },
-            error: e => {
-                console.error(`[Api] Failed to download file ${url}`, e);
-            },
+                        resolve(blobResp.body);
+                    },
+                    error: e => {
+                        console.error(`[Api] Failed to download file ${url}`, e);
+                        reject(e);
+                    },
+                });
         });
-
-        return obs;
     }
 
     public buildUrl(url: string) {
