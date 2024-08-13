@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     ignorePatterns: ['node_modules', 'dist'],
     plugins: ['rxjs', '@typescript-eslint/eslint-plugin', 'simple-import-sort'],
@@ -11,9 +9,8 @@ module.exports = {
     overrides: [
         {
             files: ['*.ts'],
-            parserOptions: {
-                createDefaultProgram: true,
-            },
+            parser: '@typescript-eslint/parser',
+            parserOptions: {project: ['tsconfig.json']},
             extends: [
                 'plugin:@typescript-eslint/eslint-recommended',
                 'plugin:@angular-eslint/all',

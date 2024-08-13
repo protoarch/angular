@@ -1,15 +1,14 @@
-import {HttpClientModule} from '@angular/common/http';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {inject, TestBed, waitForAsync} from '@angular/core/testing';
-import {Api, ApiModule, API_SERIALIZER} from '../index';
+
+import {Api, API_SERIALIZER, ApiModule} from '../index';
 import {ToUpperCaseSerializer} from './mocks/to-upper-case-serializer';
 
 describe('SimplyApiService: serializer (mapper)', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientModule,
-                HttpClientTestingModule,
                 ApiModule.forRoot({
                     serializeProvider: {
                         provide: API_SERIALIZER,
@@ -17,7 +16,7 @@ describe('SimplyApiService: serializer (mapper)', () => {
                     },
                 }),
             ],
-            providers: [],
+            providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
     });
 

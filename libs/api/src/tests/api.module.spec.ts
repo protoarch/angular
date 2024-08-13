@@ -1,20 +1,27 @@
-import {HttpClientModule} from '@angular/common/http';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
+import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {inject, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {Api, ApiModule, nullSerializerFactory} from '../index';
+
+Object.defineProperty(URL, 'createObjectURL', {
+    writable: true,
+    value: jest.fn(),
+});
+Object.defineProperty(URL, 'revokeObjectURL', {
+    writable: true,
+    value: jest.fn(),
+});
 
 describe('Service: Api', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
-                HttpClientModule,
-                HttpClientTestingModule,
                 ApiModule.forRoot({
                     endpoint: '/api/',
                 }),
             ],
-            providers: [],
+            providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
     });
 
@@ -89,6 +96,42 @@ describe('Service: Api', () => {
                 method: 'PUT',
             });
             expect(JSON.stringify(putReq.request.body)).toEqual(JSON.stringify(testData));
+        }),
+    ));
+
+    it('should download file', waitForAsync(
+        inject([Api, HttpTestingController], (apiService: Api, backend: HttpTestingController) => {
+            const filePath = 'test/test.json';
+            const expectedPath = `/api/${filePath}`;
+
+            const link: any = {
+                click: jest.fn(),
+            };
+
+            jest.spyOn(document, 'createElement').mockImplementation(() => link);
+
+            const customFileName = 'custom_name.json';
+            const fileContent = JSON.stringify({hello: 'world'});
+            const fileBlob = new Blob([fileContent], {type: 'application/json'});
+
+            apiService.download(filePath).subscribe();
+
+            backend
+                .expectOne({
+                    url: expectedPath,
+                    method: 'GET',
+                })
+                .flush(fileBlob, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Content-Disposition': `attachment; filename="${customFileName}"`,
+                        'Access-Control-Expose-Headers': 'Content-Disposition',
+                    },
+                });
+
+            expect(link).toHaveProperty('href');
+            expect(link.download).toEqual(customFileName);
+            expect(link.click).toHaveBeenCalledTimes(1);
         }),
     ));
 

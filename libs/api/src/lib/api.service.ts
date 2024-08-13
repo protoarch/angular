@@ -1,7 +1,8 @@
-import {HttpClient, HttpContext, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpContext, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Inject, Injectable, Optional} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, share} from 'rxjs/operators';
+
 import {ISerializer} from './api.options';
 import {API_ENDPOINT, API_SERIALIZER} from './api.tokens';
 import {flattenParamsObject} from './web-api-http-params';
@@ -53,7 +54,7 @@ export class Api {
     ) {}
 
     public get<T>(url: string, options?: IApiOptions & IDeserializeOptions): Observable<T> {
-        const opts = this.buildOptions<T>(options);
+        const opts = this.buildOptions(options);
         return this.http
             .get<T>(this.buildUrl(url), opts)
             .pipe(map(result => this.tryDeserialize<T>(result, opts?.deserializeTo)));
@@ -64,7 +65,7 @@ export class Api {
         body: any,
         options?: IApiOptions & IDeserializeOptions,
     ): Observable<T> {
-        const opts = this.buildOptions<T>(options);
+        const opts = this.buildOptions(options);
         return this.http
             .post<T>(this.buildUrl(url), this.trySerialize(body), opts)
             .pipe(map(result => this.tryDeserialize<T>(result, opts?.deserializeTo)));
@@ -75,17 +76,53 @@ export class Api {
         body: any,
         options?: IApiOptions & IDeserializeOptions,
     ): Observable<T> {
-        const opts = this.buildOptions<T>(options);
+        const opts = this.buildOptions(options);
         return this.http
             .put<T>(this.buildUrl(url), this.trySerialize(body), opts)
             .pipe(map(result => this.tryDeserialize<T>(result, opts?.deserializeTo)));
     }
 
     public delete<T>(url: string, options?: IApiOptions & IDeserializeOptions): Observable<T> {
-        const opts = this.buildOptions<T>(options);
+        const opts = this.buildOptions(options);
         return this.http
             .delete<T>(this.buildUrl(url), opts)
             .pipe(map(result => this.tryDeserialize<T>(result, opts?.deserializeTo)));
+    }
+
+    public download(
+        url: string,
+        options?: IApiOptions & IDeserializeOptions,
+    ): Observable<HttpResponse<Blob>> {
+        const opts = this.buildOptions({
+            observe: 'response',
+            responseType: 'blob',
+            ...options,
+        });
+
+        const obs = this.http.get<HttpResponse<Blob>>(this.buildUrl(url), opts).pipe(share());
+
+        obs.subscribe({
+            next: blobResp => {
+                if (!blobResp.body) {
+                    console.error(`[Api] Failed to download file ${url}. Empty response`);
+                    return;
+                }
+                const a = document.createElement('a');
+                const objectUrl = URL.createObjectURL(blobResp.body);
+                a.href = objectUrl;
+                a.download = (
+                    blobResp.headers.get('content-disposition')?.split('filename=')?.[1] ??
+                    url.replaceAll('/', '')
+                ).replaceAll('"', '');
+                a.click();
+                URL.revokeObjectURL(objectUrl);
+            },
+            error: e => {
+                console.error(`[Api] Failed to download file ${url}`, e);
+            },
+        });
+
+        return obs;
     }
 
     public buildUrl(url: string) {
@@ -95,7 +132,7 @@ export class Api {
         return this.apiEndpoint.concat(url);
     }
 
-    private buildOptions<T>(options: (IApiOptions & IDeserializeOptions) | undefined) {
+    private buildOptions(options: (IApiOptions & IDeserializeOptions) | undefined) {
         const opts = {responseType: ResponseTypeEnum.json, ...options};
         opts.params = this.getHttpParams(opts?.params);
         return opts;

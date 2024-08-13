@@ -51,7 +51,7 @@
     "changelog:commit": "git commit -m \"Updated CHANGELOG.md\"",
     "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
     "release": "npm exec -- np",
-    "test": "npm exec -- ng test"
+    "test": "npm exec -- jest"
   },
   "dependencies": {
     "tslib": "^2.1.0"
