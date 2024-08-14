@@ -34,11 +34,32 @@
         "build": {
             "dependsOn": ["^build"],
             "inputs": ["production", "^production"]
+        },
+        "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": ["^build"],
+            "options": {
+                "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
+            }
         }
     },
     "namedInputs": {
         "default": ["{projectRoot}/**/*", "sharedGlobals"],
         "sharedGlobals": [],
         "production": ["default"]
+    },
+    "release": {
+        "version": {
+            "git": {
+                "tag": true
+            }
+        },
+        "changelog": {
+            "workspaceChangelog": true,
+            "projectChangelogs": true,
+            "git": {
+                "tag": true
+            }
+        }
     }
 }
