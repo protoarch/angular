@@ -58,7 +58,7 @@
             "commitMessage": "chore(release): {version}"
         },
         "projects": ["libs/*"],
-        "releaseTagPattern": "release/{projectName}/{version}",
+        "releaseTagPattern": "release/{version}",
         "changelog": {
             "workspaceChangelog": true,
             "projectChangelogs": true,
