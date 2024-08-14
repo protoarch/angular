@@ -52,6 +52,7 @@
         "production": ["default"]
     },
     "release": {
+        "projects": ["libs/*"],
         "version": {
             "git": {
                 "tag": true
