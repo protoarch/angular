@@ -7,7 +7,7 @@
         "anyBranch": true
     },
     "scripts": {
-        "test": "npm exec -- nx affected:test",
+        "test": "npm exec -- nx run-many -t test --passWithNoTests",
         "lint": "npm exec -- stylelint \"**/*.less\" && npm exec -- eslint --config ./.eslintrc.js --debug \"**/*.{js,ts,html}\"",
         "lint:fix": "npm exec -- stylelint --fix \"**/*.less\" && npm exec -- eslint --config ./.eslintrc.js --fix --debug \"**/*.{js,ts,html}\"",
         "lint:scss": "npm exec -- stylelint \"**/*.less\"",
