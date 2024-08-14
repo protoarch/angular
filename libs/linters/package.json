@@ -4,19 +4,13 @@
     "description": "ESLint, Stylelint & Prettier configs for Angular apps",
     "license": "MIT",
     "keywords": ["eslint", "eslintconfig", "eslint-config"],
-    "scripts": {
-        "clean": "npm exec -- rimraf dist/",
-        "copy:assets": "npm exec -- cpy \"linters/**/*\" dist && npm exec -- cpy README.md dist && npm exec -- cpy CHANGELOG.md dist && npm exec -- cpy package.json dist",
-        "build": "npm run clean && npm run copy:assets",
-        "version": "npm exec -- conventional-changelog-cli -p angular -i CHANGELOG.md -s -r && npm run build",
-        "release": "npm exec -- np --contents ./dist",
-        "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push"
+    "publishConfig": {
+        "access": "public"
     },
-    "np": {
-        "yolo": true,
-        "yarn": false,
-        "contents": "./dist",
-        "2fa": false
+    "files": ["linters/*", "src/*"],
+    "main": "src/index.ts",
+    "scripts": {
+        "clean": "npm exec -- rimraf ../../dist/libs/linters"
     },
     "author": {
         "name": "Sergey Romanchuk"
@@ -58,8 +52,5 @@
         "stylelint-order": "^6.0.4",
         "stylelint-prettier": "^4.0.0",
         "stylelint-scss": "^5.3.2"
-    },
-    "publishConfig": {
-        "access": "public"
     }
 }

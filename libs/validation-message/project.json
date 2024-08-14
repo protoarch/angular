@@ -5,22 +5,24 @@
     "root": "libs/validation-message",
     "sourceRoot": "libs/validation-message/src",
     "prefix": "protoarch",
-    "architect": {
-        "test": {
-            "builder": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/validation-message"],
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:ng-packagr-lite",
+            "outputs": ["{workspaceRoot}/dist/libs/validation-message"],
             "options": {
-                "jestConfig": "libs/validation-message/jest.config.ts",
-                "passWithNoTests": true
+                "project": "libs/validation-message/ng-package.json",
+                "tsConfig": "libs/validation-message/tsconfig.lib.json"
             }
         },
         "lint": {
-            "builder": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "lintFilePatterns": [
-                    "libs/validation-message/**/*.ts",
-                    "libs/validation-message/**/*.html"
-                ]
+                "jestConfig": "libs/validation-message/jest.config.ts"
             }
         }
     },

@@ -1,13 +1,8 @@
 {
     "extends": "./tsconfig.json",
+    "composite": true,
     "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "declaration": true,
-        "declarationMap": true,
-        "inlineSources": true,
-        "types": [],
-        "lib": ["dom", "es2018"]
-    },
-    "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts", "jest.config.ts"],
-    "include": ["**/*.ts"]
+        "outDir": "../../dist/e2e",
+        "lib": ["dom", "es2022"]
+    }
 }

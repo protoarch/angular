@@ -1,75 +1,43 @@
 {
-  "name": "@protoarch.angular/auth",
-  "version": "18.0.0",
-  "np": {
-    "yolo": true,
-    "yarn": false,
-    "contents": "./dist",
-    "2fa": false
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/protoarch/angular.git"
-  },
-  "keywords": [
-    "auth",
-    "angular",
-    "jwt",
-    "user",
-    "authorization"
-  ],
-  "author": {
-    "name": "Sergey Romanchuk"
-  },
-  "maintainers": [
-    {
-      "email": "rezety@gmail.com",
-      "name": "Sergey Romanchuk"
+    "name": "@protoarch.angular/auth",
+    "version": "18.0.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "homepage": "https://github.com/protoarch/angular/tree/main/libs/auth#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/protoarch/angular.git"
+    },
+    "keywords": ["auth", "angular", "jwt", "user", "authorization"],
+    "author": {
+        "name": "Sergey Romanchuk"
+    },
+    "maintainers": [
+        {
+            "email": "rezety@gmail.com",
+            "name": "Sergey Romanchuk"
+        }
+    ],
+    "license": "MIT",
+    "description": "Authentication module",
+    "engines": {
+        "node": ">= 20.10.0"
+    },
+    "scripts": {
+        "clean": "npm exec -- rimraf ../../dist/libs/auth"
+    },
+
+    "peerDependencies": {
+        "@angular/common": ">=18.0.0 <19.0.0",
+        "@angular/core": ">=18.0.0 <19.0.0",
+        "@angular/platform-browser": ">=18.0.0 <19.0.0",
+        "@angular/router": ">=18.0.0 <19.0.0",
+        "@angular/ssr": ">=18.0.0 <19.0.0",
+        "@auth0/angular-jwt": ">=5.0.1 <6.0.0",
+        "rxjs": ">=7.8.1 <8.0.0"
+    },
+    "optionalDependencies": {
+        "ngx-cookie": "~6.0.1"
     }
-  ],
-  "license": "MIT",
-  "description": "Authentication module",
-  "engines": {
-    "node": ">= 20.10.0"
-  },
-  "scripts": {
-    "rimraf": "npm exec -- rimraf",
-    "ngc": "npm exec -- ngc",
-    "cpy": "npm exec -- cpy",
-    "prebuild": "npm run clean:build",
-    "build": "npm exec -- ng-packagr -p ng-package.json",
-    "copy:assets": "npm run cpy -- CHANGELOG.md dist",
-    "conventional-changelog": "conventional-changelog",
-    "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-    "clean": "npm run clean:build && npm run clean:tests",
-    "clean:build": "npm run rimraf -- dist build",
-    "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
-    "lint": "npm run lint-ts && npm run lint-js && npm run lint-css",
-    "lint-css": "stylelint './src/**/*.css'",
-    "lint-ts": "tslint './src/**/*.ts'",
-    "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
-    "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets",
-    "release": "npm exec -- np",
-    "postrelease": "git add package.json CHANGELOG.md && git commit -m \"🎉 version released 🎉\" && git push",
-    "test": "npm exec -- jest"
-  },
-  "dependencies": {
-    "tslib": "^2.1.0"
-  },
-  "peerDependencies": {
-    "@angular/common": ">=18.0.0 <19.0.0",
-    "@angular/core": ">=18.0.0 <19.0.0",
-    "@angular/platform-browser": ">=18.0.0 <19.0.0",
-    "@angular/router": ">=18.0.0 <19.0.0",
-    "@angular/ssr": ">=18.0.0 <19.0.0",
-    "@auth0/angular-jwt": ">=5.0.1 <6.0.0",
-    "rxjs": ">=7.8.1 <8.0.0"
-  },
-  "optionalDependencies": {
-    "ngx-cookie": "~6.0.1"
-  }
 }

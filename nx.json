@@ -30,9 +30,12 @@
             "style": "less"
         }
     },
+    "cli": {
+        "packageManager": "npm"
+    },
     "targetDefaults": {
         "build": {
-            "dependsOn": ["^build"],
+            "dependsOn": ["clean", "^build"],
             "inputs": ["production", "^production"]
         },
         "nx-release-publish": {

@@ -1,25 +1,29 @@
 {
-    "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "name": "@protoarch.angular/api",
     "projectType": "library",
     "root": "libs/api",
     "sourceRoot": "libs/api/src",
     "prefix": "protoarch",
-    "architect": {
-        "test": {
-            "builder": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/api"],
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:ng-packagr-lite",
+            "outputs": ["{workspaceRoot}/dist/libs/api"],
             "options": {
-                "jestConfig": "libs/api/jest.config.ts",
-                "passWithNoTests": true
+                "project": "libs/api/ng-package.json",
+                "tsConfig": "libs/api/tsconfig.lib.json"
             }
         },
         "lint": {
-            "builder": "@nrwl/linter:eslint",
-            "options": {
-                "lintFilePatterns": ["libs/api/src/**/*.ts", "libs/api/src/**/*.html"]
-            },
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/api/jest.config.ts"
+            }
         }
     },
     "tags": []

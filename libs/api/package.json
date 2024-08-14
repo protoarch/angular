@@ -1,65 +1,40 @@
 {
-  "name": "@protoarch.angular/api",
-  "version": "17.0.0",
-  "np": {
-    "yolo": true,
-    "yarn": false,
-    "contents": "./dist",
-    "2fa": false
-  },
-  "author": {
-    "name": "Sergey Romanchuk"
-  },
-  "maintainers": [
-    {
-      "email": "rezety@gmail.com",
-      "name": "Sergey Romanchuk"
+    "name": "@protoarch.angular/api",
+    "version": "17.0.0",
+    "author": {
+        "name": "Sergey Romanchuk"
+    },
+    "maintainers": [
+        {
+            "email": "rezety@gmail.com",
+            "name": "Sergey Romanchuk"
+        }
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "homepage": "https://github.com/protoarch/angular/tree/main/libs/api#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/protoarch/angular.git"
+    },
+    "keywords": ["api", "angular", "http", "HttpClient", "Rest api"],
+    "bugs": {
+        "url": "https://github.com/protoarch/angular/issues"
+    },
+    "license": "MIT",
+    "description": "Angular HttpClient simplifier",
+    "engines": {
+        "node": ">= 14.0.0"
+    },
+    "scripts": {
+        "clean": "npm exec -- rimraf ../../dist/libs/api"
+    },
+
+    "devDependencies": {},
+    "peerDependencies": {
+        "@angular/common": ">=18.0.0 <19.0.0",
+        "@angular/core": ">=18.0.0 <19.0.0",
+        "rxjs": ">=7.8.1 <8.0.0"
     }
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "homepage": "https://github.com/protoarch/angular/tree/main/libs/api#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/protoarch/angular.git"
-  },
-  "keywords": [
-    "api",
-    "angular",
-    "http",
-    "HttpClient",
-    "Rest api"
-  ],
-  "bugs": {
-    "url": "https://github.com/protoarch/angular/issues"
-  },
-  "license": "MIT",
-  "description": "Angular HttpClient simplifier",
-  "engines": {
-    "node": ">= 14.0.0"
-  },
-  "scripts": {
-    "build": "npm exec -- ng-packagr -p ng-package.json",
-    "clean": "npm run clean:build && npm run clean:tests",
-    "clean:build": "npm run rimraf -- dist build",
-    "clean:tests": "npm run rimraf -- coverage && npm run rimraf -- tests/**/*.+{js,js.map,d.ts,metadata.json}",
-    "copy:assets": "npm exec -- cpy -- CHANGELOG.md dist",
-    "conventional-changelog": "conventional-changelog",
-    "changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-    "changelog:add": "git add --force CHANGELOG.md package.json",
-    "changelog:commit": "git commit -m \"Updated CHANGELOG.md\"",
-    "version": "npm exec -- conventional-changelog -p angular -i CHANGELOG.md -s -r && npm run build && npm run copy:assets && npm run changelog:add && npm run changelog:commit",
-    "release": "npm exec -- np",
-    "test": "npm exec -- jest"
-  },
-  "dependencies": {
-    "tslib": "^2.1.0"
-  },
-  "devDependencies": {},
-  "peerDependencies": {
-    "@angular/common": ">=18.0.0 <19.0.0",
-    "@angular/core": ">=18.0.0 <19.0.0",
-    "rxjs": ">=7.8.1 <8.0.0"
-  }
 }

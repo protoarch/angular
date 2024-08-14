@@ -5,19 +5,33 @@
     "root": "libs/linters",
     "sourceRoot": "libs/linters/src",
     "prefix": "protoarch",
-    "architect": {
-        "test": {
-            "builder": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/linters"],
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
             "options": {
-                "jestConfig": "libs/linters/jest.config.ts",
-                "passWithNoTests": true
+                "outputPath": "{workspaceRoot}/dist/libs/linters",
+                "main": "libs/linters/src/index.ts",
+                "tsConfig": "libs/linters/tsconfig.lib.json",
+                "assets": [
+                    "libs/linters/*.md",
+                    {
+                        "input": "./libs/linters/linters",
+                        "glob": "**/*.*",
+                        "output": "./linters"
+                    }
+                ]
             }
         },
         "lint": {
-            "builder": "@nrwl/linter:eslint",
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
             "options": {
-                "lintFilePatterns": ["libs/linters/src/**/*.ts", "libs/linters/src/**/*.html"]
+                "jestConfig": "libs/linters/jest.config.ts"
             }
         }
     },

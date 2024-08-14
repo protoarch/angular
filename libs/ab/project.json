@@ -1,25 +1,27 @@
 {
-    "$schema": "..\\..\\node_modules\\nx\\schemas\\project-schema.json",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "name": "@protoarch.angular/ab",
     "projectType": "library",
-    "root": "libs/ab",
     "sourceRoot": "libs/ab/src",
-    "prefix": "protoarch",
-    "architect": {
-        "test": {
-            "builder": "@nrwl/jest:jest",
-            "outputs": ["{workspaceRoot}/coverage/libs/ab"],
+    "targets": {
+        "build": {
+            "executor": "@nx/angular:ng-packagr-lite",
+            "outputs": ["{workspaceRoot}/dist/libs/ab"],
             "options": {
-                "jestConfig": "libs/ab/jest.config.ts",
-                "passWithNoTests": true
+                "project": "libs/ab/ng-package.json",
+                "tsConfig": "libs/ab/tsconfig.lib.json"
             }
         },
         "lint": {
-            "builder": "@nrwl/linter:eslint",
-            "options": {
-                "lintFilePatterns": ["libs/ab/src/**/*.ts", "libs/ab/src/**/*.html"]
-            },
+            "executor": "@nx/eslint:lint",
             "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "libs/ab/jest.config.ts"
+            }
         }
     },
     "tags": []

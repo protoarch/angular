@@ -3,5 +3,5 @@
     "lib": {
         "entryFile": "src/index.ts"
     },
-    "allowedNonPeerDependencies": ["angular", "rxjs"]
+    "allowedNonPeerDependencies": ["angular", "rxjs", "angular-i18next"]
 }

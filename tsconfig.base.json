@@ -11,16 +11,21 @@
         "strictPropertyInitialization": false,
         "target": "esnext",
         "module": "esnext",
-        "lib": ["es2018", "dom"],
+        "lib": ["es2022", "dom"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
             "@protoarch.angular/ab": ["libs/ab/src/index.ts"],
+            "@protoarch.angular/ab/*": ["libs/ab/src/*"],
             "@protoarch.angular/api": ["libs/api/src/index.ts"],
+            "@protoarch.angular/api/*": ["libs/api/src/*"],
             "@protoarch.angular/auth": ["libs/auth/src/index.ts"],
+            "@protoarch.angular/auth/*": ["libs/auth/src/*"],
             "@protoarch/linters": ["libs/linters/src/index.ts"],
-            "@protoarch.angular/validation-message": ["libs/validation-message/src/index.ts"]
+            "@protoarch/linters/*": ["libs/linters/src/*"],
+            "@protoarch.angular/validation-message": ["libs/validation-message/src/index.ts"],
+            "@protoarch.angular/validation-message/*": ["libs/validation-message/src/*"]
         }
     },
     "exclude": ["node_modules", "tmp"]
