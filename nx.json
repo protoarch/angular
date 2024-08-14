@@ -63,9 +63,6 @@
             "workspaceChangelog": true,
             "projectChangelogs": true,
             "createRelease": "github"
-        },
-        "version": {
-            "conventionalCommits": true
         }
     }
 }
