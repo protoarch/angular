@@ -53,6 +53,7 @@
     },
     "release": {
         "projects": ["libs/*"],
+        "releaseTagPattern": "release/{projectName}/{version}",
         "version": {
             "git": {
                 "tag": true
