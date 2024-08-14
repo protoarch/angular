@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/auth",
-    "version": "19.0.0",
+    "version": "18.1.0-alpha",
     "publishConfig": {
         "access": "public"
     },

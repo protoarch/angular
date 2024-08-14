@@ -1,3 +1,30 @@
+## 18.1.0-alpha (2024-08-14)
+
+### 🩹 Fixes
+
+-   tests
+
+-   binding 'prtAbVersion'
+
+-   auth tests
+
+-   linters
+
+-   auth
+
+-   stylelint
+
+-   build
+
+-   tests
+
+-   releaseTagPattern
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey
+-   Sergey Romanchuk
+
 # 19.0.0 (2024-08-14)
 
 ### 🩹 Fixes
