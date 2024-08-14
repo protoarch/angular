@@ -2,10 +2,6 @@
     "name": "protoarch",
     "version": "0.0.0-development",
     "license": "MIT",
-    "np": {
-        "publish": false,
-        "anyBranch": true
-    },
     "scripts": {
         "test": "npm exec -- nx run-many -t test --passWithNoTests",
         "lint": "npm exec -- stylelint \"**/*.less\" && npm exec -- eslint --config ./.eslintrc.js --debug \"**/*.{js,ts,html}\"",
@@ -91,7 +87,6 @@
         "lint-staged": "~15.2.0",
         "ng-packagr": "~18.1.0",
         "ngx-cookie": "~6.0.1",
-        "np": "~10.0.7",
         "nx": "19.1.1",
         "postcss": "^8.3.9",
         "postcss-import": "14.1.0",
