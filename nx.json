@@ -52,19 +52,20 @@
         "production": ["default"]
     },
     "release": {
+        "git": {
+            "tag": true,
+            "commit": true,
+            "commitMessage": "chore(release): {version}"
+        },
         "projects": ["libs/*"],
         "releaseTagPattern": "release/{projectName}/{version}",
-        "version": {
-            "git": {
-                "tag": true
-            }
-        },
         "changelog": {
             "workspaceChangelog": true,
             "projectChangelogs": true,
-            "git": {
-                "tag": true
-            }
+            "createRelease": "github"
+        },
+        "version": {
+            "conventionalCommits": true
         }
     }
 }
