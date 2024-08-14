@@ -1,9 +1,6 @@
 {
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "npmScope": "protoarch",
-    "affected": {
-        "defaultBase": "main"
-    },
     "tasksRunnerOptions": {
         "default": {}
     },
