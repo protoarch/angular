@@ -53,11 +53,11 @@
         "postcss-scss": "~4.0.9",
         "prettier": "~3.1.1",
         "stylelint": "^15.8.0",
-        "stylelint-config-prettier": "~9.0.5",
-        "stylelint-config-standard": "~29.0.0",
+        "stylelint-config-prettier": "^8.0.0",
+        "stylelint-config-standard": "^33.0.0",
         "stylelint-order": "^6.0.4",
         "stylelint-prettier": "^4.0.0",
-        "stylelint-scss": "^6.5.0"
+        "stylelint-scss": "^5.3.2"
     },
     "publishConfig": {
         "access": "public"

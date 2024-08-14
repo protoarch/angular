@@ -1,4 +1,4 @@
-require('symbol-observable'); // Important: This needs to be first to prevent weird Observable incompatibilities
+import 'symbol-observable'; // Important: This needs to be first to prevent weird Observable incompatibilities
 
 import streamToObservable from '@samverschueren/stream-to-observable';
 import {execa} from 'execa';
@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import Listr from 'listr';
 import gitTasks from 'np/source/git-tasks';
 import prerequisiteTasks from 'np/source/prerequisite-tasks';
-import util from 'np/source/util';
+import * as util from 'np/source/util';
 import * as path from 'path';
 import * as pkgDir from 'pkg-dir';
 import {merge} from 'rxjs';
@@ -28,7 +28,7 @@ const exec = (cmd, args) => {
 
 const npExec = async (input = 'patch', options: Options) => {
     const rootDir = await pkgDir.packageDirectory();
-    const pkg = util.readPkg('./');
+    const pkg = util.readPackage('./');
     const hasLockFile =
         rootDir &&
         (fs.existsSync(path.resolve(rootDir, 'package-lock.json')) ||

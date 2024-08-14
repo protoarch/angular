@@ -1,13 +1,14 @@
 import {$} from 'execa';
+import * as logSymbols from 'log-symbols';
 import {releasePublish, releaseVersion} from 'nx/src/command-line/release';
-import * as yargs from 'yargs';
+import {hideBin} from 'yargs/helpers';
+import yargs from 'yargs/yargs';
 
 import gitPushWithTagsAndUpstream from './git';
 import npExec from './np';
-const logSymbols = require('log-symbols');
 
 (async () => {
-    const options = await yargs
+    const options = await yargs(hideBin(process.argv))
         .version(false) // don't use the default meaning of version in yargs
         .option('version', {
             description: 'Explicit version specifier to use, if overriding conventional commits',
