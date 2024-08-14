@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/ab",
-    "version": "18.0.0",
+    "version": "19.0.0",
     "publishConfig": {
         "access": "public"
     },
@@ -35,7 +35,6 @@
     "scripts": {
         "clean": "npm exec -- rimraf ../../dist/libs/ab"
     },
-
     "peerDependencies": {
         "@angular/common": ">=18.0.0 <19.0.0",
         "@angular/core": ">=18.0.0 <19.0.0",

@@ -1,6 +1,6 @@
 {
     "name": "@protoarch.angular/api",
-    "version": "17.0.0",
+    "version": "19.0.0",
     "author": {
         "name": "Sergey Romanchuk"
     },
@@ -30,7 +30,6 @@
     "scripts": {
         "clean": "npm exec -- rimraf ../../dist/libs/api"
     },
-
     "devDependencies": {},
     "peerDependencies": {
         "@angular/common": ">=18.0.0 <19.0.0",

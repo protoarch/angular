@@ -1,3 +1,28 @@
+# 19.0.0 (2024-08-14)
+
+### 🩹 Fixes
+
+-   tests
+
+-   binding 'prtAbVersion'
+
+-   auth tests
+
+-   linters
+
+-   auth
+
+-   stylelint
+
+-   build
+
+-   tests
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey
+-   Sergey Romanchuk
+
 # [18.0.0](https://github.com/protoarch/angular/compare/v18.0.0-1...v18.0.0) (2024-06-03)
 
 ### Bug Fixes
