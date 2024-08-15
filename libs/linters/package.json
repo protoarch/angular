@@ -45,7 +45,7 @@
         "eslint-plugin-simple-import-sort": "~12.1.1",
         "postcss-less": "~6.0.0",
         "postcss-scss": "~4.0.9",
-        "prettier": "~3.1.1",
+        "prettier": "~3.3.3",
         "stylelint": "^15.8.0",
         "stylelint-config-prettier": "^8.0.0",
         "stylelint-config-standard": "^33.0.0",
