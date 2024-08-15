@@ -24,7 +24,7 @@
         "workspace-generator": "nx workspace-generator",
         "dep-graph": "nx dep-graph",
         "help": "nx help",
-        "release": "npm exec -- rimraf dist && npm exec -- tsx ./tools/scripts/release/index.ts --dry-run"
+        "release": "npm exec -- rimraf dist && npm exec -- tsx ./tools/scripts/release/index.ts --dry-run=false"
     },
     "private": true,
     "dependencies": {
