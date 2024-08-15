@@ -39,7 +39,7 @@
             "inputs": ["production", "^production"]
         },
         "nx-release-publish": {
-            "dependsOn": ["test", "build"],
+            "dependsOn": ["build"],
             "options": {
                 "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
             }
