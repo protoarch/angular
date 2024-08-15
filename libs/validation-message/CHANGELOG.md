@@ -1,3 +1,13 @@
+## 18.1.0-alpha.0 (2024-08-15)
+
+### 🩹 Fixes
+
+-   release ([a986fb5](https://github.com/protoarch/angular/commit/a986fb5))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha (2024-08-14)
 
 ### 🩹 Fixes
