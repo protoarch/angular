@@ -1,3 +1,13 @@
+## 18.1.0-alpha.3 (2024-08-15)
+
+### 🩹 Fixes
+
+-   tests ([be8c06a](https://github.com/protoarch/angular/commit/be8c06a))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha.2 (2024-08-15)
 
 This was a version bump only for @protoarch.angular/linters to align it with other projects, there were no code changes.
