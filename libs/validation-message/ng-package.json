@@ -3,5 +3,6 @@
     "lib": {
         "entryFile": "src/index.ts"
     },
-    "allowedNonPeerDependencies": ["angular", "rxjs", "angular-i18next"]
+    "allowedNonPeerDependencies": ["angular", "rxjs", "angular-i18next"],
+    "dest": "../../dist/libs/validation-message"
 }

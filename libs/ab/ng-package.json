@@ -10,5 +10,6 @@
         "zone.js",
         "@angular/ssr",
         "ngx-cookie"
-    ]
+    ],
+    "dest": "../../dist/libs/ab"
 }

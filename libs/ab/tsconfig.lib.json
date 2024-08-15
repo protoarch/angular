@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "composite": true,
     "compilerOptions": {
-        "outDir": "../../dist/e2e",
+        "outDir": "../../dist/ab",
         "lib": ["dom", "es2022"]
     }
 }

@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "composite": true,
     "compilerOptions": {
-        "outDir": "../../dist/e2e",
+        "outDir": "../../dist/libs/validation-message",
         "lib": ["dom", "es2022"]
     }
 }

@@ -3,5 +3,6 @@
     "lib": {
         "entryFile": "src/index.ts"
     },
-    "allowedNonPeerDependencies": ["ngx-cookie"]
+    "allowedNonPeerDependencies": ["ngx-cookie"],
+    "dest": "../../dist/libs/auth"
 }

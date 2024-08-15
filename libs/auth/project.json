@@ -8,7 +8,7 @@
     "targets": {
         "build": {
             "executor": "@nx/angular:ng-packagr-lite",
-            "outputs": ["{workspaceRoot}/dist/libs/auth"],
+            "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "libs/auth/ng-package.json",
                 "tsConfig": "libs/auth/tsconfig.lib.json"

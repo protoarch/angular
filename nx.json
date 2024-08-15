@@ -39,7 +39,6 @@
             "inputs": ["production", "^production"]
         },
         "nx-release-publish": {
-            "executor": "@nx/js:release-publish",
             "dependsOn": ["build"],
             "options": {
                 "packageRoot": "{workspaceRoot}/dist/{projectRoot}"
@@ -52,17 +51,12 @@
         "production": ["default"]
     },
     "release": {
-        "git": {
-            "tag": true,
-            "commit": true,
-            "commitMessage": "chore(release): {version}"
-        },
         "projects": ["libs/*"],
         "releaseTagPattern": "release/{version}",
         "changelog": {
-            "workspaceChangelog": true,
-            "projectChangelogs": true,
-            "createRelease": "github"
+            "projectChangelogs": {
+                "createRelease": "github"
+            }
         }
     }
 }

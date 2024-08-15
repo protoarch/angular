@@ -6,7 +6,7 @@
     "targets": {
         "build": {
             "executor": "@nx/angular:ng-packagr-lite",
-            "outputs": ["{workspaceRoot}/dist/libs/ab"],
+            "outputs": ["{options.outputPath}"],
             "options": {
                 "project": "libs/ab/ng-package.json",
                 "tsConfig": "libs/ab/tsconfig.lib.json"
