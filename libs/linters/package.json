@@ -8,6 +8,7 @@
         "access": "public"
     },
     "files": ["linters/*", "src/*"],
+    "type": "commonjs",
     "main": "src/index.ts",
     "scripts": {
         "clean": "npm exec -- rimraf ../../dist/libs/linters"

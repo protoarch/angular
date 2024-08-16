@@ -1,4 +1,4 @@
-const protoConf = require('./libs/linters/linters/eslint/index.js');
+const protoConf = require('./libs/linters/linters/eslint/index');
 
 module.exports = {
     root: true,

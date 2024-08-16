@@ -19,6 +19,7 @@ module.exports = {
             rules: {
                 '@angular-eslint/no-host-metadata-property': 'off',
                 '@angular-eslint/use-component-view-encapsulation': 'off',
+                '@angular-eslint/prefer-standalone': 'off',
                 '@angular-eslint/prefer-standalone-component': 'off',
                 '@angular-eslint/use-injectable-provided-in': 'off',
 
