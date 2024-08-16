@@ -1,3 +1,13 @@
+## 18.1.0-alpha.4 (2024-08-16)
+
+### 🩹 Fixes
+
+-   standalone ([8563fe9](https://github.com/protoarch/angular/commit/8563fe9))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha.3 (2024-08-15)
 
 ### 🩹 Fixes
