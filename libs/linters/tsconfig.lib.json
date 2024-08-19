@@ -3,6 +3,7 @@
     "composite": true,
     "compilerOptions": {
         "outDir": "../../dist/linters",
+        "module": "commonjs",
         "lib": ["dom", "es2022"]
     }
 }

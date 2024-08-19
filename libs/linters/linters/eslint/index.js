@@ -1,5 +1,5 @@
 module.exports = {
-    ignorePatterns: ['node_modules', 'dist', '**/jest.config.ts'],
+    ignorePatterns: ['node_modules', 'dist', '**/jest.config.ts', '**/src/test-setup.ts'],
     plugins: ['rxjs', '@typescript-eslint/eslint-plugin', 'simple-import-sort'],
     env: {
         browser: true,
