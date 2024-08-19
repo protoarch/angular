@@ -1,3 +1,13 @@
+## 18.1.0-alpha.5 (2024-08-19)
+
+### 🩹 Fixes
+
+-   linters ([9bac486](https://github.com/protoarch/angular/commit/9bac486))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha.4 (2024-08-16)
 
 ### 🩹 Fixes
