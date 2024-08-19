@@ -1,3 +1,13 @@
+## 18.1.0-alpha.6 (2024-08-19)
+
+### 🩹 Fixes
+
+-   linters build ([81531a0](https://github.com/protoarch/angular/commit/81531a0))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha.5 (2024-08-19)
 
 ### 🩹 Fixes

@@ -1,3 +1,7 @@
+## 18.1.0-alpha.6 (2024-08-19)
+
+This was a version bump only for @protoarch.angular/ab to align it with other projects, there were no code changes.
+
 ## 18.1.0-alpha.5 (2024-08-19)
 
 This was a version bump only for @protoarch.angular/ab to align it with other projects, there were no code changes.
