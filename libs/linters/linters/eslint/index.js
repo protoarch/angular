@@ -1,5 +1,5 @@
 module.exports = {
-    ignorePatterns: ['node_modules', 'dist'],
+    ignorePatterns: ['node_modules', 'dist', '**/jest.config.ts'],
     plugins: ['rxjs', '@typescript-eslint/eslint-plugin', 'simple-import-sort'],
     env: {
         browser: true,
@@ -58,7 +58,6 @@ module.exports = {
                     },
                 ],
 
-                'grouped-accessor-pairs': ['error', 'setBeforeGet'],
                 '@typescript-eslint/naming-convention': [
                     'error',
                     {

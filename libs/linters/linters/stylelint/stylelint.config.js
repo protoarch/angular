@@ -21,12 +21,9 @@ module.exports = {
             },
         ],
         'max-nesting-depth': 3,
-        'at-rule-name-space-after': 'always',
-        'block-opening-brace-newline-after': 'always',
         'color-named': 'never',
         'declaration-block-no-redundant-longhand-properties': null,
         'declaration-empty-line-before': 'never',
-        'max-empty-lines': 2,
         'no-descending-specificity': null,
         'no-duplicate-selectors': true,
         'rule-empty-line-before': [
