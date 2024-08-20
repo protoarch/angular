@@ -37,17 +37,7 @@ import * as yargs from 'yargs';
         dryRun: options.dryRun,
         verbose: options.verbose,
     });
-    /*
-    const proc = $({
-        stdio: 'inherit',
-        all: true,
-    })`npm exec -- nx run-many -t build -p @datana-smart/*`;
 
-    await proc;
-
-
-    await gitPushWithTagsAndUpstream(options.dryRun);
-  */
     const releaseStatus = await releasePublish({
         dryRun: options.dryRun,
         verbose: options.verbose,
