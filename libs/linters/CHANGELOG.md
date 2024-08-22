@@ -1,3 +1,7 @@
+## 18.1.0 (2024-08-22)
+
+This was a version bump only for @protoarch.angular/linters to align it with other projects, there were no code changes.
+
 ## 18.1.0-alpha.7 (2024-08-22)
 
 ### 🩹 Fixes
