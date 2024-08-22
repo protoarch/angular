@@ -2,6 +2,8 @@ import logSymbols from 'log-symbols';
 import {releaseChangelog, releasePublish, releaseVersion} from 'nx/src/command-line/release';
 import * as yargs from 'yargs';
 
+import gitPushWithTagsAndUpstream from './git';
+
 (async () => {
     const options = await yargs
         .version(false) // don't use the default meaning of version in yargs
@@ -37,6 +39,8 @@ import * as yargs from 'yargs';
         dryRun: options.dryRun,
         verbose: options.verbose,
     });
+
+    await gitPushWithTagsAndUpstream(options.dryRun);
 
     const releaseStatus = await releasePublish({
         dryRun: options.dryRun,

@@ -14,6 +14,7 @@ module.exports = {
                 severity: 'warning',
             },
         ],
+        'import-notation': 'string',
         'custom-property-pattern': [
             '^([a-z][a-z0-9]*)(-[a-z0-9_-]+)*$',
             {
