@@ -1,3 +1,7 @@
+## 18.1.0-alpha.7 (2024-08-22)
+
+This was a version bump only for @protoarch.angular/validation-message to align it with other projects, there were no code changes.
+
 ## 18.1.0-alpha.6 (2024-08-19)
 
 This was a version bump only for @protoarch.angular/validation-message to align it with other projects, there were no code changes.

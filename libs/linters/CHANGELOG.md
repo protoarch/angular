@@ -1,3 +1,13 @@
+## 18.1.0-alpha.7 (2024-08-22)
+
+### 🩹 Fixes
+
+-   **linters:** changed scss import rule ([e1fcf20](https://github.com/protoarch/angular/commit/e1fcf20))
+
+### ❤️ Thank You
+
+-   Romanchuk Sergey @Romanchuk
+
 ## 18.1.0-alpha.6 (2024-08-19)
 
 ### 🩹 Fixes
