@@ -112,11 +112,16 @@ export class Api {
                     if (triggerBrowserDownload) {
                         const a = document.createElement('a');
                         const objectUrl = URL.createObjectURL(blobResp.body);
+                        let filename = blobResp.headers
+                            .get('content-disposition')
+                            ?.split('filename=')?.[1];
+
+                        if (filename) {
+                            filename = decodeURI(filename);
+                        }
+
                         a.href = objectUrl;
-                        a.download = (
-                            blobResp.headers.get('content-disposition')?.split('filename=')?.[1] ??
-                            url.replaceAll('/', '')
-                        ).replaceAll('"', '');
+                        a.download = (filename ?? url.replaceAll('/', '')).replaceAll('"', '');
                         a.click();
                         URL.revokeObjectURL(objectUrl);
                     }
